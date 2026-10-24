@@ -1,0 +1,38 @@
+{
+  "timestamp_utc": "2026-10-13T12:53:48.043320+00:00",
+  "python": "3.11.15",
+  "torch": "2.7.1+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA RTX5880-Ada-48Q",
+  "code_repository": "https://github.com/hustvl/4DGaussians",
+  "code_commit": "843d5ac636c37e4b611242287754f3d4ed150144",
+  "submodules": [
+    " e49506654e8e11ed8a62d22bcb693e943fdecacf submodules/depth-diff-gaussian-rasterization (e495066)",
+    " 44f764299fa305faf6ec5ebd99939e0508331503 submodules/simple-knn (44f7642)"
+  ],
+  "packages": {
+    "mmcv": "1.6.0",
+    "numpy": "1.26.4",
+    "plyfile": "1.1.2",
+    "yapf": "0.40.1",
+    "opencv-python": "4.11.0.86",
+    "scipy": "1.17.1",
+    "imageio": "2.37.3",
+    "lpips": "0.1.4"
+  },
+  "data_sources": {
+    "printer": "https://github.com/google/hypernerf/releases/download/v0.1/vrig_3dprinter.zip",
+    "coffee": "https://github.com/facebookresearch/Neural_3D_Video/releases/download/v1.0/coffee_martini.zip",
+    "printer_cloud": "https://drive.google.com/file/d/1fUHiSgimVjVQZ2OOzTFtz02E9EqCoWr5/view"
+  },
+  "evaluations": "full official held-out splits; float RGB PSNR and SSIM, unmasked",
+  "initialization": {
+    "coffee": "training cameras only, calibrated SIFT triangulation at frame 0",
+    "printer": "author provided cloud; generation provenance not independently audited"
+  },
+  "variants": {
+    "printer": "official loader, original release RGB/2x",
+    "coffee": "676x507 resized video frames",
+    "printer_calibrated": "derived undistorted centered pinhole 536x720, original unchanged"
+  }
+}

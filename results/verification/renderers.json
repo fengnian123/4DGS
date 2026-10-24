@@ -1,0 +1,82 @@
+[
+  {
+    "scene": "som-agentos-seated-v2",
+    "reference_frame": 40,
+    "reference_mae_uint8": 4.492865668402778e-05,
+    "time_change_mae_uint8": 17.07689666748047,
+    "resolution": [
+      768,
+      512
+    ]
+  },
+  {
+    "scene": "som-agentos-seated-v3",
+    "reference_frame": 40,
+    "reference_mae_uint8": 4.238552517361111e-05,
+    "time_change_mae_uint8": 17.035716586642796,
+    "resolution": [
+      768,
+      512
+    ]
+  },
+  {
+    "scene": "som-agentos-seated",
+    "reference_frame": 40,
+    "reference_mae_uint8": 6.188286675347222e-05,
+    "time_change_mae_uint8": 17.139685736762154,
+    "resolution": [
+      768,
+      512
+    ]
+  },
+  {
+    "scene": "som-agentos-office",
+    "reference_frame": 40,
+    "reference_mae_uint8": 5.859375e-05,
+    "time_change_mae_uint8": 3.750546875,
+    "resolution": [
+      640,
+      480
+    ]
+  },
+  {
+    "scene": "4dgs-coffee",
+    "reference_frame": 150,
+    "reference_mae_uint8": 6.808040490334528e-06,
+    "time_change_mae_uint8": 1.1268133702134613,
+    "resolution": [
+      676,
+      507
+    ]
+  },
+  {
+    "scene": "som-balloon1",
+    "reference_frame": 96,
+    "reference_mae_uint8": 0.2648678792038435,
+    "time_change_mae_uint8": 11.40881949210707,
+    "resolution": [
+      470,
+      248
+    ]
+  },
+  {
+    "scene": "4dgs-printer",
+    "reference_frame": 103,
+    "reference_mae_uint8": 8.356654228855722e-05,
+    "time_change_mae_uint8": 23.45503796123549,
+    "resolution": [
+      536,
+      960
+    ]
+  },
+  {
+    "scene": "4dgs-printer-calibrated",
+    "reference_frame": 103,
+    "reference_mae_uint8": 0.00010883084577114428,
+    "time_change_mae_uint8": 14.379090657822001,
+    "resolution": [
+      536,
+      720
+    ]
+  }
+]

@@ -1,0 +1,455 @@
+diff --git a/flow3d/configs.py b/flow3d/configs.py
+index 860cb04..c8a4863 100644
+--- a/flow3d/configs.py
++++ b/flow3d/configs.py
+@@ -55,6 +55,13 @@ class LossesConfig:
+     w_smooth_tracks: float = 2.0
+     w_scale_var: float = 0.01
+     w_z_accel: float = 1.0
++    mask_refine_start_step: int = 5000
++    mask_refine_multiplier: float = 2.0
++    w_lidar: float = 1.0
++    w_aux_rgb: float = 0.15
++    w_aux_depth: float = 0.5
++    rgb_refine_start_step: int = 3000
++    rgb_refine_multiplier: float = 2.0
+ 
+     # w_smooth_bases: float = 0.0
+     # w_smooth_tracks: float = 0.0
+diff --git a/flow3d/data/casual_dataset.py b/flow3d/data/casual_dataset.py
+index bd79f6d..51afa2e 100644
+--- a/flow3d/data/casual_dataset.py
++++ b/flow3d/data/casual_dataset.py
+@@ -146,6 +146,7 @@ class CasualDataset(BaseDataset):
+             cams = np.load(cam_path)
+             c2ws = cams["cam_c2w"][:self.end]
+             K = cams["intrinsic"]
++            self.metric_depths = torch.from_numpy(cams['depths'][:self.end]).float()
+                 
+             c2ws = torch.from_numpy(c2ws)
+             w2cs = torch.linalg.inv(c2ws)
+@@ -188,6 +189,17 @@ class CasualDataset(BaseDataset):
+         guru.info(f"scene norm {self.scale=}, {transform=}")
+         self.w2cs = torch.einsum("nij,jk->nik", self.w2cs, torch.linalg.inv(transform))
+         self.w2cs[:, :3, 3] /= self.scale
++        sensor_path = Path(data_dir) / 'sensor_constraints.npz'
++        self.sensor_constraints = None
++        if sensor_path.exists():
++            sensor = np.load(sensor_path)
++            self.sensor_constraints = {name: torch.from_numpy(sensor[name]).float() for name in ('lidar_depths', 'depth_confidence', 'right_depths')}
++            right_w2cs = torch.linalg.inv(torch.from_numpy(sensor['right_c2w']).float()) @ torch.linalg.inv(transform).float()
++            right_w2cs[:, :3, 3] /= self.scale
++            self.sensor_right_w2cs = right_w2cs
++            self.sensor_right_images = torch.from_numpy(np.stack([
++                imageio.imread(Path(data_dir).parent / f'clip/right/{i:05d}.png') for i in range(self.num_frames)
++            ]))
+ 
+     @property
+     def num_frames(self) -> int:
+@@ -226,10 +238,7 @@ class CasualDataset(BaseDataset):
+             if self.camera_type == "droid_recon":
+                 self.depths[index] = self.load_depth(index)
+             elif self.camera_type == "megasam":
+-                data_name = self.data_dir.split("/")[-1]
+-                depth_path = Path(self.data_dir) / f"{data_name}.npz"
+-                depths = np.load(depth_path)
+-                self.depths[index] = torch.tensor(depths["depths"][index]).float()
++                self.depths[index] = self.metric_depths[index]
+                
+                 
+         return self.depths[index] / self.scale
+@@ -348,7 +357,7 @@ class CasualDataset(BaseDataset):
+         )
+ 
+         if use_kf_tstamps:
+-            query_idcs = self.keyframe_idcs.tolist()
++            query_idcs = self.keyframe_idcs.tolist()[::4]
+         else:
+             num_query_frames = self.num_frames // stride
+             query_endpts = torch.linspace(start, end, num_query_frames + 1)
+@@ -366,9 +375,9 @@ class CasualDataset(BaseDataset):
+             K = self.Ks[query_idx]
+ 
+ 
+-            # get the bounding box of previous points that reproject into frame
+-            # inefficient but works for now
+-            bmax_x, bmax_y, bmin_x, bmin_y = 0, 0, W, H
++            # Exclude only pixels actually supported by existing geometry at the
++            # current observed depth, not its whole image-space bounding box.
++            covered = np.zeros((H, W), dtype=np.uint8)
+             for p3d, _, _ in bg_geometry:
+                 if len(p3d) < 1:
+                     continue
+@@ -376,24 +385,16 @@ class CasualDataset(BaseDataset):
+                 p2d = torch.einsum(
+                     "ij,jk,pk->pi", K, w2c[:3], F.pad(p3d, (0, 1), value=1.0)
+                 )
+-                p2d = p2d[:, :2] / p2d[:, 2:].clamp(min=1e-6)
+-                xmin, xmax = p2d[:, 0].min().item(), p2d[:, 0].max().item()
+-                ymin, ymax = p2d[:, 1].min().item(), p2d[:, 1].max().item()
+-
+-                bmin_x = min(bmin_x, int(xmin))
+-                bmin_y = min(bmin_y, int(ymin))
+-                bmax_x = max(bmax_x, int(xmax))
+-                bmax_y = max(bmax_y, int(ymax))
+-
+-            # don't include points that are covered by previous points
+-            bmin_x = max(0, bmin_x)
+-            bmin_y = max(0, bmin_y)
+-            bmax_x = min(W, bmax_x)
+-            bmax_y = min(H, bmax_y)
+-            overlap_mask = torch.ones_like(bool_mask)
+-            overlap_mask[bmin_y:bmax_y, bmin_x:bmax_x] = 0
+-
+-            bool_mask &= overlap_mask
++                z = p2d[:, 2]
++                uv = (p2d[:, :2] / z[:, None].clamp(min=1e-6)).round().long()
++                valid = (z > 0) & (uv[:,0] >= 0) & (uv[:,0] < W) & (uv[:,1] >= 0) & (uv[:,1] < H)
++                uv, z = uv[valid], z[valid]
++                measured = depth[uv[:,1], uv[:,0]]
++                consistent = (z-measured).abs() < (0.03 / self.scale + measured*.03)
++                uv = uv[consistent]
++                covered[uv[:,1].numpy(), uv[:,0].numpy()] = 1
++            covered = cv2.dilate(covered, np.ones((5,5), np.uint8))
++            bool_mask &= ~torch.from_numpy(covered.astype(bool))
+             if bool_mask.sum() < min_per_frame:
+                 guru.debug(f"skipping {query_idx=}")
+                 continue
+@@ -458,6 +459,12 @@ class CasualDataset(BaseDataset):
+         mask = tri_mask == 1  # fg mask
+         data["masks"] = mask.float()
+         data["valid_masks"] = valid_mask.float()
++        if self.sensor_constraints is not None:
++            data['lidar_depth'] = self.sensor_constraints['lidar_depths'][index] / self.scale
++            data['depth_confidence'] = self.sensor_constraints['depth_confidence'][index]
++            data['aux_image'] = self.sensor_right_images[index].float() / 255
++            data['aux_depth'] = self.sensor_constraints['right_depths'][index] / self.scale
++            data['aux_w2c'] = self.sensor_right_w2cs[index]
+ 
+         # (P, 2)
+         query_tracks = self.load_target_tracks(index, [index])[:, 0, :2]
+diff --git a/flow3d/init_utils.py b/flow3d/init_utils.py
+index 9790b36..1c0888e 100644
+--- a/flow3d/init_utils.py
++++ b/flow3d/init_utils.py
+@@ -577,7 +577,7 @@ def sample_initial_bases_centers(
+     else:
+         model = HDBSCAN(min_cluster_size=20, max_cluster_size=num_tracks // 4)
+     model.fit(vel_dirs)
+-    labels = model.labels_
++    labels = cp.asnumpy(model.labels_)
+     num_bases = labels.max().item() + 1
+     sampled_centers = torch.stack(
+         [
+diff --git a/flow3d/renderer.py b/flow3d/renderer.py
+index f30fe68..1dad3ed 100644
+--- a/flow3d/renderer.py
++++ b/flow3d/renderer.py
+@@ -1,11 +1,12 @@
+ import numpy as np
+ import torch
+ import torch.nn.functional as F
++import roma
+ from loguru import logger as guru
+ from nerfview import CameraState
+ 
+ from flow3d.scene_model import SceneModel
+-from flow3d.vis.utils import draw_tracks_2d_th, get_server
++from flow3d.vis.utils import draw_tracks_2d, get_server
+ from flow3d.vis.viewer import DynamicViewer
+ 
+ 
+@@ -34,6 +35,16 @@ class Renderer:
+                 server, self.render_fn, model.num_frames, work_dir, mode="rendering"
+             )
+ 
++            @server.on_client_connect
++            def set_initial_camera(client):
++                c2w = torch.linalg.inv(self.model.w2cs[0]).detach().cpu()
++                quaternion = roma.quat_xyzw_to_wxyz(roma.rotmat_to_unitquat(c2w[:3, :3]))
++                client.camera.position = c2w[:3, 3].numpy()
++                client.camera.up_direction = -c2w[:3, 1].numpy()
++                client.camera.wxyz = quaternion.numpy()
++                K = self.model.Ks[0].detach().cpu()
++                client.camera.fov = float(2 * torch.atan(K[1, 2] / K[1, 1]))
++
+         self.tracks_3d = self.model.compute_poses_fg(
+             #  torch.arange(max(0, t - 20), max(1, t), device=self.device),
+             torch.arange(self.num_frames, device=self.device),
+@@ -45,11 +56,16 @@ class Renderer:
+         path: str, device: torch.device, use_2dgs, *args, **kwargs
+     ) -> "Renderer":
+         guru.info(f"Loading checkpoint from {path}")
+-        ckpt = torch.load(path)
++        ckpt = torch.load(path, weights_only=False)
+         state_dict = ckpt["model"]
+         model = SceneModel.init_from_state_dict(state_dict)
+         model.use_2dgs = use_2dgs
+-        model = model.to(device)
++        model = model.to(device).eval()
++        with torch.inference_mode():
++            K = model.Ks[:1].clone()
++            K[:, 0, :] *= 64 / (2 * K[0, 0, 2])
++            K[:, 1, :] *= 36 / (2 * K[0, 1, 2])
++            model.render(0, model.w2cs[:1], K, (64, 36))
+         print(f"num gs: {model.fg.num_gaussians + model.bg.num_gaussians}")
+         renderer = Renderer(model, device, *args, **kwargs)
+         renderer.global_step = ckpt.get("global_step", 0)
+@@ -58,6 +74,8 @@ class Renderer:
+ 
+     @torch.inference_mode()
+     def render_fn(self, camera_state: CameraState, img_wh: tuple[int, int]):
++        if not isinstance(img_wh, tuple):
++            img_wh = (img_wh.viewer_width, img_wh.viewer_height)
+         if self.viewer is None:
+             return np.full((img_wh[1], img_wh[0], 3), 255, dtype=np.uint8)
+ 
+@@ -68,9 +86,9 @@ class Renderer:
+             [[focal, 0.0, W / 2.0], [0.0, focal, H / 2.0], [0.0, 0.0, 1.0]],
+             device=self.device,
+         )
+-        w2c = torch.linalg.inv(
+-            torch.from_numpy(camera_state.c2w.astype(np.float32)).to(self.device)
+-        )
++        w2c = torch.from_numpy(
++            np.linalg.inv(camera_state.c2w).astype(np.float32)
++        ).to(self.device)
+         t = (
+             int(self.viewer._playback_guis[0].value)
+             if not self.viewer._canonical_checkbox.value
+@@ -87,5 +105,5 @@ class Renderer:
+                 "ij,jk,nbk->nbi", K, w2c[:3], F.pad(tracks_3d, (0, 1), value=1.0)
+             )
+             tracks_2d = tracks_2d[..., :2] / tracks_2d[..., 2:]
+-            img = draw_tracks_2d_th(img, tracks_2d)
++            img = draw_tracks_2d(img, tracks_2d)
+         return img
+diff --git a/flow3d/scene_model.py b/flow3d/scene_model.py
+index ecb6a96..e6bd0df 100644
+--- a/flow3d/scene_model.py
++++ b/flow3d/scene_model.py
+@@ -333,7 +333,8 @@ class SceneModel(nn.Module):
+         # Populate the current data for adaptive gaussian control.
+         if self.training and info["means2d"].requires_grad:
+             self._current_xys = info["means2d"]
+-            self._current_radii = info["radii"]
++            radii = info["radii"]
++            self._current_radii = radii.amax(dim=-1) if radii.ndim == 3 else radii
+             self._current_img_wh = img_wh
+             # We want to be able to access to xys' gradients later in a
+             # torch.no_grad context.
+diff --git a/flow3d/trainer.py b/flow3d/trainer.py
+index da38a92..8e19b24 100644
+--- a/flow3d/trainer.py
++++ b/flow3d/trainer.py
+@@ -1,4 +1,5 @@
+ import functools
++import os
+ import time
+ from dataclasses import asdict
+ from typing import cast
+@@ -108,7 +109,8 @@ class Trainer:
+             "global_step": self.global_step,
+             "epoch": self.epoch,
+         }
+-        torch.save(ckpt, path)
++        torch.save(ckpt, path + '.tmp')
++        os.replace(path + '.tmp', path)
+         guru.info(f"Saved checkpoint at {self.global_step=} to {path}")
+ 
+     @staticmethod
+@@ -116,7 +118,7 @@ class Trainer:
+         path: str, device: torch.device, use_2dgs, *args, **kwargs
+     ) -> tuple["Trainer", int]:
+         guru.info(f"Loading checkpoint from {path}")
+-        ckpt = torch.load(path)
++        ckpt = torch.load(path, weights_only=False)
+         state_dict = ckpt["model"]
+         model = SceneModel.init_from_state_dict(state_dict)
+         model = model.to(device)
+@@ -170,11 +172,8 @@ class Trainer:
+             self.viewer.lock.acquire()
+ 
+         loss, stats, num_rays_per_step, num_rays_per_sec = self.compute_losses(batch)
+-        if loss.isnan():
+-            guru.info(f"Loss is NaN at step {self.global_step}!!")
+-            import ipdb
+-
+-            ipdb.set_trace()
++        if not torch.isfinite(loss):
++            raise FloatingPointError(f"Non-finite loss at step {self.global_step}")
+         loss.backward()
+ 
+         for opt in self.optimizers.values():
+@@ -347,9 +346,13 @@ class Trainer:
+         rgb_loss = 0.8 * F.l1_loss(rendered_imgs, imgs) + 0.2 * (
+             1 - self.ssim(rendered_imgs.permute(0, 3, 1, 2), imgs.permute(0, 3, 1, 2))
+         )
+-        loss += rgb_loss * self.losses_cfg.w_rgb
++        rgb_weight = self.losses_cfg.w_rgb
++        if self.global_step >= self.losses_cfg.rgb_refine_start_step:
++            rgb_weight *= self.losses_cfg.rgb_refine_multiplier
++        loss += rgb_loss * rgb_weight
+ 
+         # Mask loss.
++        refine_masks = self.global_step >= self.losses_cfg.mask_refine_start_step
+         if not self.model.has_bg:
+             mask_loss = F.mse_loss(rendered_all["acc"], masks[..., None])  # type: ignore
+         else:
+@@ -358,9 +361,13 @@ class Trainer:
+             ) + masked_l1_loss(
+                 rendered_all["mask"],
+                 masks[..., None],
+-                quantile=0.98,  # type: ignore
++                mask=valid_masks[..., None] if refine_masks else None,
++                quantile=1.0 if refine_masks else 0.98,
+             )
+-        loss += mask_loss * self.losses_cfg.w_mask
++        mask_weight = self.losses_cfg.w_mask
++        if refine_masks:
++            mask_weight *= self.losses_cfg.mask_refine_multiplier
++        loss += mask_loss * mask_weight
+ 
+         # (B * N, H * W, 3).
+         pred_tracks_3d = (
+@@ -402,6 +409,8 @@ class Trainer:
+         depth_masks = (
+             masks[..., None] if not self.model.has_bg else valid_masks[..., None]
+         )
++        if 'depth_confidence' in batch:
++            depth_masks = depth_masks * batch['depth_confidence'][..., None]
+ 
+         pred_depth = cast(torch.Tensor, rendered_all["depth"])
+         pred_disp = 1.0 / (pred_depth + 1e-5)
+@@ -434,6 +443,32 @@ class Trainer:
+         )
+         loss += depth_gradient_loss * self.losses_cfg.w_depth_grad
+ 
++        lidar_loss = pred_depth.new_zeros(())
++        aux_rgb_loss = pred_depth.new_zeros(())
++        aux_depth_loss = pred_depth.new_zeros(())
++        if 'lidar_depth' in batch:
++            measured = batch['lidar_depth'][..., None]
++            selected = (measured > 0) & (valid_masks[..., None] > 0)
++            # Balance the near moving subject against the much larger background.
++            errors = F.smooth_l1_loss(pred_depth.clamp_min(1e-4).log(), measured.clamp_min(1e-4).log(), beta=.1, reduction='none')
++            groups = [selected & (masks[..., None] > .5), selected & (masks[..., None] < .5)]
++            values = [errors[group].mean() for group in groups if group.any()]
++            if values:
++                lidar_loss = torch.stack(values).mean()
++                loss += self.losses_cfg.w_lidar * lidar_loss
++            # One real simultaneous auxiliary view per batch, only at sensor-supported pixels.
++            auxiliary = self.model.render(int(ts[0].item()), batch['aux_w2c'][0:1], Ks[0:1], img_wh, return_depth=True)
++            aux_measured = batch['aux_depth'][0]
++            aux_valid = aux_measured > 0
++            if aux_valid.any():
++                aux_rgb_loss = F.smooth_l1_loss(auxiliary['img'][0][aux_valid], batch['aux_image'][0][aux_valid], beta=.1)
++                aux_depth_loss = F.smooth_l1_loss(auxiliary['depth'][0, :, :, 0][aux_valid].clamp_min(1e-4).log(), aux_measured[aux_valid].log(), beta=.1)
++                loss += self.losses_cfg.w_aux_rgb * aux_rgb_loss + self.losses_cfg.w_aux_depth * aux_depth_loss
++                if self.model._current_xys is not None and self.model._current_xys.requires_grad:
++                    self._batched_xys.append(self.model._current_xys)
++                    self._batched_radii.append(self.model._current_radii)
++                    self._batched_img_wh.append(self.model._current_img_wh)
++
+         # bases should be smooth.
+         small_accel_loss = compute_se3_smoothness_loss(
+             self.model.motion_bases.params["rots"],
+@@ -493,6 +528,9 @@ class Trainer:
+             "train/mask_loss": mask_loss.item(),
+             "train/depth_loss": depth_loss.item(),
+             "train/depth_gradient_loss": depth_gradient_loss.item(),
++            "train/lidar_loss": lidar_loss.item(),
++            "train/aux_rgb_loss": aux_rgb_loss.item(),
++            "train/aux_depth_loss": aux_depth_loss.item(),
+             "train/mapped_depth_loss": mapped_depth_loss.item(),
+             "train/track_2d_loss": track_2d_loss.item(),
+             "train/small_accel_loss": small_accel_loss.item(),
+@@ -681,8 +719,9 @@ class Trainer:
+             torch.ones(len(is_scale_too_big), device=device) * cfg.cull_scale_threshold
+         )
+         num_fg = self.model.num_fg_gaussians
++        cull_scale_threshold[:num_fg] = min(cfg.cull_scale_threshold, 0.15)
+         cull_scale_threshold[num_fg:] *= self.model.bg_scene_scale
+-        if global_step > self.reset_opacity_every:
++        if global_step > min(self.reset_opacity_every, 1500):
+             scales = self.model.get_scales_all()
+             is_scale_too_big = scales.amax(dim=-1) > cull_scale_threshold
+             if global_step < cfg.stop_control_by_screen_steps:
+diff --git a/flow3d/vis/playback_panel.py b/flow3d/vis/playback_panel.py
+index 20e6185..9e0a74b 100644
+--- a/flow3d/vis/playback_panel.py
++++ b/flow3d/vis/playback_panel.py
+@@ -18,7 +18,7 @@ def add_gui_playback_group(
+         max=num_frames - 1,
+         step=1,
+         initial_value=0,
+-        disabled=True,
++        disabled=False,
+     )
+     gui_next_frame = server.gui.add_button("Next Frame")
+     gui_prev_frame = server.gui.add_button("Prev Frame")
+diff --git a/flow3d/vis/utils.py b/flow3d/vis/utils.py
+index 4e5d6df..df61b71 100644
+--- a/flow3d/vis/utils.py
++++ b/flow3d/vis/utils.py
+@@ -30,7 +30,7 @@ def get_server(port: int | None = None) -> ViserServer:
+         avail_ports = list(manager._servers.keys())
+         port = avail_ports[0] if len(avail_ports) > 0 else 8890
+     if port not in manager._servers:
+-        manager._servers[port] = ViserServer(port=port, verbose=False)
++        manager._servers[port] = ViserServer(host="127.0.0.1", port=port, verbose=False)
+     return manager._servers[port]
+ 
+ 
+diff --git a/flow3d/vis/viewer.py b/flow3d/vis/viewer.py
+index 3f78611..de46d43 100644
+--- a/flow3d/vis/viewer.py
++++ b/flow3d/vis/viewer.py
+@@ -27,10 +27,10 @@ class DynamicViewer(Viewer):
+     ):
+         self.num_frames = num_frames
+         self.work_dir = Path(work_dir)
+-        super().__init__(server, render_fn, mode)
++        super().__init__(server, render_fn, output_dir=self.work_dir, mode=mode)
++        self._define_guis()
+ 
+     def _define_guis(self):
+-        super()._define_guis()
+         server = self.server
+         self._time_folder = server.gui.add_folder("Time")
+         with self._time_folder:
+@@ -64,6 +64,6 @@ class DynamicViewer(Viewer):
+ 
+         tabs = server.gui.add_tab_group()
+         with tabs.add_tab("Render", Icon.CAMERA):
+-            self.render_tab_state = populate_render_tab(
++            self.som_render_tab_state = populate_render_tab(
+                 server, Path(self.work_dir) / "camera_paths", self._playback_guis[0]
+             )
+diff --git a/run_training.py b/run_training.py
+index 7058ffe..053665f 100644
+--- a/run_training.py
++++ b/run_training.py
+@@ -119,9 +119,12 @@ def main(cfg: TrainConfig):
+         train_dataset,
+         batch_size=cfg.batch_size,
+         num_workers=cfg.num_dl_workers,
+-        persistent_workers=True,
++        persistent_workers=cfg.num_dl_workers > 0,
+         collate_fn=BaseDataset.train_collate_fn,
+     )
++    if trainer.global_step >= cfg.num_epochs * len(train_loader):
++        guru.info(f"Training complete at {trainer.global_step=}")
++        return
+ 
+     validator = None
+     if (
+@@ -169,6 +172,8 @@ def main(cfg: TrainConfig):
+             ):
+                 validator.save_train_videos(epoch)
+ 
++    trainer.save_checkpoint(f"{cfg.work_dir}/checkpoints/last.ckpt")
++
+ 
+ def initialize_and_checkpoint_model(
+     cfg: TrainConfig,

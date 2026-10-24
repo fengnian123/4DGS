@@ -1,0 +1,56 @@
+[
+  {
+    "id": "4dgs-coffee",
+    "label": "4DGS · 厨房（Coffee Martini）",
+    "adapter": "adapters.fourdgs:FourDGS",
+    "python": "../4dgs_local/.venv/bin/python",
+    "root": "../4dgs_local",
+    "source": "data/raw/coffee_martini",
+    "model": "runs/coffee",
+    "config": "configs/coffee.py",
+    "iteration": 7000,
+    "results": "results/coffee_7000",
+    "comparison": "comparison.mp4",
+    "metric_scope": "完整 RGB，未遮罩"
+  },
+  {
+    "id": "som-balloon1",
+    "label": "Shape of Motion · 气球（Balloon1）",
+    "adapter": "adapters.som:ShapeOfMotion",
+    "python": "../som_local/.venv/bin/python",
+    "root": "../som_local",
+    "source": "data/extracted/Balloon1",
+    "model": "runs/balloon1",
+    "results": "results/balloon1",
+    "comparison": "comparison_view1.mp4",
+    "metric_scope": "作者可见区域遮罩"
+  },
+  {
+    "id": "4dgs-printer",
+    "label": "4DGS · 打印机（原始相机）",
+    "adapter": "adapters.fourdgs:FourDGS",
+    "python": "../4dgs_local/.venv/bin/python",
+    "root": "../4dgs_local",
+    "source": "data/raw/vrig-3dprinter",
+    "model": "runs/printer",
+    "config": "configs/printer.py",
+    "iteration": 14000,
+    "results": "results/printer_14000",
+    "comparison": "comparison.mp4",
+    "metric_scope": "完整 RGB，未遮罩"
+  },
+  {
+    "id": "4dgs-printer-calibrated",
+    "label": "4DGS · 打印机（校正相机）",
+    "adapter": "adapters.fourdgs:FourDGS",
+    "python": "../4dgs_local/.venv/bin/python",
+    "root": "../4dgs_local",
+    "source": "data/derived/printer_calibrated",
+    "model": "runs/printer_calibrated_stable",
+    "config": "configs/printer_calibrated.py",
+    "iteration": 14000,
+    "results": "results/printer_calibrated_14000",
+    "comparison": "comparison.mp4",
+    "metric_scope": "校正视域完整 RGB，未遮罩"
+  }
+]

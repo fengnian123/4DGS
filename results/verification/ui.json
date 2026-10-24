@@ -1,0 +1,18 @@
+{
+  "page_errors": [],
+  "scenes_selected": [
+    "Shape of Motion · 双人交互（优化版）",
+    "Shape of Motion · 双人交互（实测深度版）",
+    "Shape of Motion · 双人交互（原版）",
+    "Shape of Motion · 自采办公室（AgentOS）",
+    "4DGS · 厨房（Coffee Martini）",
+    "Shape of Motion · 气球（Balloon1）",
+    "4DGS · 打印机（原始相机）",
+    "4DGS · 打印机（校正相机）"
+  ],
+  "before_playback": "帧 40/79 · 进度 50.6%",
+  "after_playback": "帧 61/79 · 进度 77.2%",
+  "camera_transform_max_change": 0.4007108476387027,
+  "snapshot_saved": true,
+  "checked_on": "2026-10-24"
+}

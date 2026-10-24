@@ -1,0 +1,743 @@
+{
+  "scope": "same input RGB and full image; training-view fit, not held-out generalization",
+  "baseline_directory": "agentos_seated_v2",
+  "baseline_step": 8010,
+  "optimized_step": 6020,
+  "optimized_seed_step": 0,
+  "per_frame": [
+    {
+      "frame": 0,
+      "baseline_psnr": 27.727128982543945,
+      "baseline_background_foreground_alpha": 0.0006300975219346583,
+      "baseline_background_false_positive_fraction": 0.0008773906156420708,
+      "optimized_psnr": 27.279333114624023,
+      "optimized_background_foreground_alpha": 0.0010361404856666923,
+      "optimized_background_false_positive_fraction": 0.0013521431246772408
+    },
+    {
+      "frame": 1,
+      "baseline_psnr": 29.2614803314209,
+      "baseline_background_foreground_alpha": 0.00046794628724455833,
+      "baseline_background_false_positive_fraction": 0.000660478079225868,
+      "optimized_psnr": 28.784029006958008,
+      "optimized_background_foreground_alpha": 0.0015370359178632498,
+      "optimized_background_false_positive_fraction": 0.0018607990350574255
+    },
+    {
+      "frame": 2,
+      "baseline_psnr": 29.003787994384766,
+      "baseline_background_foreground_alpha": 0.003717367071658373,
+      "baseline_background_false_positive_fraction": 0.004675567150115967,
+      "optimized_psnr": 28.242950439453125,
+      "optimized_background_foreground_alpha": 0.003282384015619755,
+      "optimized_background_false_positive_fraction": 0.003987543750554323
+    },
+    {
+      "frame": 3,
+      "baseline_psnr": 29.00806427001953,
+      "baseline_background_foreground_alpha": 0.00039506619214080274,
+      "baseline_background_false_positive_fraction": 0.0004635381046682596,
+      "optimized_psnr": 28.82895278930664,
+      "optimized_background_foreground_alpha": 0.0011073109926655889,
+      "optimized_background_false_positive_fraction": 0.00125464319717139
+    },
+    {
+      "frame": 4,
+      "baseline_psnr": 29.307416915893555,
+      "baseline_background_foreground_alpha": 0.0014947733143344522,
+      "baseline_background_false_positive_fraction": 0.0019711453933268785,
+      "optimized_psnr": 29.024234771728516,
+      "optimized_background_foreground_alpha": 0.0020729706156998873,
+      "optimized_background_false_positive_fraction": 0.002541115041822195
+    },
+    {
+      "frame": 5,
+      "baseline_psnr": 28.891658782958984,
+      "baseline_background_foreground_alpha": 0.001085122348740697,
+      "baseline_background_false_positive_fraction": 0.0014405905967578292,
+      "optimized_psnr": 28.7603816986084,
+      "optimized_background_foreground_alpha": 0.0021865887101739645,
+      "optimized_background_false_positive_fraction": 0.002749674953520298
+    },
+    {
+      "frame": 6,
+      "baseline_psnr": 29.139097213745117,
+      "baseline_background_foreground_alpha": 0.0007836284348741174,
+      "baseline_background_false_positive_fraction": 0.0010024652583524585,
+      "optimized_psnr": 29.515880584716797,
+      "optimized_background_foreground_alpha": 0.0018258104100823402,
+      "optimized_background_false_positive_fraction": 0.0023077900987118483
+    },
+    {
+      "frame": 7,
+      "baseline_psnr": 30.741086959838867,
+      "baseline_background_foreground_alpha": 0.0006008652853779495,
+      "baseline_background_false_positive_fraction": 0.0007601837278343737,
+      "optimized_psnr": 30.26034927368164,
+      "optimized_background_foreground_alpha": 0.0012177641037851572,
+      "optimized_background_false_positive_fraction": 0.001579080824740231
+    },
+    {
+      "frame": 8,
+      "baseline_psnr": 31.894628524780273,
+      "baseline_background_foreground_alpha": 0.0005149532807990909,
+      "baseline_background_false_positive_fraction": 0.0005985533935017884,
+      "optimized_psnr": 30.5322265625,
+      "optimized_background_foreground_alpha": 0.0015408223262056708,
+      "optimized_background_false_positive_fraction": 0.0019374227849766612
+    },
+    {
+      "frame": 9,
+      "baseline_psnr": 30.51414680480957,
+      "baseline_background_foreground_alpha": 0.004882434848695993,
+      "baseline_background_false_positive_fraction": 0.005461873486638069,
+      "optimized_psnr": 29.49184226989746,
+      "optimized_background_foreground_alpha": 0.00919791404157877,
+      "optimized_background_false_positive_fraction": 0.011858977377414703
+    },
+    {
+      "frame": 10,
+      "baseline_psnr": 30.446870803833008,
+      "baseline_background_foreground_alpha": 0.0032447031699121,
+      "baseline_background_false_positive_fraction": 0.003709206124767661,
+      "optimized_psnr": 29.70697784423828,
+      "optimized_background_foreground_alpha": 0.007440782617777586,
+      "optimized_background_false_positive_fraction": 0.009746914729475975
+    },
+    {
+      "frame": 11,
+      "baseline_psnr": 30.167354583740234,
+      "baseline_background_foreground_alpha": 0.002313454169780016,
+      "baseline_background_false_positive_fraction": 0.002583178458735347,
+      "optimized_psnr": 29.675617218017578,
+      "optimized_background_foreground_alpha": 0.006816119886934757,
+      "optimized_background_false_positive_fraction": 0.008882689289748669
+    },
+    {
+      "frame": 12,
+      "baseline_psnr": 29.93459129333496,
+      "baseline_background_foreground_alpha": 0.0021134300623089075,
+      "baseline_background_false_positive_fraction": 0.0023576635867357254,
+      "optimized_psnr": 29.413841247558594,
+      "optimized_background_foreground_alpha": 0.0063937013037502766,
+      "optimized_background_false_positive_fraction": 0.008253611624240875
+    },
+    {
+      "frame": 13,
+      "baseline_psnr": 29.535940170288086,
+      "baseline_background_foreground_alpha": 0.0005755698075518012,
+      "baseline_background_false_positive_fraction": 0.0007920731441117823,
+      "optimized_psnr": 28.784936904907227,
+      "optimized_background_foreground_alpha": 0.0032946274150162935,
+      "optimized_background_false_positive_fraction": 0.004299281630665064
+    },
+    {
+      "frame": 14,
+      "baseline_psnr": 29.29839515686035,
+      "baseline_background_foreground_alpha": 0.0007500634528696537,
+      "baseline_background_false_positive_fraction": 0.000950589485000819,
+      "optimized_psnr": 28.305871963500977,
+      "optimized_background_foreground_alpha": 0.002779463306069374,
+      "optimized_background_false_positive_fraction": 0.0037258274387568235
+    },
+    {
+      "frame": 15,
+      "baseline_psnr": 28.726806640625,
+      "baseline_background_foreground_alpha": 0.0009659460047259927,
+      "baseline_background_false_positive_fraction": 0.0011766130337491632,
+      "optimized_psnr": 27.861061096191406,
+      "optimized_background_foreground_alpha": 0.0021140496246516705,
+      "optimized_background_false_positive_fraction": 0.0026690082158893347
+    },
+    {
+      "frame": 16,
+      "baseline_psnr": 29.10211944580078,
+      "baseline_background_foreground_alpha": 0.0029257757123559713,
+      "baseline_background_false_positive_fraction": 0.0034808169584721327,
+      "optimized_psnr": 28.641056060791016,
+      "optimized_background_foreground_alpha": 0.00284737441688776,
+      "optimized_background_false_positive_fraction": 0.0038402737118303776
+    },
+    {
+      "frame": 17,
+      "baseline_psnr": 29.23680305480957,
+      "baseline_background_foreground_alpha": 0.002716687275096774,
+      "baseline_background_false_positive_fraction": 0.003220529295504093,
+      "optimized_psnr": 28.117969512939453,
+      "optimized_background_foreground_alpha": 0.003953080624341965,
+      "optimized_background_false_positive_fraction": 0.0056301006115973
+    },
+    {
+      "frame": 18,
+      "baseline_psnr": 29.003389358520508,
+      "baseline_background_foreground_alpha": 0.0020897549111396074,
+      "baseline_background_false_positive_fraction": 0.002386331558227539,
+      "optimized_psnr": 27.783105850219727,
+      "optimized_background_foreground_alpha": 0.0027765613049268723,
+      "optimized_background_false_positive_fraction": 0.003671279177069664
+    },
+    {
+      "frame": 19,
+      "baseline_psnr": 28.794410705566406,
+      "baseline_background_foreground_alpha": 0.0020090839825570583,
+      "baseline_background_false_positive_fraction": 0.002310496987774968,
+      "optimized_psnr": 27.893388748168945,
+      "optimized_background_foreground_alpha": 0.0024840221740305424,
+      "optimized_background_false_positive_fraction": 0.0032337584998458624
+    },
+    {
+      "frame": 20,
+      "baseline_psnr": 28.446979522705078,
+      "baseline_background_foreground_alpha": 0.002896551275625825,
+      "baseline_background_false_positive_fraction": 0.003279545111581683,
+      "optimized_psnr": 28.1105899810791,
+      "optimized_background_foreground_alpha": 0.0029654845129698515,
+      "optimized_background_false_positive_fraction": 0.003918659873306751
+    },
+    {
+      "frame": 21,
+      "baseline_psnr": 28.036832809448242,
+      "baseline_background_foreground_alpha": 0.001161950291134417,
+      "baseline_background_false_positive_fraction": 0.0012726237764582038,
+      "optimized_psnr": 28.473386764526367,
+      "optimized_background_foreground_alpha": 0.002377917990088463,
+      "optimized_background_false_positive_fraction": 0.0029200930148363113
+    },
+    {
+      "frame": 22,
+      "baseline_psnr": 26.741283416748047,
+      "baseline_background_foreground_alpha": 0.0007282714359462261,
+      "baseline_background_false_positive_fraction": 0.0009205764508806169,
+      "optimized_psnr": 27.02419662475586,
+      "optimized_background_foreground_alpha": 0.0016390079399570823,
+      "optimized_background_false_positive_fraction": 0.0020996397361159325
+    },
+    {
+      "frame": 23,
+      "baseline_psnr": 27.45992088317871,
+      "baseline_background_foreground_alpha": 0.0008546474273316562,
+      "baseline_background_false_positive_fraction": 0.0010501467622816563,
+      "optimized_psnr": 27.684795379638672,
+      "optimized_background_foreground_alpha": 0.002189863473176956,
+      "optimized_background_false_positive_fraction": 0.0027106350753456354
+    },
+    {
+      "frame": 24,
+      "baseline_psnr": 27.80146598815918,
+      "baseline_background_foreground_alpha": 0.0003415016981307417,
+      "baseline_background_false_positive_fraction": 0.00038945689448155463,
+      "optimized_psnr": 27.585651397705078,
+      "optimized_background_foreground_alpha": 0.004490210674703121,
+      "optimized_background_false_positive_fraction": 0.005022651050239801
+    },
+    {
+      "frame": 25,
+      "baseline_psnr": 27.869565963745117,
+      "baseline_background_foreground_alpha": 0.0003777765668928623,
+      "baseline_background_false_positive_fraction": 0.0004147637519054115,
+      "optimized_psnr": 27.31184959411621,
+      "optimized_background_foreground_alpha": 0.001624383614398539,
+      "optimized_background_false_positive_fraction": 0.001991777680814266
+    },
+    {
+      "frame": 26,
+      "baseline_psnr": 28.62890625,
+      "baseline_background_foreground_alpha": 0.00015265493129845709,
+      "baseline_background_false_positive_fraction": 0.00016832184337545186,
+      "optimized_psnr": 27.969928741455078,
+      "optimized_background_foreground_alpha": 0.00888670701533556,
+      "optimized_background_false_positive_fraction": 0.01048467867076397
+    },
+    {
+      "frame": 27,
+      "baseline_psnr": 28.502466201782227,
+      "baseline_background_foreground_alpha": 5.912594133405946e-05,
+      "baseline_background_false_positive_fraction": 2.2031963453628123e-05,
+      "optimized_psnr": 27.57562828063965,
+      "optimized_background_foreground_alpha": 0.010688734240829945,
+      "optimized_background_false_positive_fraction": 0.012915137223899364
+    },
+    {
+      "frame": 28,
+      "baseline_psnr": 28.705039978027344,
+      "baseline_background_foreground_alpha": 0.005634581204503775,
+      "baseline_background_false_positive_fraction": 0.006204112898558378,
+      "optimized_psnr": 27.85496711730957,
+      "optimized_background_foreground_alpha": 0.015882669016718864,
+      "optimized_background_false_positive_fraction": 0.019693948328495026
+    },
+    {
+      "frame": 29,
+      "baseline_psnr": 29.093305587768555,
+      "baseline_background_foreground_alpha": 0.010978411883115768,
+      "baseline_background_false_positive_fraction": 0.011709348298609257,
+      "optimized_psnr": 28.584867477416992,
+      "optimized_background_foreground_alpha": 0.02096647024154663,
+      "optimized_background_false_positive_fraction": 0.025501320138573647
+    },
+    {
+      "frame": 30,
+      "baseline_psnr": 29.467872619628906,
+      "baseline_background_foreground_alpha": 0.0001921809889608994,
+      "baseline_background_false_positive_fraction": 0.00020923202100675553,
+      "optimized_psnr": 29.073577880859375,
+      "optimized_background_foreground_alpha": 0.00773334875702858,
+      "optimized_background_false_positive_fraction": 0.010871161706745625
+    },
+    {
+      "frame": 31,
+      "baseline_psnr": 29.3984375,
+      "baseline_background_foreground_alpha": 0.00010986722190864384,
+      "baseline_background_false_positive_fraction": 0.00016023573698475957,
+      "optimized_psnr": 29.001991271972656,
+      "optimized_background_foreground_alpha": 0.008517896756529808,
+      "optimized_background_false_positive_fraction": 0.011990973725914955
+    },
+    {
+      "frame": 32,
+      "baseline_psnr": 29.46213722229004,
+      "baseline_background_foreground_alpha": 0.008005880750715733,
+      "baseline_background_false_positive_fraction": 0.008899313397705555,
+      "optimized_psnr": 29.10910987854004,
+      "optimized_background_foreground_alpha": 0.021022580564022064,
+      "optimized_background_false_positive_fraction": 0.026140917092561722
+    },
+    {
+      "frame": 33,
+      "baseline_psnr": 29.518587112426758,
+      "baseline_background_foreground_alpha": 0.00020431280427146703,
+      "baseline_background_false_positive_fraction": 0.00027018648688681424,
+      "optimized_psnr": 29.195051193237305,
+      "optimized_background_foreground_alpha": 0.01164180226624012,
+      "optimized_background_false_positive_fraction": 0.0159454308450222
+    },
+    {
+      "frame": 34,
+      "baseline_psnr": 29.645689010620117,
+      "baseline_background_foreground_alpha": 0.00013613248302135617,
+      "baseline_background_false_positive_fraction": 0.00021206002566032112,
+      "optimized_psnr": 29.21108055114746,
+      "optimized_background_foreground_alpha": 0.015161772258579731,
+      "optimized_background_false_positive_fraction": 0.020521225407719612
+    },
+    {
+      "frame": 35,
+      "baseline_psnr": 29.38838005065918,
+      "baseline_background_foreground_alpha": 0.0002146723127225414,
+      "baseline_background_false_positive_fraction": 0.00030382288969121873,
+      "optimized_psnr": 29.03085708618164,
+      "optimized_background_foreground_alpha": 0.01672391965985298,
+      "optimized_background_false_positive_fraction": 0.02246968448162079
+    },
+    {
+      "frame": 36,
+      "baseline_psnr": 29.282554626464844,
+      "baseline_background_foreground_alpha": 0.00019066018285229802,
+      "baseline_background_false_positive_fraction": 0.000255370483500883,
+      "optimized_psnr": 28.70289421081543,
+      "optimized_background_foreground_alpha": 0.01569904200732708,
+      "optimized_background_false_positive_fraction": 0.021275002509355545
+    },
+    {
+      "frame": 37,
+      "baseline_psnr": 29.81818962097168,
+      "baseline_background_foreground_alpha": 8.10062701930292e-05,
+      "baseline_background_false_positive_fraction": 0.00011867089051520452,
+      "optimized_psnr": 29.21805191040039,
+      "optimized_background_foreground_alpha": 0.007685570046305656,
+      "optimized_background_false_positive_fraction": 0.011264944449067116
+    },
+    {
+      "frame": 38,
+      "baseline_psnr": 29.442752838134766,
+      "baseline_background_foreground_alpha": 0.0005091477651149035,
+      "baseline_background_false_positive_fraction": 0.0006646623951382935,
+      "optimized_psnr": 29.347108840942383,
+      "optimized_background_foreground_alpha": 0.004436215851455927,
+      "optimized_background_false_positive_fraction": 0.0065585896372795105
+    },
+    {
+      "frame": 39,
+      "baseline_psnr": 29.26097297668457,
+      "baseline_background_foreground_alpha": 0.005833814851939678,
+      "baseline_background_false_positive_fraction": 0.006626438815146685,
+      "optimized_psnr": 29.43583869934082,
+      "optimized_background_foreground_alpha": 0.01606634631752968,
+      "optimized_background_false_positive_fraction": 0.020703328773379326
+    },
+    {
+      "frame": 40,
+      "baseline_psnr": 29.578039169311523,
+      "baseline_background_foreground_alpha": 0.0014065962750464678,
+      "baseline_background_false_positive_fraction": 0.0019383456092327833,
+      "optimized_psnr": 29.36522674560547,
+      "optimized_background_foreground_alpha": 0.008326777257025242,
+      "optimized_background_false_positive_fraction": 0.010911510325968266
+    },
+    {
+      "frame": 41,
+      "baseline_psnr": 29.778165817260742,
+      "baseline_background_foreground_alpha": 0.0013875729637220502,
+      "baseline_background_false_positive_fraction": 0.0019966154359281063,
+      "optimized_psnr": 29.98529052734375,
+      "optimized_background_foreground_alpha": 0.010797960683703423,
+      "optimized_background_false_positive_fraction": 0.014930810779333115
+    },
+    {
+      "frame": 42,
+      "baseline_psnr": 29.292448043823242,
+      "baseline_background_foreground_alpha": 0.0019262168789282441,
+      "baseline_background_false_positive_fraction": 0.002911830088123679,
+      "optimized_psnr": 28.981273651123047,
+      "optimized_background_foreground_alpha": 0.015497276559472084,
+      "optimized_background_false_positive_fraction": 0.02274959348142147
+    },
+    {
+      "frame": 43,
+      "baseline_psnr": 29.240232467651367,
+      "baseline_background_foreground_alpha": 0.000598680111579597,
+      "baseline_background_false_positive_fraction": 0.0008285913500003517,
+      "optimized_psnr": 28.877967834472656,
+      "optimized_background_foreground_alpha": 0.02535826899111271,
+      "optimized_background_false_positive_fraction": 0.03645302727818489
+    },
+    {
+      "frame": 44,
+      "baseline_psnr": 27.565082550048828,
+      "baseline_background_foreground_alpha": 0.0011226078495383263,
+      "baseline_background_false_positive_fraction": 0.0013376984279602766,
+      "optimized_psnr": 27.196298599243164,
+      "optimized_background_foreground_alpha": 0.028992976993322372,
+      "optimized_background_false_positive_fraction": 0.04066402092576027
+    },
+    {
+      "frame": 45,
+      "baseline_psnr": 28.944543838500977,
+      "baseline_background_foreground_alpha": 0.007630044594407082,
+      "baseline_background_false_positive_fraction": 0.008842097595334053,
+      "optimized_psnr": 25.766368865966797,
+      "optimized_background_foreground_alpha": 0.0384514182806015,
+      "optimized_background_false_positive_fraction": 0.04768066480755806
+    },
+    {
+      "frame": 46,
+      "baseline_psnr": 25.46492576599121,
+      "baseline_background_foreground_alpha": 0.027411090210080147,
+      "baseline_background_false_positive_fraction": 0.02909013256430626,
+      "optimized_psnr": 26.00908088684082,
+      "optimized_background_foreground_alpha": 0.04179985821247101,
+      "optimized_background_false_positive_fraction": 0.05134443938732147
+    },
+    {
+      "frame": 47,
+      "baseline_psnr": 29.12896728515625,
+      "baseline_background_foreground_alpha": 0.009160683490335941,
+      "baseline_background_false_positive_fraction": 0.009891568683087826,
+      "optimized_psnr": 27.821327209472656,
+      "optimized_background_foreground_alpha": 0.018036672845482826,
+      "optimized_background_false_positive_fraction": 0.023328548297286034
+    },
+    {
+      "frame": 48,
+      "baseline_psnr": 29.116722106933594,
+      "baseline_background_foreground_alpha": 0.007271719165146351,
+      "baseline_background_false_positive_fraction": 0.007925919257104397,
+      "optimized_psnr": 28.578996658325195,
+      "optimized_background_foreground_alpha": 0.007730172947049141,
+      "optimized_background_false_positive_fraction": 0.010341398417949677
+    },
+    {
+      "frame": 49,
+      "baseline_psnr": 29.870365142822266,
+      "baseline_background_foreground_alpha": 0.006160108372569084,
+      "baseline_background_false_positive_fraction": 0.006720229052007198,
+      "optimized_psnr": 29.352624893188477,
+      "optimized_background_foreground_alpha": 0.003707651048898697,
+      "optimized_background_false_positive_fraction": 0.004699170123785734
+    },
+    {
+      "frame": 50,
+      "baseline_psnr": 30.81830406188965,
+      "baseline_background_foreground_alpha": 0.0055271112360060215,
+      "baseline_background_false_positive_fraction": 0.0061000557616353035,
+      "optimized_psnr": 30.68588638305664,
+      "optimized_background_foreground_alpha": 0.0023844605311751366,
+      "optimized_background_false_positive_fraction": 0.0031731980852782726
+    },
+    {
+      "frame": 51,
+      "baseline_psnr": 31.371625900268555,
+      "baseline_background_foreground_alpha": 0.0049333469942212105,
+      "baseline_background_false_positive_fraction": 0.0054748887196183205,
+      "optimized_psnr": 30.303579330444336,
+      "optimized_background_foreground_alpha": 0.0020435515325516462,
+      "optimized_background_false_positive_fraction": 0.002361963503062725
+    },
+    {
+      "frame": 52,
+      "baseline_psnr": 31.889013290405273,
+      "baseline_background_foreground_alpha": 0.0042128427885472775,
+      "baseline_background_false_positive_fraction": 0.00467060599476099,
+      "optimized_psnr": 30.430187225341797,
+      "optimized_background_foreground_alpha": 0.0020319956820458174,
+      "optimized_background_false_positive_fraction": 0.002210612641647458
+    },
+    {
+      "frame": 53,
+      "baseline_psnr": 31.98934555053711,
+      "baseline_background_foreground_alpha": 0.0036781951785087585,
+      "baseline_background_false_positive_fraction": 0.00422872556373477,
+      "optimized_psnr": 30.34636116027832,
+      "optimized_background_foreground_alpha": 0.002156365429982543,
+      "optimized_background_false_positive_fraction": 0.0023015497718006372
+    },
+    {
+      "frame": 54,
+      "baseline_psnr": 31.138132095336914,
+      "baseline_background_foreground_alpha": 0.003951133694499731,
+      "baseline_background_false_positive_fraction": 0.00445810379460454,
+      "optimized_psnr": 30.078834533691406,
+      "optimized_background_foreground_alpha": 0.001966729061678052,
+      "optimized_background_false_positive_fraction": 0.0021826133597642183
+    },
+    {
+      "frame": 55,
+      "baseline_psnr": 31.482295989990234,
+      "baseline_background_foreground_alpha": 0.0035243378952145576,
+      "baseline_background_false_positive_fraction": 0.003973526880145073,
+      "optimized_psnr": 30.077667236328125,
+      "optimized_background_foreground_alpha": 0.0018585191573947668,
+      "optimized_background_false_positive_fraction": 0.0019719526171684265
+    },
+    {
+      "frame": 56,
+      "baseline_psnr": 31.733598709106445,
+      "baseline_background_foreground_alpha": 0.003119940171018243,
+      "baseline_background_false_positive_fraction": 0.003598190611228347,
+      "optimized_psnr": 30.574960708618164,
+      "optimized_background_foreground_alpha": 0.0019274114165455103,
+      "optimized_background_false_positive_fraction": 0.0022064377553761005
+    },
+    {
+      "frame": 57,
+      "baseline_psnr": 31.536699295043945,
+      "baseline_background_foreground_alpha": 0.0029893771279603243,
+      "baseline_background_false_positive_fraction": 0.003522084094583988,
+      "optimized_psnr": 28.737247467041016,
+      "optimized_background_foreground_alpha": 0.0023637914564460516,
+      "optimized_background_false_positive_fraction": 0.00288479495793581
+    },
+    {
+      "frame": 58,
+      "baseline_psnr": 31.660438537597656,
+      "baseline_background_foreground_alpha": 0.0019058819161728024,
+      "baseline_background_false_positive_fraction": 0.002230957616120577,
+      "optimized_psnr": 29.01915740966797,
+      "optimized_background_foreground_alpha": 0.0022733586374670267,
+      "optimized_background_false_positive_fraction": 0.0025949333794414997
+    },
+    {
+      "frame": 59,
+      "baseline_psnr": 30.570993423461914,
+      "baseline_background_foreground_alpha": 0.0024093978572636843,
+      "baseline_background_false_positive_fraction": 0.0027460670098662376,
+      "optimized_psnr": 28.47117805480957,
+      "optimized_background_foreground_alpha": 0.003178753424435854,
+      "optimized_background_false_positive_fraction": 0.004163528326898813
+    },
+    {
+      "frame": 60,
+      "baseline_psnr": 30.79239273071289,
+      "baseline_background_foreground_alpha": 0.001789295463822782,
+      "baseline_background_false_positive_fraction": 0.0019919888582080603,
+      "optimized_psnr": 29.327165603637695,
+      "optimized_background_foreground_alpha": 0.006399399135261774,
+      "optimized_background_false_positive_fraction": 0.00811886414885521
+    },
+    {
+      "frame": 61,
+      "baseline_psnr": 24.692462921142578,
+      "baseline_background_foreground_alpha": 0.002326815389096737,
+      "baseline_background_false_positive_fraction": 0.0024138190783560276,
+      "optimized_psnr": 27.63774299621582,
+      "optimized_background_foreground_alpha": 0.007615979295223951,
+      "optimized_background_false_positive_fraction": 0.010143364779651165
+    },
+    {
+      "frame": 62,
+      "baseline_psnr": 27.724435806274414,
+      "baseline_background_foreground_alpha": 0.0017119509866461158,
+      "baseline_background_false_positive_fraction": 0.001914900727570057,
+      "optimized_psnr": 29.410303115844727,
+      "optimized_background_foreground_alpha": 0.004026526119560003,
+      "optimized_background_false_positive_fraction": 0.004711330868303776
+    },
+    {
+      "frame": 63,
+      "baseline_psnr": 29.16950798034668,
+      "baseline_background_foreground_alpha": 0.0015881095314398408,
+      "baseline_background_false_positive_fraction": 0.0018546688370406628,
+      "optimized_psnr": 29.342788696289062,
+      "optimized_background_foreground_alpha": 0.0011576354736462235,
+      "optimized_background_false_positive_fraction": 0.001427606912329793
+    },
+    {
+      "frame": 64,
+      "baseline_psnr": 30.995878219604492,
+      "baseline_background_foreground_alpha": 0.00258054630830884,
+      "baseline_background_false_positive_fraction": 0.002822439419105649,
+      "optimized_psnr": 31.154666900634766,
+      "optimized_background_foreground_alpha": 0.0013507266994565725,
+      "optimized_background_false_positive_fraction": 0.0017409063875675201
+    },
+    {
+      "frame": 65,
+      "baseline_psnr": 31.422039031982422,
+      "baseline_background_foreground_alpha": 0.0030619576573371887,
+      "baseline_background_false_positive_fraction": 0.0034694112837314606,
+      "optimized_psnr": 31.348981857299805,
+      "optimized_background_foreground_alpha": 0.0006064038025215268,
+      "optimized_background_false_positive_fraction": 0.0006978700985200703
+    },
+    {
+      "frame": 66,
+      "baseline_psnr": 30.604450225830078,
+      "baseline_background_foreground_alpha": 0.00378065905533731,
+      "baseline_background_false_positive_fraction": 0.004471539985388517,
+      "optimized_psnr": 30.796401977539062,
+      "optimized_background_foreground_alpha": 0.0005810736329294741,
+      "optimized_background_false_positive_fraction": 0.0007393262349069118
+    },
+    {
+      "frame": 67,
+      "baseline_psnr": 31.22041130065918,
+      "baseline_background_foreground_alpha": 0.0046414779499173164,
+      "baseline_background_false_positive_fraction": 0.005430399440228939,
+      "optimized_psnr": 31.639265060424805,
+      "optimized_background_foreground_alpha": 0.0010554272448644042,
+      "optimized_background_false_positive_fraction": 0.0014642893802374601
+    },
+    {
+      "frame": 68,
+      "baseline_psnr": 31.71558952331543,
+      "baseline_background_foreground_alpha": 0.006961799692362547,
+      "baseline_background_false_positive_fraction": 0.007866478525102139,
+      "optimized_psnr": 32.375858306884766,
+      "optimized_background_foreground_alpha": 0.003114009043201804,
+      "optimized_background_false_positive_fraction": 0.004253610968589783
+    },
+    {
+      "frame": 69,
+      "baseline_psnr": 31.32077407836914,
+      "baseline_background_foreground_alpha": 0.01237834244966507,
+      "baseline_background_false_positive_fraction": 0.013740509748458862,
+      "optimized_psnr": 31.21708869934082,
+      "optimized_background_foreground_alpha": 0.01170843280851841,
+      "optimized_background_false_positive_fraction": 0.014966457150876522
+    },
+    {
+      "frame": 70,
+      "baseline_psnr": 31.988664627075195,
+      "baseline_background_foreground_alpha": 0.00020867239800281823,
+      "baseline_background_false_positive_fraction": 0.00020001802477054298,
+      "optimized_psnr": 31.44570541381836,
+      "optimized_background_foreground_alpha": 0.003537950338795781,
+      "optimized_background_false_positive_fraction": 0.004643555730581284
+    },
+    {
+      "frame": 71,
+      "baseline_psnr": 30.381195068359375,
+      "baseline_background_foreground_alpha": 0.0004198834649287164,
+      "baseline_background_false_positive_fraction": 0.0004925464163534343,
+      "optimized_psnr": 30.524574279785156,
+      "optimized_background_foreground_alpha": 0.005397086963057518,
+      "optimized_background_false_positive_fraction": 0.006803297437727451
+    },
+    {
+      "frame": 72,
+      "baseline_psnr": 30.124248504638672,
+      "baseline_background_foreground_alpha": 0.0003066812932956964,
+      "baseline_background_false_positive_fraction": 0.0003511209215503186,
+      "optimized_psnr": 30.037324905395508,
+      "optimized_background_foreground_alpha": 0.005070383660495281,
+      "optimized_background_false_positive_fraction": 0.0063545252196490765
+    },
+    {
+      "frame": 73,
+      "baseline_psnr": 31.001577377319336,
+      "baseline_background_foreground_alpha": 0.0006198145565576851,
+      "baseline_background_false_positive_fraction": 0.0007663361029699445,
+      "optimized_psnr": 30.6329345703125,
+      "optimized_background_foreground_alpha": 0.005843598395586014,
+      "optimized_background_false_positive_fraction": 0.007415540982037783
+    },
+    {
+      "frame": 74,
+      "baseline_psnr": 30.583703994750977,
+      "baseline_background_foreground_alpha": 0.000795540283434093,
+      "baseline_background_false_positive_fraction": 0.0011118376860395074,
+      "optimized_psnr": 30.539169311523438,
+      "optimized_background_foreground_alpha": 0.00589041318744421,
+      "optimized_background_false_positive_fraction": 0.007140383590012789
+    },
+    {
+      "frame": 75,
+      "baseline_psnr": 30.81134605407715,
+      "baseline_background_foreground_alpha": 0.0003442659799475223,
+      "baseline_background_false_positive_fraction": 0.00039157606079243124,
+      "optimized_psnr": 31.04652976989746,
+      "optimized_background_foreground_alpha": 0.004187482409179211,
+      "optimized_background_false_positive_fraction": 0.004958671052008867
+    },
+    {
+      "frame": 76,
+      "baseline_psnr": 30.603031158447266,
+      "baseline_background_foreground_alpha": 0.00018434140656609088,
+      "baseline_background_false_positive_fraction": 0.00018005253514274955,
+      "optimized_psnr": 30.740205764770508,
+      "optimized_background_foreground_alpha": 0.003925514407455921,
+      "optimized_background_false_positive_fraction": 0.004434772301465273
+    },
+    {
+      "frame": 77,
+      "baseline_psnr": 30.41922378540039,
+      "baseline_background_foreground_alpha": 0.0005002100369893014,
+      "baseline_background_false_positive_fraction": 0.0006009190692566335,
+      "optimized_psnr": 30.904163360595703,
+      "optimized_background_foreground_alpha": 0.004221324808895588,
+      "optimized_background_false_positive_fraction": 0.004874121397733688
+    },
+    {
+      "frame": 78,
+      "baseline_psnr": 30.390457153320312,
+      "baseline_background_foreground_alpha": 0.00016409832460340112,
+      "baseline_background_false_positive_fraction": 0.00016986580158118159,
+      "optimized_psnr": 30.841148376464844,
+      "optimized_background_foreground_alpha": 0.004416314419358969,
+      "optimized_background_false_positive_fraction": 0.005064371041953564
+    },
+    {
+      "frame": 79,
+      "baseline_psnr": 30.328659057617188,
+      "baseline_background_foreground_alpha": 0.0002591337834019214,
+      "baseline_background_false_positive_fraction": 0.0002772277221083641,
+      "optimized_psnr": 30.407276153564453,
+      "optimized_background_foreground_alpha": 0.00515378825366497,
+      "optimized_background_false_positive_fraction": 0.005972277373075485
+    }
+  ],
+  "baseline_ssim": 0.9287023544311523,
+  "baseline_psnr": 29.677081322669984,
+  "baseline_background_foreground_alpha": 0.0027236294025442475,
+  "baseline_background_false_positive_fraction": 0.003087926196076296,
+  "baseline_early_psnr": 29.599903464317322,
+  "baseline_action_psnr": 29.21940679550171,
+  "baseline_late_psnr": 30.491324106852215,
+  "optimized_ssim": 0.9199711680412292,
+  "optimized_psnr": 29.23042800426483,
+  "optimized_background_foreground_alpha": 0.0071055988468287975,
+  "optimized_background_false_positive_fraction": 0.009193270572723122,
+  "optimized_early_psnr": 29.029280424118042,
+  "optimized_action_psnr": 28.644847869873047,
+  "optimized_late_psnr": 30.34049328168233
+}

@@ -1,0 +1,5 @@
+mcap==1.4.0
+mcap-ros2-support==0.5.7
+einshape==1.0
+mediapy==1.2.7
+transformers==4.57.1

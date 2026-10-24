@@ -1,0 +1,2123 @@
+{
+  "scene": "coffee",
+  "iteration": 7000,
+  "coarse_iterations": 3000,
+  "test_frames": 300,
+  "resolution": [
+    676,
+    507
+  ],
+  "psnr": 27.43003760019938,
+  "ssim": 0.9014693939685822,
+  "metric_scope": "full RGB frame, float [0,1], unmasked, mean per-frame PSNR/SSIM",
+  "held_out": "cam00.mp4 (excluded from training and initialization)",
+  "preprocessing": "official loader, resized video frames, 676x507",
+  "gaussians": 83558,
+  "frames": [
+    {
+      "frame": 0,
+      "source_frame": "cam00/images/0000.png",
+      "normalized_time": 0.0,
+      "psnr": 26.856691360473633,
+      "ssim": 0.8896012306213379
+    },
+    {
+      "frame": 1,
+      "source_frame": "cam00/images/0001.png",
+      "normalized_time": 0.0033333333333333335,
+      "psnr": 27.005638122558594,
+      "ssim": 0.8928174376487732
+    },
+    {
+      "frame": 2,
+      "source_frame": "cam00/images/0002.png",
+      "normalized_time": 0.006666666666666667,
+      "psnr": 27.037445068359375,
+      "ssim": 0.8933243155479431
+    },
+    {
+      "frame": 3,
+      "source_frame": "cam00/images/0003.png",
+      "normalized_time": 0.01,
+      "psnr": 27.15167236328125,
+      "ssim": 0.8957498669624329
+    },
+    {
+      "frame": 4,
+      "source_frame": "cam00/images/0004.png",
+      "normalized_time": 0.013333333333333334,
+      "psnr": 27.18632698059082,
+      "ssim": 0.8959910273551941
+    },
+    {
+      "frame": 5,
+      "source_frame": "cam00/images/0005.png",
+      "normalized_time": 0.016666666666666666,
+      "psnr": 27.24073028564453,
+      "ssim": 0.8975213170051575
+    },
+    {
+      "frame": 6,
+      "source_frame": "cam00/images/0006.png",
+      "normalized_time": 0.02,
+      "psnr": 27.230260848999023,
+      "ssim": 0.8972654342651367
+    },
+    {
+      "frame": 7,
+      "source_frame": "cam00/images/0007.png",
+      "normalized_time": 0.023333333333333334,
+      "psnr": 27.251605987548828,
+      "ssim": 0.8984673023223877
+    },
+    {
+      "frame": 8,
+      "source_frame": "cam00/images/0008.png",
+      "normalized_time": 0.02666666666666667,
+      "psnr": 27.241436004638672,
+      "ssim": 0.8979679942131042
+    },
+    {
+      "frame": 9,
+      "source_frame": "cam00/images/0009.png",
+      "normalized_time": 0.03,
+      "psnr": 27.29952049255371,
+      "ssim": 0.8995978236198425
+    },
+    {
+      "frame": 10,
+      "source_frame": "cam00/images/0010.png",
+      "normalized_time": 0.03333333333333333,
+      "psnr": 27.308881759643555,
+      "ssim": 0.8994334936141968
+    },
+    {
+      "frame": 11,
+      "source_frame": "cam00/images/0011.png",
+      "normalized_time": 0.03666666666666667,
+      "psnr": 27.320865631103516,
+      "ssim": 0.8997814059257507
+    },
+    {
+      "frame": 12,
+      "source_frame": "cam00/images/0012.png",
+      "normalized_time": 0.04,
+      "psnr": 27.281274795532227,
+      "ssim": 0.8987309336662292
+    },
+    {
+      "frame": 13,
+      "source_frame": "cam00/images/0013.png",
+      "normalized_time": 0.043333333333333335,
+      "psnr": 27.292335510253906,
+      "ssim": 0.8995838761329651
+    },
+    {
+      "frame": 14,
+      "source_frame": "cam00/images/0014.png",
+      "normalized_time": 0.04666666666666667,
+      "psnr": 27.298412322998047,
+      "ssim": 0.8995258212089539
+    },
+    {
+      "frame": 15,
+      "source_frame": "cam00/images/0015.png",
+      "normalized_time": 0.05,
+      "psnr": 27.31519889831543,
+      "ssim": 0.9003340005874634
+    },
+    {
+      "frame": 16,
+      "source_frame": "cam00/images/0016.png",
+      "normalized_time": 0.05333333333333334,
+      "psnr": 27.308837890625,
+      "ssim": 0.9000504612922668
+    },
+    {
+      "frame": 17,
+      "source_frame": "cam00/images/0017.png",
+      "normalized_time": 0.056666666666666664,
+      "psnr": 27.360740661621094,
+      "ssim": 0.9007644653320312
+    },
+    {
+      "frame": 18,
+      "source_frame": "cam00/images/0018.png",
+      "normalized_time": 0.06,
+      "psnr": 27.366085052490234,
+      "ssim": 0.9005982279777527
+    },
+    {
+      "frame": 19,
+      "source_frame": "cam00/images/0019.png",
+      "normalized_time": 0.06333333333333334,
+      "psnr": 27.400209426879883,
+      "ssim": 0.9011159539222717
+    },
+    {
+      "frame": 20,
+      "source_frame": "cam00/images/0020.png",
+      "normalized_time": 0.06666666666666667,
+      "psnr": 27.378849029541016,
+      "ssim": 0.9003458023071289
+    },
+    {
+      "frame": 21,
+      "source_frame": "cam00/images/0021.png",
+      "normalized_time": 0.07,
+      "psnr": 27.4163818359375,
+      "ssim": 0.9012928605079651
+    },
+    {
+      "frame": 22,
+      "source_frame": "cam00/images/0022.png",
+      "normalized_time": 0.07333333333333333,
+      "psnr": 27.406665802001953,
+      "ssim": 0.9011998176574707
+    },
+    {
+      "frame": 23,
+      "source_frame": "cam00/images/0023.png",
+      "normalized_time": 0.07666666666666666,
+      "psnr": 27.44064712524414,
+      "ssim": 0.9020912647247314
+    },
+    {
+      "frame": 24,
+      "source_frame": "cam00/images/0024.png",
+      "normalized_time": 0.08,
+      "psnr": 27.432689666748047,
+      "ssim": 0.9013391137123108
+    },
+    {
+      "frame": 25,
+      "source_frame": "cam00/images/0025.png",
+      "normalized_time": 0.08333333333333333,
+      "psnr": 27.442276000976562,
+      "ssim": 0.9019895195960999
+    },
+    {
+      "frame": 26,
+      "source_frame": "cam00/images/0026.png",
+      "normalized_time": 0.08666666666666667,
+      "psnr": 27.390472412109375,
+      "ssim": 0.9014658331871033
+    },
+    {
+      "frame": 27,
+      "source_frame": "cam00/images/0027.png",
+      "normalized_time": 0.09,
+      "psnr": 27.44613265991211,
+      "ssim": 0.9023274183273315
+    },
+    {
+      "frame": 28,
+      "source_frame": "cam00/images/0028.png",
+      "normalized_time": 0.09333333333333334,
+      "psnr": 27.450735092163086,
+      "ssim": 0.9018091559410095
+    },
+    {
+      "frame": 29,
+      "source_frame": "cam00/images/0029.png",
+      "normalized_time": 0.09666666666666666,
+      "psnr": 27.47117042541504,
+      "ssim": 0.9024577736854553
+    },
+    {
+      "frame": 30,
+      "source_frame": "cam00/images/0030.png",
+      "normalized_time": 0.1,
+      "psnr": 27.448001861572266,
+      "ssim": 0.9019126296043396
+    },
+    {
+      "frame": 31,
+      "source_frame": "cam00/images/0031.png",
+      "normalized_time": 0.10333333333333333,
+      "psnr": 27.472942352294922,
+      "ssim": 0.9022143483161926
+    },
+    {
+      "frame": 32,
+      "source_frame": "cam00/images/0032.png",
+      "normalized_time": 0.10666666666666667,
+      "psnr": 27.46122169494629,
+      "ssim": 0.9018111824989319
+    },
+    {
+      "frame": 33,
+      "source_frame": "cam00/images/0033.png",
+      "normalized_time": 0.11,
+      "psnr": 27.479780197143555,
+      "ssim": 0.9023247361183167
+    },
+    {
+      "frame": 34,
+      "source_frame": "cam00/images/0034.png",
+      "normalized_time": 0.11333333333333333,
+      "psnr": 27.457565307617188,
+      "ssim": 0.9015930891036987
+    },
+    {
+      "frame": 35,
+      "source_frame": "cam00/images/0035.png",
+      "normalized_time": 0.11666666666666667,
+      "psnr": 27.471044540405273,
+      "ssim": 0.9021949768066406
+    },
+    {
+      "frame": 36,
+      "source_frame": "cam00/images/0036.png",
+      "normalized_time": 0.12,
+      "psnr": 27.45267677307129,
+      "ssim": 0.9018346071243286
+    },
+    {
+      "frame": 37,
+      "source_frame": "cam00/images/0037.png",
+      "normalized_time": 0.12333333333333334,
+      "psnr": 27.445545196533203,
+      "ssim": 0.9022817015647888
+    },
+    {
+      "frame": 38,
+      "source_frame": "cam00/images/0038.png",
+      "normalized_time": 0.12666666666666668,
+      "psnr": 27.41977310180664,
+      "ssim": 0.9019588828086853
+    },
+    {
+      "frame": 39,
+      "source_frame": "cam00/images/0039.png",
+      "normalized_time": 0.13,
+      "psnr": 27.42698860168457,
+      "ssim": 0.9023151993751526
+    },
+    {
+      "frame": 40,
+      "source_frame": "cam00/images/0040.png",
+      "normalized_time": 0.13333333333333333,
+      "psnr": 27.405864715576172,
+      "ssim": 0.9013680815696716
+    },
+    {
+      "frame": 41,
+      "source_frame": "cam00/images/0041.png",
+      "normalized_time": 0.13666666666666666,
+      "psnr": 27.440811157226562,
+      "ssim": 0.9022278785705566
+    },
+    {
+      "frame": 42,
+      "source_frame": "cam00/images/0042.png",
+      "normalized_time": 0.14,
+      "psnr": 27.43783950805664,
+      "ssim": 0.9018462300300598
+    },
+    {
+      "frame": 43,
+      "source_frame": "cam00/images/0043.png",
+      "normalized_time": 0.14333333333333334,
+      "psnr": 27.44819450378418,
+      "ssim": 0.9021377563476562
+    },
+    {
+      "frame": 44,
+      "source_frame": "cam00/images/0044.png",
+      "normalized_time": 0.14666666666666667,
+      "psnr": 27.426633834838867,
+      "ssim": 0.9015657305717468
+    },
+    {
+      "frame": 45,
+      "source_frame": "cam00/images/0045.png",
+      "normalized_time": 0.15,
+      "psnr": 27.445030212402344,
+      "ssim": 0.9023032784461975
+    },
+    {
+      "frame": 46,
+      "source_frame": "cam00/images/0046.png",
+      "normalized_time": 0.15333333333333332,
+      "psnr": 27.430574417114258,
+      "ssim": 0.9018483757972717
+    },
+    {
+      "frame": 47,
+      "source_frame": "cam00/images/0047.png",
+      "normalized_time": 0.15666666666666668,
+      "psnr": 27.456466674804688,
+      "ssim": 0.902161180973053
+    },
+    {
+      "frame": 48,
+      "source_frame": "cam00/images/0048.png",
+      "normalized_time": 0.16,
+      "psnr": 27.458740234375,
+      "ssim": 0.9016575217247009
+    },
+    {
+      "frame": 49,
+      "source_frame": "cam00/images/0049.png",
+      "normalized_time": 0.16333333333333333,
+      "psnr": 27.495546340942383,
+      "ssim": 0.9026651382446289
+    },
+    {
+      "frame": 50,
+      "source_frame": "cam00/images/0050.png",
+      "normalized_time": 0.16666666666666666,
+      "psnr": 27.487876892089844,
+      "ssim": 0.9020703434944153
+    },
+    {
+      "frame": 51,
+      "source_frame": "cam00/images/0051.png",
+      "normalized_time": 0.17,
+      "psnr": 27.499053955078125,
+      "ssim": 0.9024274349212646
+    },
+    {
+      "frame": 52,
+      "source_frame": "cam00/images/0052.png",
+      "normalized_time": 0.17333333333333334,
+      "psnr": 27.48027992248535,
+      "ssim": 0.9018581509590149
+    },
+    {
+      "frame": 53,
+      "source_frame": "cam00/images/0053.png",
+      "normalized_time": 0.17666666666666667,
+      "psnr": 27.493202209472656,
+      "ssim": 0.902699887752533
+    },
+    {
+      "frame": 54,
+      "source_frame": "cam00/images/0054.png",
+      "normalized_time": 0.18,
+      "psnr": 27.474193572998047,
+      "ssim": 0.9025959372520447
+    },
+    {
+      "frame": 55,
+      "source_frame": "cam00/images/0055.png",
+      "normalized_time": 0.18333333333333332,
+      "psnr": 27.47281265258789,
+      "ssim": 0.902694046497345
+    },
+    {
+      "frame": 56,
+      "source_frame": "cam00/images/0056.png",
+      "normalized_time": 0.18666666666666668,
+      "psnr": 27.448089599609375,
+      "ssim": 0.9017631411552429
+    },
+    {
+      "frame": 57,
+      "source_frame": "cam00/images/0057.png",
+      "normalized_time": 0.19,
+      "psnr": 27.457857131958008,
+      "ssim": 0.9025177359580994
+    },
+    {
+      "frame": 58,
+      "source_frame": "cam00/images/0058.png",
+      "normalized_time": 0.19333333333333333,
+      "psnr": 27.443601608276367,
+      "ssim": 0.9020256996154785
+    },
+    {
+      "frame": 59,
+      "source_frame": "cam00/images/0059.png",
+      "normalized_time": 0.19666666666666666,
+      "psnr": 27.456281661987305,
+      "ssim": 0.9024519324302673
+    },
+    {
+      "frame": 60,
+      "source_frame": "cam00/images/0060.png",
+      "normalized_time": 0.2,
+      "psnr": 27.44379997253418,
+      "ssim": 0.9015616774559021
+    },
+    {
+      "frame": 61,
+      "source_frame": "cam00/images/0061.png",
+      "normalized_time": 0.20333333333333334,
+      "psnr": 27.474916458129883,
+      "ssim": 0.9025620818138123
+    },
+    {
+      "frame": 62,
+      "source_frame": "cam00/images/0062.png",
+      "normalized_time": 0.20666666666666667,
+      "psnr": 27.474525451660156,
+      "ssim": 0.902318000793457
+    },
+    {
+      "frame": 63,
+      "source_frame": "cam00/images/0063.png",
+      "normalized_time": 0.21,
+      "psnr": 27.481718063354492,
+      "ssim": 0.902911365032196
+    },
+    {
+      "frame": 64,
+      "source_frame": "cam00/images/0064.png",
+      "normalized_time": 0.21333333333333335,
+      "psnr": 27.468507766723633,
+      "ssim": 0.9022731781005859
+    },
+    {
+      "frame": 65,
+      "source_frame": "cam00/images/0065.png",
+      "normalized_time": 0.21666666666666667,
+      "psnr": 27.486064910888672,
+      "ssim": 0.9029147624969482
+    },
+    {
+      "frame": 66,
+      "source_frame": "cam00/images/0066.png",
+      "normalized_time": 0.22,
+      "psnr": 27.478527069091797,
+      "ssim": 0.9025885462760925
+    },
+    {
+      "frame": 67,
+      "source_frame": "cam00/images/0067.png",
+      "normalized_time": 0.22333333333333333,
+      "psnr": 27.492023468017578,
+      "ssim": 0.903018593788147
+    },
+    {
+      "frame": 68,
+      "source_frame": "cam00/images/0068.png",
+      "normalized_time": 0.22666666666666666,
+      "psnr": 27.46852684020996,
+      "ssim": 0.9022796750068665
+    },
+    {
+      "frame": 69,
+      "source_frame": "cam00/images/0069.png",
+      "normalized_time": 0.23,
+      "psnr": 27.48483657836914,
+      "ssim": 0.9031586050987244
+    },
+    {
+      "frame": 70,
+      "source_frame": "cam00/images/0070.png",
+      "normalized_time": 0.23333333333333334,
+      "psnr": 27.448829650878906,
+      "ssim": 0.902532160282135
+    },
+    {
+      "frame": 71,
+      "source_frame": "cam00/images/0071.png",
+      "normalized_time": 0.23666666666666666,
+      "psnr": 27.45145034790039,
+      "ssim": 0.9028287529945374
+    },
+    {
+      "frame": 72,
+      "source_frame": "cam00/images/0072.png",
+      "normalized_time": 0.24,
+      "psnr": 27.438535690307617,
+      "ssim": 0.9017564654350281
+    },
+    {
+      "frame": 73,
+      "source_frame": "cam00/images/0073.png",
+      "normalized_time": 0.24333333333333335,
+      "psnr": 27.47549057006836,
+      "ssim": 0.9028558731079102
+    },
+    {
+      "frame": 74,
+      "source_frame": "cam00/images/0074.png",
+      "normalized_time": 0.24666666666666667,
+      "psnr": 27.4733943939209,
+      "ssim": 0.9025343060493469
+    },
+    {
+      "frame": 75,
+      "source_frame": "cam00/images/0075.png",
+      "normalized_time": 0.25,
+      "psnr": 27.492961883544922,
+      "ssim": 0.9030278921127319
+    },
+    {
+      "frame": 76,
+      "source_frame": "cam00/images/0076.png",
+      "normalized_time": 0.25333333333333335,
+      "psnr": 27.47179412841797,
+      "ssim": 0.9019574522972107
+    },
+    {
+      "frame": 77,
+      "source_frame": "cam00/images/0077.png",
+      "normalized_time": 0.25666666666666665,
+      "psnr": 27.48990249633789,
+      "ssim": 0.9028807878494263
+    },
+    {
+      "frame": 78,
+      "source_frame": "cam00/images/0078.png",
+      "normalized_time": 0.26,
+      "psnr": 27.479021072387695,
+      "ssim": 0.9022667407989502
+    },
+    {
+      "frame": 79,
+      "source_frame": "cam00/images/0079.png",
+      "normalized_time": 0.2633333333333333,
+      "psnr": 27.497928619384766,
+      "ssim": 0.902862548828125
+    },
+    {
+      "frame": 80,
+      "source_frame": "cam00/images/0080.png",
+      "normalized_time": 0.26666666666666666,
+      "psnr": 27.47817611694336,
+      "ssim": 0.9023132920265198
+    },
+    {
+      "frame": 81,
+      "source_frame": "cam00/images/0081.png",
+      "normalized_time": 0.27,
+      "psnr": 27.496566772460938,
+      "ssim": 0.903164267539978
+    },
+    {
+      "frame": 82,
+      "source_frame": "cam00/images/0082.png",
+      "normalized_time": 0.2733333333333333,
+      "psnr": 27.485254287719727,
+      "ssim": 0.9026410579681396
+    },
+    {
+      "frame": 83,
+      "source_frame": "cam00/images/0083.png",
+      "normalized_time": 0.27666666666666667,
+      "psnr": 27.49347686767578,
+      "ssim": 0.9031428694725037
+    },
+    {
+      "frame": 84,
+      "source_frame": "cam00/images/0084.png",
+      "normalized_time": 0.28,
+      "psnr": 27.490808486938477,
+      "ssim": 0.9026517271995544
+    },
+    {
+      "frame": 85,
+      "source_frame": "cam00/images/0085.png",
+      "normalized_time": 0.2833333333333333,
+      "psnr": 27.505971908569336,
+      "ssim": 0.9032624959945679
+    },
+    {
+      "frame": 86,
+      "source_frame": "cam00/images/0086.png",
+      "normalized_time": 0.2866666666666667,
+      "psnr": 27.5006103515625,
+      "ssim": 0.9030402898788452
+    },
+    {
+      "frame": 87,
+      "source_frame": "cam00/images/0087.png",
+      "normalized_time": 0.29,
+      "psnr": 27.5058536529541,
+      "ssim": 0.9030854105949402
+    },
+    {
+      "frame": 88,
+      "source_frame": "cam00/images/0088.png",
+      "normalized_time": 0.29333333333333333,
+      "psnr": 27.482940673828125,
+      "ssim": 0.9022418856620789
+    },
+    {
+      "frame": 89,
+      "source_frame": "cam00/images/0089.png",
+      "normalized_time": 0.2966666666666667,
+      "psnr": 27.501304626464844,
+      "ssim": 0.903165876865387
+    },
+    {
+      "frame": 90,
+      "source_frame": "cam00/images/0090.png",
+      "normalized_time": 0.3,
+      "psnr": 27.481470108032227,
+      "ssim": 0.9025198221206665
+    },
+    {
+      "frame": 91,
+      "source_frame": "cam00/images/0091.png",
+      "normalized_time": 0.30333333333333334,
+      "psnr": 27.48958396911621,
+      "ssim": 0.9026616811752319
+    },
+    {
+      "frame": 92,
+      "source_frame": "cam00/images/0092.png",
+      "normalized_time": 0.30666666666666664,
+      "psnr": 27.46573257446289,
+      "ssim": 0.9021138548851013
+    },
+    {
+      "frame": 93,
+      "source_frame": "cam00/images/0093.png",
+      "normalized_time": 0.31,
+      "psnr": 27.480772018432617,
+      "ssim": 0.9026995301246643
+    },
+    {
+      "frame": 94,
+      "source_frame": "cam00/images/0094.png",
+      "normalized_time": 0.31333333333333335,
+      "psnr": 27.465721130371094,
+      "ssim": 0.9022736549377441
+    },
+    {
+      "frame": 95,
+      "source_frame": "cam00/images/0095.png",
+      "normalized_time": 0.31666666666666665,
+      "psnr": 27.47895050048828,
+      "ssim": 0.9025689363479614
+    },
+    {
+      "frame": 96,
+      "source_frame": "cam00/images/0096.png",
+      "normalized_time": 0.32,
+      "psnr": 27.479835510253906,
+      "ssim": 0.9020991325378418
+    },
+    {
+      "frame": 97,
+      "source_frame": "cam00/images/0097.png",
+      "normalized_time": 0.3233333333333333,
+      "psnr": 27.5025634765625,
+      "ssim": 0.9033119678497314
+    },
+    {
+      "frame": 98,
+      "source_frame": "cam00/images/0098.png",
+      "normalized_time": 0.32666666666666666,
+      "psnr": 27.48805046081543,
+      "ssim": 0.9028371572494507
+    },
+    {
+      "frame": 99,
+      "source_frame": "cam00/images/0099.png",
+      "normalized_time": 0.33,
+      "psnr": 27.496570587158203,
+      "ssim": 0.903144121170044
+    },
+    {
+      "frame": 100,
+      "source_frame": "cam00/images/0100.png",
+      "normalized_time": 0.3333333333333333,
+      "psnr": 27.483535766601562,
+      "ssim": 0.9023549556732178
+    },
+    {
+      "frame": 101,
+      "source_frame": "cam00/images/0101.png",
+      "normalized_time": 0.33666666666666667,
+      "psnr": 27.510175704956055,
+      "ssim": 0.9032047986984253
+    },
+    {
+      "frame": 102,
+      "source_frame": "cam00/images/0102.png",
+      "normalized_time": 0.34,
+      "psnr": 27.504425048828125,
+      "ssim": 0.9029496312141418
+    },
+    {
+      "frame": 103,
+      "source_frame": "cam00/images/0103.png",
+      "normalized_time": 0.3433333333333333,
+      "psnr": 27.50861358642578,
+      "ssim": 0.9033254384994507
+    },
+    {
+      "frame": 104,
+      "source_frame": "cam00/images/0104.png",
+      "normalized_time": 0.3466666666666667,
+      "psnr": 27.47650146484375,
+      "ssim": 0.9021784663200378
+    },
+    {
+      "frame": 105,
+      "source_frame": "cam00/images/0105.png",
+      "normalized_time": 0.35,
+      "psnr": 27.490787506103516,
+      "ssim": 0.9027090668678284
+    },
+    {
+      "frame": 106,
+      "source_frame": "cam00/images/0106.png",
+      "normalized_time": 0.35333333333333333,
+      "psnr": 27.486474990844727,
+      "ssim": 0.9026844501495361
+    },
+    {
+      "frame": 107,
+      "source_frame": "cam00/images/0107.png",
+      "normalized_time": 0.3566666666666667,
+      "psnr": 27.483606338500977,
+      "ssim": 0.9027495384216309
+    },
+    {
+      "frame": 108,
+      "source_frame": "cam00/images/0108.png",
+      "normalized_time": 0.36,
+      "psnr": 27.471952438354492,
+      "ssim": 0.9022021293640137
+    },
+    {
+      "frame": 109,
+      "source_frame": "cam00/images/0109.png",
+      "normalized_time": 0.36333333333333334,
+      "psnr": 27.495906829833984,
+      "ssim": 0.9030314683914185
+    },
+    {
+      "frame": 110,
+      "source_frame": "cam00/images/0110.png",
+      "normalized_time": 0.36666666666666664,
+      "psnr": 27.48059844970703,
+      "ssim": 0.9027007222175598
+    },
+    {
+      "frame": 111,
+      "source_frame": "cam00/images/0111.png",
+      "normalized_time": 0.37,
+      "psnr": 27.49039649963379,
+      "ssim": 0.9028695225715637
+    },
+    {
+      "frame": 112,
+      "source_frame": "cam00/images/0112.png",
+      "normalized_time": 0.37333333333333335,
+      "psnr": 27.474624633789062,
+      "ssim": 0.902409553527832
+    },
+    {
+      "frame": 113,
+      "source_frame": "cam00/images/0113.png",
+      "normalized_time": 0.37666666666666665,
+      "psnr": 27.50545310974121,
+      "ssim": 0.9029309153556824
+    },
+    {
+      "frame": 114,
+      "source_frame": "cam00/images/0114.png",
+      "normalized_time": 0.38,
+      "psnr": 27.513322830200195,
+      "ssim": 0.9034132957458496
+    },
+    {
+      "frame": 115,
+      "source_frame": "cam00/images/0115.png",
+      "normalized_time": 0.38333333333333336,
+      "psnr": 27.524627685546875,
+      "ssim": 0.9036148190498352
+    },
+    {
+      "frame": 116,
+      "source_frame": "cam00/images/0116.png",
+      "normalized_time": 0.38666666666666666,
+      "psnr": 27.494277954101562,
+      "ssim": 0.9025866985321045
+    },
+    {
+      "frame": 117,
+      "source_frame": "cam00/images/0117.png",
+      "normalized_time": 0.39,
+      "psnr": 27.509811401367188,
+      "ssim": 0.9030522108078003
+    },
+    {
+      "frame": 118,
+      "source_frame": "cam00/images/0118.png",
+      "normalized_time": 0.3933333333333333,
+      "psnr": 27.488174438476562,
+      "ssim": 0.9028573632240295
+    },
+    {
+      "frame": 119,
+      "source_frame": "cam00/images/0119.png",
+      "normalized_time": 0.39666666666666667,
+      "psnr": 27.491666793823242,
+      "ssim": 0.9029117226600647
+    },
+    {
+      "frame": 120,
+      "source_frame": "cam00/images/0120.png",
+      "normalized_time": 0.4,
+      "psnr": 27.47018051147461,
+      "ssim": 0.9024077653884888
+    },
+    {
+      "frame": 121,
+      "source_frame": "cam00/images/0121.png",
+      "normalized_time": 0.4033333333333333,
+      "psnr": 27.496498107910156,
+      "ssim": 0.9028785824775696
+    },
+    {
+      "frame": 122,
+      "source_frame": "cam00/images/0122.png",
+      "normalized_time": 0.4066666666666667,
+      "psnr": 27.494327545166016,
+      "ssim": 0.9027265310287476
+    },
+    {
+      "frame": 123,
+      "source_frame": "cam00/images/0123.png",
+      "normalized_time": 0.41,
+      "psnr": 27.512319564819336,
+      "ssim": 0.9033876061439514
+    },
+    {
+      "frame": 124,
+      "source_frame": "cam00/images/0124.png",
+      "normalized_time": 0.41333333333333333,
+      "psnr": 27.48678207397461,
+      "ssim": 0.9024815559387207
+    },
+    {
+      "frame": 125,
+      "source_frame": "cam00/images/0125.png",
+      "normalized_time": 0.4166666666666667,
+      "psnr": 27.511777877807617,
+      "ssim": 0.9031566381454468
+    },
+    {
+      "frame": 126,
+      "source_frame": "cam00/images/0126.png",
+      "normalized_time": 0.42,
+      "psnr": 27.499038696289062,
+      "ssim": 0.9024389982223511
+    },
+    {
+      "frame": 127,
+      "source_frame": "cam00/images/0127.png",
+      "normalized_time": 0.42333333333333334,
+      "psnr": 27.503128051757812,
+      "ssim": 0.9026792645454407
+    },
+    {
+      "frame": 128,
+      "source_frame": "cam00/images/0128.png",
+      "normalized_time": 0.4266666666666667,
+      "psnr": 27.47002410888672,
+      "ssim": 0.901872456073761
+    },
+    {
+      "frame": 129,
+      "source_frame": "cam00/images/0129.png",
+      "normalized_time": 0.43,
+      "psnr": 27.48957061767578,
+      "ssim": 0.9027554392814636
+    },
+    {
+      "frame": 130,
+      "source_frame": "cam00/images/0130.png",
+      "normalized_time": 0.43333333333333335,
+      "psnr": 27.471771240234375,
+      "ssim": 0.9022744297981262
+    },
+    {
+      "frame": 131,
+      "source_frame": "cam00/images/0131.png",
+      "normalized_time": 0.43666666666666665,
+      "psnr": 27.48114013671875,
+      "ssim": 0.9025307893753052
+    },
+    {
+      "frame": 132,
+      "source_frame": "cam00/images/0132.png",
+      "normalized_time": 0.44,
+      "psnr": 27.483356475830078,
+      "ssim": 0.9018508195877075
+    },
+    {
+      "frame": 133,
+      "source_frame": "cam00/images/0133.png",
+      "normalized_time": 0.44333333333333336,
+      "psnr": 27.515954971313477,
+      "ssim": 0.902950644493103
+    },
+    {
+      "frame": 134,
+      "source_frame": "cam00/images/0134.png",
+      "normalized_time": 0.44666666666666666,
+      "psnr": 27.51253318786621,
+      "ssim": 0.902721107006073
+    },
+    {
+      "frame": 135,
+      "source_frame": "cam00/images/0135.png",
+      "normalized_time": 0.45,
+      "psnr": 27.520469665527344,
+      "ssim": 0.9031054377555847
+    },
+    {
+      "frame": 136,
+      "source_frame": "cam00/images/0136.png",
+      "normalized_time": 0.4533333333333333,
+      "psnr": 27.508155822753906,
+      "ssim": 0.9024766683578491
+    },
+    {
+      "frame": 137,
+      "source_frame": "cam00/images/0137.png",
+      "normalized_time": 0.45666666666666667,
+      "psnr": 27.535266876220703,
+      "ssim": 0.9033270478248596
+    },
+    {
+      "frame": 138,
+      "source_frame": "cam00/images/0138.png",
+      "normalized_time": 0.46,
+      "psnr": 27.525306701660156,
+      "ssim": 0.9026211500167847
+    },
+    {
+      "frame": 139,
+      "source_frame": "cam00/images/0139.png",
+      "normalized_time": 0.4633333333333333,
+      "psnr": 27.532386779785156,
+      "ssim": 0.9030688405036926
+    },
+    {
+      "frame": 140,
+      "source_frame": "cam00/images/0140.png",
+      "normalized_time": 0.4666666666666667,
+      "psnr": 27.516368865966797,
+      "ssim": 0.902109682559967
+    },
+    {
+      "frame": 141,
+      "source_frame": "cam00/images/0141.png",
+      "normalized_time": 0.47,
+      "psnr": 27.54009437561035,
+      "ssim": 0.903205156326294
+    },
+    {
+      "frame": 142,
+      "source_frame": "cam00/images/0142.png",
+      "normalized_time": 0.47333333333333333,
+      "psnr": 27.517147064208984,
+      "ssim": 0.9026643633842468
+    },
+    {
+      "frame": 143,
+      "source_frame": "cam00/images/0143.png",
+      "normalized_time": 0.4766666666666667,
+      "psnr": 27.507774353027344,
+      "ssim": 0.9028615951538086
+    },
+    {
+      "frame": 144,
+      "source_frame": "cam00/images/0144.png",
+      "normalized_time": 0.48,
+      "psnr": 27.501258850097656,
+      "ssim": 0.9020601511001587
+    },
+    {
+      "frame": 145,
+      "source_frame": "cam00/images/0145.png",
+      "normalized_time": 0.48333333333333334,
+      "psnr": 27.519615173339844,
+      "ssim": 0.9030775427818298
+    },
+    {
+      "frame": 146,
+      "source_frame": "cam00/images/0146.png",
+      "normalized_time": 0.4866666666666667,
+      "psnr": 27.497852325439453,
+      "ssim": 0.9027740359306335
+    },
+    {
+      "frame": 147,
+      "source_frame": "cam00/images/0147.png",
+      "normalized_time": 0.49,
+      "psnr": 27.497657775878906,
+      "ssim": 0.9032267332077026
+    },
+    {
+      "frame": 148,
+      "source_frame": "cam00/images/0148.png",
+      "normalized_time": 0.49333333333333335,
+      "psnr": 27.482528686523438,
+      "ssim": 0.9023730754852295
+    },
+    {
+      "frame": 149,
+      "source_frame": "cam00/images/0149.png",
+      "normalized_time": 0.49666666666666665,
+      "psnr": 27.493467330932617,
+      "ssim": 0.9030768871307373
+    },
+    {
+      "frame": 150,
+      "source_frame": "cam00/images/0150.png",
+      "normalized_time": 0.5,
+      "psnr": 27.482467651367188,
+      "ssim": 0.902759313583374
+    },
+    {
+      "frame": 151,
+      "source_frame": "cam00/images/0151.png",
+      "normalized_time": 0.5033333333333333,
+      "psnr": 27.48628807067871,
+      "ssim": 0.9026138782501221
+    },
+    {
+      "frame": 152,
+      "source_frame": "cam00/images/0152.png",
+      "normalized_time": 0.5066666666666667,
+      "psnr": 27.469308853149414,
+      "ssim": 0.9020658731460571
+    },
+    {
+      "frame": 153,
+      "source_frame": "cam00/images/0153.png",
+      "normalized_time": 0.51,
+      "psnr": 27.493331909179688,
+      "ssim": 0.9031103253364563
+    },
+    {
+      "frame": 154,
+      "source_frame": "cam00/images/0154.png",
+      "normalized_time": 0.5133333333333333,
+      "psnr": 27.489910125732422,
+      "ssim": 0.902701735496521
+    },
+    {
+      "frame": 155,
+      "source_frame": "cam00/images/0155.png",
+      "normalized_time": 0.5166666666666667,
+      "psnr": 27.505325317382812,
+      "ssim": 0.9030819535255432
+    },
+    {
+      "frame": 156,
+      "source_frame": "cam00/images/0156.png",
+      "normalized_time": 0.52,
+      "psnr": 27.487789154052734,
+      "ssim": 0.9024200439453125
+    },
+    {
+      "frame": 157,
+      "source_frame": "cam00/images/0157.png",
+      "normalized_time": 0.5233333333333333,
+      "psnr": 27.512195587158203,
+      "ssim": 0.9030984044075012
+    },
+    {
+      "frame": 158,
+      "source_frame": "cam00/images/0158.png",
+      "normalized_time": 0.5266666666666666,
+      "psnr": 27.502338409423828,
+      "ssim": 0.9026643633842468
+    },
+    {
+      "frame": 159,
+      "source_frame": "cam00/images/0159.png",
+      "normalized_time": 0.53,
+      "psnr": 27.50478744506836,
+      "ssim": 0.9030436873435974
+    },
+    {
+      "frame": 160,
+      "source_frame": "cam00/images/0160.png",
+      "normalized_time": 0.5333333333333333,
+      "psnr": 27.48417091369629,
+      "ssim": 0.9022104144096375
+    },
+    {
+      "frame": 161,
+      "source_frame": "cam00/images/0161.png",
+      "normalized_time": 0.5366666666666666,
+      "psnr": 27.502506256103516,
+      "ssim": 0.9030760526657104
+    },
+    {
+      "frame": 162,
+      "source_frame": "cam00/images/0162.png",
+      "normalized_time": 0.54,
+      "psnr": 27.483198165893555,
+      "ssim": 0.9024361968040466
+    },
+    {
+      "frame": 163,
+      "source_frame": "cam00/images/0163.png",
+      "normalized_time": 0.5433333333333333,
+      "psnr": 27.491743087768555,
+      "ssim": 0.9027886390686035
+    },
+    {
+      "frame": 164,
+      "source_frame": "cam00/images/0164.png",
+      "normalized_time": 0.5466666666666666,
+      "psnr": 27.476001739501953,
+      "ssim": 0.9022191166877747
+    },
+    {
+      "frame": 165,
+      "source_frame": "cam00/images/0165.png",
+      "normalized_time": 0.55,
+      "psnr": 27.495038986206055,
+      "ssim": 0.9030359387397766
+    },
+    {
+      "frame": 166,
+      "source_frame": "cam00/images/0166.png",
+      "normalized_time": 0.5533333333333333,
+      "psnr": 27.48476219177246,
+      "ssim": 0.902535080909729
+    },
+    {
+      "frame": 167,
+      "source_frame": "cam00/images/0167.png",
+      "normalized_time": 0.5566666666666666,
+      "psnr": 27.467559814453125,
+      "ssim": 0.9025375843048096
+    },
+    {
+      "frame": 168,
+      "source_frame": "cam00/images/0168.png",
+      "normalized_time": 0.56,
+      "psnr": 27.445404052734375,
+      "ssim": 0.901843786239624
+    },
+    {
+      "frame": 169,
+      "source_frame": "cam00/images/0169.png",
+      "normalized_time": 0.5633333333333334,
+      "psnr": 27.468812942504883,
+      "ssim": 0.9026675224304199
+    },
+    {
+      "frame": 170,
+      "source_frame": "cam00/images/0170.png",
+      "normalized_time": 0.5666666666666667,
+      "psnr": 27.460458755493164,
+      "ssim": 0.9024386405944824
+    },
+    {
+      "frame": 171,
+      "source_frame": "cam00/images/0171.png",
+      "normalized_time": 0.57,
+      "psnr": 27.452552795410156,
+      "ssim": 0.9024926424026489
+    },
+    {
+      "frame": 172,
+      "source_frame": "cam00/images/0172.png",
+      "normalized_time": 0.5733333333333334,
+      "psnr": 27.4299259185791,
+      "ssim": 0.9016997218132019
+    },
+    {
+      "frame": 173,
+      "source_frame": "cam00/images/0173.png",
+      "normalized_time": 0.5766666666666667,
+      "psnr": 27.45063591003418,
+      "ssim": 0.9023219347000122
+    },
+    {
+      "frame": 174,
+      "source_frame": "cam00/images/0174.png",
+      "normalized_time": 0.58,
+      "psnr": 27.44253158569336,
+      "ssim": 0.9019743204116821
+    },
+    {
+      "frame": 175,
+      "source_frame": "cam00/images/0175.png",
+      "normalized_time": 0.5833333333333334,
+      "psnr": 27.428543090820312,
+      "ssim": 0.9020208120346069
+    },
+    {
+      "frame": 176,
+      "source_frame": "cam00/images/0176.png",
+      "normalized_time": 0.5866666666666667,
+      "psnr": 27.419265747070312,
+      "ssim": 0.9012989401817322
+    },
+    {
+      "frame": 177,
+      "source_frame": "cam00/images/0177.png",
+      "normalized_time": 0.59,
+      "psnr": 27.39336395263672,
+      "ssim": 0.9012718796730042
+    },
+    {
+      "frame": 178,
+      "source_frame": "cam00/images/0178.png",
+      "normalized_time": 0.5933333333333334,
+      "psnr": 27.39701271057129,
+      "ssim": 0.9006001949310303
+    },
+    {
+      "frame": 179,
+      "source_frame": "cam00/images/0179.png",
+      "normalized_time": 0.5966666666666667,
+      "psnr": 27.48093605041504,
+      "ssim": 0.9020596742630005
+    },
+    {
+      "frame": 180,
+      "source_frame": "cam00/images/0180.png",
+      "normalized_time": 0.6,
+      "psnr": 27.46487045288086,
+      "ssim": 0.9010066986083984
+    },
+    {
+      "frame": 181,
+      "source_frame": "cam00/images/0181.png",
+      "normalized_time": 0.6033333333333334,
+      "psnr": 27.488462448120117,
+      "ssim": 0.9019702672958374
+    },
+    {
+      "frame": 182,
+      "source_frame": "cam00/images/0182.png",
+      "normalized_time": 0.6066666666666667,
+      "psnr": 27.482189178466797,
+      "ssim": 0.9014580249786377
+    },
+    {
+      "frame": 183,
+      "source_frame": "cam00/images/0183.png",
+      "normalized_time": 0.61,
+      "psnr": 27.50316619873047,
+      "ssim": 0.9019375443458557
+    },
+    {
+      "frame": 184,
+      "source_frame": "cam00/images/0184.png",
+      "normalized_time": 0.6133333333333333,
+      "psnr": 27.485849380493164,
+      "ssim": 0.9011098146438599
+    },
+    {
+      "frame": 185,
+      "source_frame": "cam00/images/0185.png",
+      "normalized_time": 0.6166666666666667,
+      "psnr": 27.507591247558594,
+      "ssim": 0.9019798636436462
+    },
+    {
+      "frame": 186,
+      "source_frame": "cam00/images/0186.png",
+      "normalized_time": 0.62,
+      "psnr": 27.473670959472656,
+      "ssim": 0.9015027284622192
+    },
+    {
+      "frame": 187,
+      "source_frame": "cam00/images/0187.png",
+      "normalized_time": 0.6233333333333333,
+      "psnr": 27.468116760253906,
+      "ssim": 0.9017055630683899
+    },
+    {
+      "frame": 188,
+      "source_frame": "cam00/images/0188.png",
+      "normalized_time": 0.6266666666666667,
+      "psnr": 27.44980812072754,
+      "ssim": 0.9011328220367432
+    },
+    {
+      "frame": 189,
+      "source_frame": "cam00/images/0189.png",
+      "normalized_time": 0.63,
+      "psnr": 27.483596801757812,
+      "ssim": 0.9022840261459351
+    },
+    {
+      "frame": 190,
+      "source_frame": "cam00/images/0190.png",
+      "normalized_time": 0.6333333333333333,
+      "psnr": 27.47150230407715,
+      "ssim": 0.9017049670219421
+    },
+    {
+      "frame": 191,
+      "source_frame": "cam00/images/0191.png",
+      "normalized_time": 0.6366666666666667,
+      "psnr": 27.473899841308594,
+      "ssim": 0.9019405245780945
+    },
+    {
+      "frame": 192,
+      "source_frame": "cam00/images/0192.png",
+      "normalized_time": 0.64,
+      "psnr": 27.447721481323242,
+      "ssim": 0.9008787274360657
+    },
+    {
+      "frame": 193,
+      "source_frame": "cam00/images/0193.png",
+      "normalized_time": 0.6433333333333333,
+      "psnr": 27.473003387451172,
+      "ssim": 0.9017243385314941
+    },
+    {
+      "frame": 194,
+      "source_frame": "cam00/images/0194.png",
+      "normalized_time": 0.6466666666666666,
+      "psnr": 27.463031768798828,
+      "ssim": 0.9013530611991882
+    },
+    {
+      "frame": 195,
+      "source_frame": "cam00/images/0195.png",
+      "normalized_time": 0.65,
+      "psnr": 27.474010467529297,
+      "ssim": 0.9016281366348267
+    },
+    {
+      "frame": 196,
+      "source_frame": "cam00/images/0196.png",
+      "normalized_time": 0.6533333333333333,
+      "psnr": 27.457252502441406,
+      "ssim": 0.900974452495575
+    },
+    {
+      "frame": 197,
+      "source_frame": "cam00/images/0197.png",
+      "normalized_time": 0.6566666666666666,
+      "psnr": 27.491018295288086,
+      "ssim": 0.9021539092063904
+    },
+    {
+      "frame": 198,
+      "source_frame": "cam00/images/0198.png",
+      "normalized_time": 0.66,
+      "psnr": 27.477989196777344,
+      "ssim": 0.9018924236297607
+    },
+    {
+      "frame": 199,
+      "source_frame": "cam00/images/0199.png",
+      "normalized_time": 0.6633333333333333,
+      "psnr": 27.478790283203125,
+      "ssim": 0.9019690155982971
+    },
+    {
+      "frame": 200,
+      "source_frame": "cam00/images/0200.png",
+      "normalized_time": 0.6666666666666666,
+      "psnr": 27.457582473754883,
+      "ssim": 0.901188850402832
+    },
+    {
+      "frame": 201,
+      "source_frame": "cam00/images/0201.png",
+      "normalized_time": 0.67,
+      "psnr": 27.46241569519043,
+      "ssim": 0.9021111130714417
+    },
+    {
+      "frame": 202,
+      "source_frame": "cam00/images/0202.png",
+      "normalized_time": 0.6733333333333333,
+      "psnr": 27.424524307250977,
+      "ssim": 0.9011527895927429
+    },
+    {
+      "frame": 203,
+      "source_frame": "cam00/images/0203.png",
+      "normalized_time": 0.6766666666666666,
+      "psnr": 27.391395568847656,
+      "ssim": 0.9008029103279114
+    },
+    {
+      "frame": 204,
+      "source_frame": "cam00/images/0204.png",
+      "normalized_time": 0.68,
+      "psnr": 27.390974044799805,
+      "ssim": 0.90016108751297
+    },
+    {
+      "frame": 205,
+      "source_frame": "cam00/images/0205.png",
+      "normalized_time": 0.6833333333333333,
+      "psnr": 27.407400131225586,
+      "ssim": 0.9016050100326538
+    },
+    {
+      "frame": 206,
+      "source_frame": "cam00/images/0206.png",
+      "normalized_time": 0.6866666666666666,
+      "psnr": 27.40465545654297,
+      "ssim": 0.901581883430481
+    },
+    {
+      "frame": 207,
+      "source_frame": "cam00/images/0207.png",
+      "normalized_time": 0.69,
+      "psnr": 27.413257598876953,
+      "ssim": 0.9017831087112427
+    },
+    {
+      "frame": 208,
+      "source_frame": "cam00/images/0208.png",
+      "normalized_time": 0.6933333333333334,
+      "psnr": 27.40281105041504,
+      "ssim": 0.901328444480896
+    },
+    {
+      "frame": 209,
+      "source_frame": "cam00/images/0209.png",
+      "normalized_time": 0.6966666666666667,
+      "psnr": 27.434606552124023,
+      "ssim": 0.9021598696708679
+    },
+    {
+      "frame": 210,
+      "source_frame": "cam00/images/0210.png",
+      "normalized_time": 0.7,
+      "psnr": 27.42213249206543,
+      "ssim": 0.9016632437705994
+    },
+    {
+      "frame": 211,
+      "source_frame": "cam00/images/0211.png",
+      "normalized_time": 0.7033333333333334,
+      "psnr": 27.426780700683594,
+      "ssim": 0.9017369151115417
+    },
+    {
+      "frame": 212,
+      "source_frame": "cam00/images/0212.png",
+      "normalized_time": 0.7066666666666667,
+      "psnr": 27.407167434692383,
+      "ssim": 0.9012632966041565
+    },
+    {
+      "frame": 213,
+      "source_frame": "cam00/images/0213.png",
+      "normalized_time": 0.71,
+      "psnr": 27.429563522338867,
+      "ssim": 0.9020934700965881
+    },
+    {
+      "frame": 214,
+      "source_frame": "cam00/images/0214.png",
+      "normalized_time": 0.7133333333333334,
+      "psnr": 27.40774917602539,
+      "ssim": 0.9014361500740051
+    },
+    {
+      "frame": 215,
+      "source_frame": "cam00/images/0215.png",
+      "normalized_time": 0.7166666666666667,
+      "psnr": 27.40475082397461,
+      "ssim": 0.9014832973480225
+    },
+    {
+      "frame": 216,
+      "source_frame": "cam00/images/0216.png",
+      "normalized_time": 0.72,
+      "psnr": 27.385456085205078,
+      "ssim": 0.9008085131645203
+    },
+    {
+      "frame": 217,
+      "source_frame": "cam00/images/0217.png",
+      "normalized_time": 0.7233333333333334,
+      "psnr": 27.422792434692383,
+      "ssim": 0.9017767906188965
+    },
+    {
+      "frame": 218,
+      "source_frame": "cam00/images/0218.png",
+      "normalized_time": 0.7266666666666667,
+      "psnr": 27.416080474853516,
+      "ssim": 0.9014483094215393
+    },
+    {
+      "frame": 219,
+      "source_frame": "cam00/images/0219.png",
+      "normalized_time": 0.73,
+      "psnr": 27.434803009033203,
+      "ssim": 0.9018718600273132
+    },
+    {
+      "frame": 220,
+      "source_frame": "cam00/images/0220.png",
+      "normalized_time": 0.7333333333333333,
+      "psnr": 27.417762756347656,
+      "ssim": 0.9015625715255737
+    },
+    {
+      "frame": 221,
+      "source_frame": "cam00/images/0221.png",
+      "normalized_time": 0.7366666666666667,
+      "psnr": 27.43572998046875,
+      "ssim": 0.9021885395050049
+    },
+    {
+      "frame": 222,
+      "source_frame": "cam00/images/0222.png",
+      "normalized_time": 0.74,
+      "psnr": 27.423377990722656,
+      "ssim": 0.9017225503921509
+    },
+    {
+      "frame": 223,
+      "source_frame": "cam00/images/0223.png",
+      "normalized_time": 0.7433333333333333,
+      "psnr": 27.437828063964844,
+      "ssim": 0.9021461009979248
+    },
+    {
+      "frame": 224,
+      "source_frame": "cam00/images/0224.png",
+      "normalized_time": 0.7466666666666667,
+      "psnr": 27.41288185119629,
+      "ssim": 0.9010608792304993
+    },
+    {
+      "frame": 225,
+      "source_frame": "cam00/images/0225.png",
+      "normalized_time": 0.75,
+      "psnr": 27.447219848632812,
+      "ssim": 0.9020416736602783
+    },
+    {
+      "frame": 226,
+      "source_frame": "cam00/images/0226.png",
+      "normalized_time": 0.7533333333333333,
+      "psnr": 27.43443489074707,
+      "ssim": 0.9015354514122009
+    },
+    {
+      "frame": 227,
+      "source_frame": "cam00/images/0227.png",
+      "normalized_time": 0.7566666666666667,
+      "psnr": 27.436283111572266,
+      "ssim": 0.90174400806427
+    },
+    {
+      "frame": 228,
+      "source_frame": "cam00/images/0228.png",
+      "normalized_time": 0.76,
+      "psnr": 27.415607452392578,
+      "ssim": 0.9011923670768738
+    },
+    {
+      "frame": 229,
+      "source_frame": "cam00/images/0229.png",
+      "normalized_time": 0.7633333333333333,
+      "psnr": 27.432205200195312,
+      "ssim": 0.901698648929596
+    },
+    {
+      "frame": 230,
+      "source_frame": "cam00/images/0230.png",
+      "normalized_time": 0.7666666666666667,
+      "psnr": 27.417205810546875,
+      "ssim": 0.9011943340301514
+    },
+    {
+      "frame": 231,
+      "source_frame": "cam00/images/0231.png",
+      "normalized_time": 0.77,
+      "psnr": 27.425411224365234,
+      "ssim": 0.901522696018219
+    },
+    {
+      "frame": 232,
+      "source_frame": "cam00/images/0232.png",
+      "normalized_time": 0.7733333333333333,
+      "psnr": 27.401857376098633,
+      "ssim": 0.9006048440933228
+    },
+    {
+      "frame": 233,
+      "source_frame": "cam00/images/0233.png",
+      "normalized_time": 0.7766666666666666,
+      "psnr": 27.4056396484375,
+      "ssim": 0.9011122584342957
+    },
+    {
+      "frame": 234,
+      "source_frame": "cam00/images/0234.png",
+      "normalized_time": 0.78,
+      "psnr": 27.38857650756836,
+      "ssim": 0.9006543755531311
+    },
+    {
+      "frame": 235,
+      "source_frame": "cam00/images/0235.png",
+      "normalized_time": 0.7833333333333333,
+      "psnr": 27.375612258911133,
+      "ssim": 0.9004608988761902
+    },
+    {
+      "frame": 236,
+      "source_frame": "cam00/images/0236.png",
+      "normalized_time": 0.7866666666666666,
+      "psnr": 27.34868049621582,
+      "ssim": 0.8994159698486328
+    },
+    {
+      "frame": 237,
+      "source_frame": "cam00/images/0237.png",
+      "normalized_time": 0.79,
+      "psnr": 27.39502716064453,
+      "ssim": 0.9005467891693115
+    },
+    {
+      "frame": 238,
+      "source_frame": "cam00/images/0238.png",
+      "normalized_time": 0.7933333333333333,
+      "psnr": 27.40910530090332,
+      "ssim": 0.9007288813591003
+    },
+    {
+      "frame": 239,
+      "source_frame": "cam00/images/0239.png",
+      "normalized_time": 0.7966666666666666,
+      "psnr": 27.427562713623047,
+      "ssim": 0.9011427760124207
+    },
+    {
+      "frame": 240,
+      "source_frame": "cam00/images/0240.png",
+      "normalized_time": 0.8,
+      "psnr": 27.4152774810791,
+      "ssim": 0.9003165364265442
+    },
+    {
+      "frame": 241,
+      "source_frame": "cam00/images/0241.png",
+      "normalized_time": 0.8033333333333333,
+      "psnr": 27.427135467529297,
+      "ssim": 0.9010857939720154
+    },
+    {
+      "frame": 242,
+      "source_frame": "cam00/images/0242.png",
+      "normalized_time": 0.8066666666666666,
+      "psnr": 27.409135818481445,
+      "ssim": 0.900510311126709
+    },
+    {
+      "frame": 243,
+      "source_frame": "cam00/images/0243.png",
+      "normalized_time": 0.81,
+      "psnr": 27.398792266845703,
+      "ssim": 0.9004114866256714
+    },
+    {
+      "frame": 244,
+      "source_frame": "cam00/images/0244.png",
+      "normalized_time": 0.8133333333333334,
+      "psnr": 27.377012252807617,
+      "ssim": 0.8997766971588135
+    },
+    {
+      "frame": 245,
+      "source_frame": "cam00/images/0245.png",
+      "normalized_time": 0.8166666666666667,
+      "psnr": 27.396696090698242,
+      "ssim": 0.9004238247871399
+    },
+    {
+      "frame": 246,
+      "source_frame": "cam00/images/0246.png",
+      "normalized_time": 0.82,
+      "psnr": 27.3934268951416,
+      "ssim": 0.9000898599624634
+    },
+    {
+      "frame": 247,
+      "source_frame": "cam00/images/0247.png",
+      "normalized_time": 0.8233333333333334,
+      "psnr": 27.411849975585938,
+      "ssim": 0.9002085328102112
+    },
+    {
+      "frame": 248,
+      "source_frame": "cam00/images/0248.png",
+      "normalized_time": 0.8266666666666667,
+      "psnr": 27.399642944335938,
+      "ssim": 0.8996160626411438
+    },
+    {
+      "frame": 249,
+      "source_frame": "cam00/images/0249.png",
+      "normalized_time": 0.83,
+      "psnr": 27.407752990722656,
+      "ssim": 0.9002992510795593
+    },
+    {
+      "frame": 250,
+      "source_frame": "cam00/images/0250.png",
+      "normalized_time": 0.8333333333333334,
+      "psnr": 27.39000701904297,
+      "ssim": 0.8991243243217468
+    },
+    {
+      "frame": 251,
+      "source_frame": "cam00/images/0251.png",
+      "normalized_time": 0.8366666666666667,
+      "psnr": 27.418773651123047,
+      "ssim": 0.9005224108695984
+    },
+    {
+      "frame": 252,
+      "source_frame": "cam00/images/0252.png",
+      "normalized_time": 0.84,
+      "psnr": 27.413930892944336,
+      "ssim": 0.9000542759895325
+    },
+    {
+      "frame": 253,
+      "source_frame": "cam00/images/0253.png",
+      "normalized_time": 0.8433333333333334,
+      "psnr": 27.4091739654541,
+      "ssim": 0.9001729488372803
+    },
+    {
+      "frame": 254,
+      "source_frame": "cam00/images/0254.png",
+      "normalized_time": 0.8466666666666667,
+      "psnr": 27.358734130859375,
+      "ssim": 0.8993041515350342
+    },
+    {
+      "frame": 255,
+      "source_frame": "cam00/images/0255.png",
+      "normalized_time": 0.85,
+      "psnr": 27.352951049804688,
+      "ssim": 0.8998128771781921
+    },
+    {
+      "frame": 256,
+      "source_frame": "cam00/images/0256.png",
+      "normalized_time": 0.8533333333333334,
+      "psnr": 27.364994049072266,
+      "ssim": 0.899448812007904
+    },
+    {
+      "frame": 257,
+      "source_frame": "cam00/images/0257.png",
+      "normalized_time": 0.8566666666666667,
+      "psnr": 27.40175437927246,
+      "ssim": 0.9003508687019348
+    },
+    {
+      "frame": 258,
+      "source_frame": "cam00/images/0258.png",
+      "normalized_time": 0.86,
+      "psnr": 27.38707733154297,
+      "ssim": 0.8993073105812073
+    },
+    {
+      "frame": 259,
+      "source_frame": "cam00/images/0259.png",
+      "normalized_time": 0.8633333333333333,
+      "psnr": 27.369369506835938,
+      "ssim": 0.8999499082565308
+    },
+    {
+      "frame": 260,
+      "source_frame": "cam00/images/0260.png",
+      "normalized_time": 0.8666666666666667,
+      "psnr": 27.356300354003906,
+      "ssim": 0.8994545340538025
+    },
+    {
+      "frame": 261,
+      "source_frame": "cam00/images/0261.png",
+      "normalized_time": 0.87,
+      "psnr": 27.371187210083008,
+      "ssim": 0.9001792073249817
+    },
+    {
+      "frame": 262,
+      "source_frame": "cam00/images/0262.png",
+      "normalized_time": 0.8733333333333333,
+      "psnr": 27.396961212158203,
+      "ssim": 0.8995441794395447
+    },
+    {
+      "frame": 263,
+      "source_frame": "cam00/images/0263.png",
+      "normalized_time": 0.8766666666666667,
+      "psnr": 27.420997619628906,
+      "ssim": 0.9003997445106506
+    },
+    {
+      "frame": 264,
+      "source_frame": "cam00/images/0264.png",
+      "normalized_time": 0.88,
+      "psnr": 27.42326545715332,
+      "ssim": 0.9007599949836731
+    },
+    {
+      "frame": 265,
+      "source_frame": "cam00/images/0265.png",
+      "normalized_time": 0.8833333333333333,
+      "psnr": 27.400014877319336,
+      "ssim": 0.9010406136512756
+    },
+    {
+      "frame": 266,
+      "source_frame": "cam00/images/0266.png",
+      "normalized_time": 0.8866666666666667,
+      "psnr": 27.35773468017578,
+      "ssim": 0.8999013900756836
+    },
+    {
+      "frame": 267,
+      "source_frame": "cam00/images/0267.png",
+      "normalized_time": 0.89,
+      "psnr": 27.35155487060547,
+      "ssim": 0.9003521800041199
+    },
+    {
+      "frame": 268,
+      "source_frame": "cam00/images/0268.png",
+      "normalized_time": 0.8933333333333333,
+      "psnr": 27.3226261138916,
+      "ssim": 0.8999480605125427
+    },
+    {
+      "frame": 269,
+      "source_frame": "cam00/images/0269.png",
+      "normalized_time": 0.8966666666666666,
+      "psnr": 27.341136932373047,
+      "ssim": 0.9003046154975891
+    },
+    {
+      "frame": 270,
+      "source_frame": "cam00/images/0270.png",
+      "normalized_time": 0.9,
+      "psnr": 27.331464767456055,
+      "ssim": 0.8993157744407654
+    },
+    {
+      "frame": 271,
+      "source_frame": "cam00/images/0271.png",
+      "normalized_time": 0.9033333333333333,
+      "psnr": 27.36182975769043,
+      "ssim": 0.9002206921577454
+    },
+    {
+      "frame": 272,
+      "source_frame": "cam00/images/0272.png",
+      "normalized_time": 0.9066666666666666,
+      "psnr": 27.32976722717285,
+      "ssim": 0.8994388580322266
+    },
+    {
+      "frame": 273,
+      "source_frame": "cam00/images/0273.png",
+      "normalized_time": 0.91,
+      "psnr": 27.34654998779297,
+      "ssim": 0.900348424911499
+    },
+    {
+      "frame": 274,
+      "source_frame": "cam00/images/0274.png",
+      "normalized_time": 0.9133333333333333,
+      "psnr": 27.35574722290039,
+      "ssim": 0.8993961215019226
+    },
+    {
+      "frame": 275,
+      "source_frame": "cam00/images/0275.png",
+      "normalized_time": 0.9166666666666666,
+      "psnr": 27.367515563964844,
+      "ssim": 0.9002307653427124
+    },
+    {
+      "frame": 276,
+      "source_frame": "cam00/images/0276.png",
+      "normalized_time": 0.92,
+      "psnr": 27.347187042236328,
+      "ssim": 0.8995448350906372
+    },
+    {
+      "frame": 277,
+      "source_frame": "cam00/images/0277.png",
+      "normalized_time": 0.9233333333333333,
+      "psnr": 27.370119094848633,
+      "ssim": 0.900348961353302
+    },
+    {
+      "frame": 278,
+      "source_frame": "cam00/images/0278.png",
+      "normalized_time": 0.9266666666666666,
+      "psnr": 27.34876823425293,
+      "ssim": 0.8997390270233154
+    },
+    {
+      "frame": 279,
+      "source_frame": "cam00/images/0279.png",
+      "normalized_time": 0.93,
+      "psnr": 27.364070892333984,
+      "ssim": 0.9006531238555908
+    },
+    {
+      "frame": 280,
+      "source_frame": "cam00/images/0280.png",
+      "normalized_time": 0.9333333333333333,
+      "psnr": 27.339557647705078,
+      "ssim": 0.9001423716545105
+    },
+    {
+      "frame": 281,
+      "source_frame": "cam00/images/0281.png",
+      "normalized_time": 0.9366666666666666,
+      "psnr": 27.354557037353516,
+      "ssim": 0.9005573987960815
+    },
+    {
+      "frame": 282,
+      "source_frame": "cam00/images/0282.png",
+      "normalized_time": 0.94,
+      "psnr": 27.343708038330078,
+      "ssim": 0.89986252784729
+    },
+    {
+      "frame": 283,
+      "source_frame": "cam00/images/0283.png",
+      "normalized_time": 0.9433333333333334,
+      "psnr": 27.4020938873291,
+      "ssim": 0.9006987810134888
+    },
+    {
+      "frame": 284,
+      "source_frame": "cam00/images/0284.png",
+      "normalized_time": 0.9466666666666667,
+      "psnr": 27.38888168334961,
+      "ssim": 0.9003344774246216
+    },
+    {
+      "frame": 285,
+      "source_frame": "cam00/images/0285.png",
+      "normalized_time": 0.95,
+      "psnr": 27.39794158935547,
+      "ssim": 0.9007758498191833
+    },
+    {
+      "frame": 286,
+      "source_frame": "cam00/images/0286.png",
+      "normalized_time": 0.9533333333333334,
+      "psnr": 27.36920166015625,
+      "ssim": 0.899931788444519
+    },
+    {
+      "frame": 287,
+      "source_frame": "cam00/images/0287.png",
+      "normalized_time": 0.9566666666666667,
+      "psnr": 27.370410919189453,
+      "ssim": 0.9004796147346497
+    },
+    {
+      "frame": 288,
+      "source_frame": "cam00/images/0288.png",
+      "normalized_time": 0.96,
+      "psnr": 27.346399307250977,
+      "ssim": 0.8999907374382019
+    },
+    {
+      "frame": 289,
+      "source_frame": "cam00/images/0289.png",
+      "normalized_time": 0.9633333333333334,
+      "psnr": 27.352703094482422,
+      "ssim": 0.900608241558075
+    },
+    {
+      "frame": 290,
+      "source_frame": "cam00/images/0290.png",
+      "normalized_time": 0.9666666666666667,
+      "psnr": 27.332990646362305,
+      "ssim": 0.8995059728622437
+    },
+    {
+      "frame": 291,
+      "source_frame": "cam00/images/0291.png",
+      "normalized_time": 0.97,
+      "psnr": 27.35183334350586,
+      "ssim": 0.9002866744995117
+    },
+    {
+      "frame": 292,
+      "source_frame": "cam00/images/0292.png",
+      "normalized_time": 0.9733333333333334,
+      "psnr": 27.327774047851562,
+      "ssim": 0.8999195098876953
+    },
+    {
+      "frame": 293,
+      "source_frame": "cam00/images/0293.png",
+      "normalized_time": 0.9766666666666667,
+      "psnr": 27.3311710357666,
+      "ssim": 0.9002853631973267
+    },
+    {
+      "frame": 294,
+      "source_frame": "cam00/images/0294.png",
+      "normalized_time": 0.98,
+      "psnr": 27.308847427368164,
+      "ssim": 0.8994514346122742
+    },
+    {
+      "frame": 295,
+      "source_frame": "cam00/images/0295.png",
+      "normalized_time": 0.9833333333333333,
+      "psnr": 27.308738708496094,
+      "ssim": 0.9000917077064514
+    },
+    {
+      "frame": 296,
+      "source_frame": "cam00/images/0296.png",
+      "normalized_time": 0.9866666666666667,
+      "psnr": 27.272377014160156,
+      "ssim": 0.8994354605674744
+    },
+    {
+      "frame": 297,
+      "source_frame": "cam00/images/0297.png",
+      "normalized_time": 0.99,
+      "psnr": 27.281370162963867,
+      "ssim": 0.8998792767524719
+    },
+    {
+      "frame": 298,
+      "source_frame": "cam00/images/0298.png",
+      "normalized_time": 0.9933333333333333,
+      "psnr": 27.249855041503906,
+      "ssim": 0.8989577889442444
+    },
+    {
+      "frame": 299,
+      "source_frame": "cam00/images/0299.png",
+      "normalized_time": 0.9966666666666667,
+      "psnr": 27.22762680053711,
+      "ssim": 0.8988127112388611
+    }
+  ],
+  "virtual_view_train_indices": [
+    1200,
+    900
+  ],
+  "virtual_videos": "synthesized view/time queries, no ground truth at interpolated poses"
+}

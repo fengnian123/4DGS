@@ -1,0 +1,60 @@
+diff --git a/scene/dataset_readers.py b/scene/dataset_readers.py
+index 8a6cc42..ae5c4ab 100644
+--- a/scene/dataset_readers.py
++++ b/scene/dataset_readers.py
+@@ -446,7 +446,7 @@ def readdynerfInfo(datadir,use_bg_points,eval):
+     train_dataset = Neural3D_NDC_Dataset(
+     datadir,
+     "train",
+-    1.0,
++    2.0,
+     time_scale=1,
+     scene_bbox_min=[-2.5, -2.0, -1.0],
+     scene_bbox_max=[2.5, 2.0, 1.0],
+@@ -455,7 +455,7 @@ def readdynerfInfo(datadir,use_bg_points,eval):
+     test_dataset = Neural3D_NDC_Dataset(
+     datadir,
+     "test",
+-    1.0,
++    2.0,
+     time_scale=1,
+     scene_bbox_min=[-2.5, -2.0, -1.0],
+     scene_bbox_max=[2.5, 2.0, 1.0],
+diff --git a/train.py b/train.py
+index 973f822..e410fbf 100644
+--- a/train.py
++++ b/train.py
+@@ -78,7 +78,7 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
+     if not viewpoint_stack and not opt.dataloader:
+         # dnerf's branch
+         viewpoint_stack = [i for i in train_cams]
+-        temp_list = copy.deepcopy(viewpoint_stack)
++        temp_list = viewpoint_stack.copy()
+     # 
+     batch_size = opt.batch_size
+     print("data loading done")
+@@ -86,10 +86,10 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
+         viewpoint_stack = scene.getTrainCameras()
+         if opt.custom_sampler is not None:
+             sampler = FineSampler(viewpoint_stack)
+-            viewpoint_stack_loader = DataLoader(viewpoint_stack, batch_size=batch_size,sampler=sampler,num_workers=16,collate_fn=list)
++            viewpoint_stack_loader = DataLoader(viewpoint_stack, batch_size=batch_size,sampler=sampler,num_workers=0,collate_fn=list)
+             random_loader = False
+         else:
+-            viewpoint_stack_loader = DataLoader(viewpoint_stack, batch_size=batch_size,shuffle=True,num_workers=16,collate_fn=list)
++            viewpoint_stack_loader = DataLoader(viewpoint_stack, batch_size=batch_size,shuffle=True,num_workers=0,collate_fn=list)
+             random_loader = True
+         loader = iter(viewpoint_stack_loader)
+     
+@@ -217,9 +217,8 @@ def scene_reconstruction(dataset, opt, hyper, pipe, testing_iterations, saving_i
+         #     loss += opt.lambda_lpips * lpipsloss
+         
+         loss.backward()
+-        if torch.isnan(loss).any():
+-            print("loss is nan,end training, reexecv program now.")
+-            os.execv(sys.executable, [sys.executable] + sys.argv)
++        if not torch.isfinite(loss).all():
++            raise FloatingPointError(f"Non-finite loss at {stage} iteration {iteration}")
+         viewspace_point_tensor_grad = torch.zeros_like(viewspace_point_tensor)
+         for idx in range(0, len(viewspace_point_tensor_list)):
+             viewspace_point_tensor_grad = viewspace_point_tensor_grad + viewspace_point_tensor_list[idx].grad

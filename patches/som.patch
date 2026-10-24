@@ -1,0 +1,215 @@
+diff --git a/flow3d/init_utils.py b/flow3d/init_utils.py
+index 9790b36..1c0888e 100644
+--- a/flow3d/init_utils.py
++++ b/flow3d/init_utils.py
+@@ -577,7 +577,7 @@ def sample_initial_bases_centers(
+     else:
+         model = HDBSCAN(min_cluster_size=20, max_cluster_size=num_tracks // 4)
+     model.fit(vel_dirs)
+-    labels = model.labels_
++    labels = cp.asnumpy(model.labels_)
+     num_bases = labels.max().item() + 1
+     sampled_centers = torch.stack(
+         [
+diff --git a/flow3d/renderer.py b/flow3d/renderer.py
+index f30fe68..1dad3ed 100644
+--- a/flow3d/renderer.py
++++ b/flow3d/renderer.py
+@@ -1,11 +1,12 @@
+ import numpy as np
+ import torch
+ import torch.nn.functional as F
++import roma
+ from loguru import logger as guru
+ from nerfview import CameraState
+ 
+ from flow3d.scene_model import SceneModel
+-from flow3d.vis.utils import draw_tracks_2d_th, get_server
++from flow3d.vis.utils import draw_tracks_2d, get_server
+ from flow3d.vis.viewer import DynamicViewer
+ 
+ 
+@@ -34,6 +35,16 @@ class Renderer:
+                 server, self.render_fn, model.num_frames, work_dir, mode="rendering"
+             )
+ 
++            @server.on_client_connect
++            def set_initial_camera(client):
++                c2w = torch.linalg.inv(self.model.w2cs[0]).detach().cpu()
++                quaternion = roma.quat_xyzw_to_wxyz(roma.rotmat_to_unitquat(c2w[:3, :3]))
++                client.camera.position = c2w[:3, 3].numpy()
++                client.camera.up_direction = -c2w[:3, 1].numpy()
++                client.camera.wxyz = quaternion.numpy()
++                K = self.model.Ks[0].detach().cpu()
++                client.camera.fov = float(2 * torch.atan(K[1, 2] / K[1, 1]))
++
+         self.tracks_3d = self.model.compute_poses_fg(
+             #  torch.arange(max(0, t - 20), max(1, t), device=self.device),
+             torch.arange(self.num_frames, device=self.device),
+@@ -45,11 +56,16 @@ class Renderer:
+         path: str, device: torch.device, use_2dgs, *args, **kwargs
+     ) -> "Renderer":
+         guru.info(f"Loading checkpoint from {path}")
+-        ckpt = torch.load(path)
++        ckpt = torch.load(path, weights_only=False)
+         state_dict = ckpt["model"]
+         model = SceneModel.init_from_state_dict(state_dict)
+         model.use_2dgs = use_2dgs
+-        model = model.to(device)
++        model = model.to(device).eval()
++        with torch.inference_mode():
++            K = model.Ks[:1].clone()
++            K[:, 0, :] *= 64 / (2 * K[0, 0, 2])
++            K[:, 1, :] *= 36 / (2 * K[0, 1, 2])
++            model.render(0, model.w2cs[:1], K, (64, 36))
+         print(f"num gs: {model.fg.num_gaussians + model.bg.num_gaussians}")
+         renderer = Renderer(model, device, *args, **kwargs)
+         renderer.global_step = ckpt.get("global_step", 0)
+@@ -58,6 +74,8 @@ class Renderer:
+ 
+     @torch.inference_mode()
+     def render_fn(self, camera_state: CameraState, img_wh: tuple[int, int]):
++        if not isinstance(img_wh, tuple):
++            img_wh = (img_wh.viewer_width, img_wh.viewer_height)
+         if self.viewer is None:
+             return np.full((img_wh[1], img_wh[0], 3), 255, dtype=np.uint8)
+ 
+@@ -68,9 +86,9 @@ class Renderer:
+             [[focal, 0.0, W / 2.0], [0.0, focal, H / 2.0], [0.0, 0.0, 1.0]],
+             device=self.device,
+         )
+-        w2c = torch.linalg.inv(
+-            torch.from_numpy(camera_state.c2w.astype(np.float32)).to(self.device)
+-        )
++        w2c = torch.from_numpy(
++            np.linalg.inv(camera_state.c2w).astype(np.float32)
++        ).to(self.device)
+         t = (
+             int(self.viewer._playback_guis[0].value)
+             if not self.viewer._canonical_checkbox.value
+@@ -87,5 +105,5 @@ class Renderer:
+                 "ij,jk,nbk->nbi", K, w2c[:3], F.pad(tracks_3d, (0, 1), value=1.0)
+             )
+             tracks_2d = tracks_2d[..., :2] / tracks_2d[..., 2:]
+-            img = draw_tracks_2d_th(img, tracks_2d)
++            img = draw_tracks_2d(img, tracks_2d)
+         return img
+diff --git a/flow3d/scene_model.py b/flow3d/scene_model.py
+index ecb6a96..e6bd0df 100644
+--- a/flow3d/scene_model.py
++++ b/flow3d/scene_model.py
+@@ -333,7 +333,8 @@ class SceneModel(nn.Module):
+         # Populate the current data for adaptive gaussian control.
+         if self.training and info["means2d"].requires_grad:
+             self._current_xys = info["means2d"]
+-            self._current_radii = info["radii"]
++            radii = info["radii"]
++            self._current_radii = radii.amax(dim=-1) if radii.ndim == 3 else radii
+             self._current_img_wh = img_wh
+             # We want to be able to access to xys' gradients later in a
+             # torch.no_grad context.
+diff --git a/flow3d/trainer.py b/flow3d/trainer.py
+index da38a92..99a0978 100644
+--- a/flow3d/trainer.py
++++ b/flow3d/trainer.py
+@@ -116,7 +116,7 @@ class Trainer:
+         path: str, device: torch.device, use_2dgs, *args, **kwargs
+     ) -> tuple["Trainer", int]:
+         guru.info(f"Loading checkpoint from {path}")
+-        ckpt = torch.load(path)
++        ckpt = torch.load(path, weights_only=False)
+         state_dict = ckpt["model"]
+         model = SceneModel.init_from_state_dict(state_dict)
+         model = model.to(device)
+@@ -170,11 +170,8 @@ class Trainer:
+             self.viewer.lock.acquire()
+ 
+         loss, stats, num_rays_per_step, num_rays_per_sec = self.compute_losses(batch)
+-        if loss.isnan():
+-            guru.info(f"Loss is NaN at step {self.global_step}!!")
+-            import ipdb
+-
+-            ipdb.set_trace()
++        if not torch.isfinite(loss):
++            raise FloatingPointError(f"Non-finite loss at step {self.global_step}")
+         loss.backward()
+ 
+         for opt in self.optimizers.values():
+diff --git a/flow3d/vis/playback_panel.py b/flow3d/vis/playback_panel.py
+index 20e6185..9e0a74b 100644
+--- a/flow3d/vis/playback_panel.py
++++ b/flow3d/vis/playback_panel.py
+@@ -18,7 +18,7 @@ def add_gui_playback_group(
+         max=num_frames - 1,
+         step=1,
+         initial_value=0,
+-        disabled=True,
++        disabled=False,
+     )
+     gui_next_frame = server.gui.add_button("Next Frame")
+     gui_prev_frame = server.gui.add_button("Prev Frame")
+diff --git a/flow3d/vis/utils.py b/flow3d/vis/utils.py
+index 4e5d6df..df61b71 100644
+--- a/flow3d/vis/utils.py
++++ b/flow3d/vis/utils.py
+@@ -30,7 +30,7 @@ def get_server(port: int | None = None) -> ViserServer:
+         avail_ports = list(manager._servers.keys())
+         port = avail_ports[0] if len(avail_ports) > 0 else 8890
+     if port not in manager._servers:
+-        manager._servers[port] = ViserServer(port=port, verbose=False)
++        manager._servers[port] = ViserServer(host="127.0.0.1", port=port, verbose=False)
+     return manager._servers[port]
+ 
+ 
+diff --git a/flow3d/vis/viewer.py b/flow3d/vis/viewer.py
+index 3f78611..de46d43 100644
+--- a/flow3d/vis/viewer.py
++++ b/flow3d/vis/viewer.py
+@@ -27,10 +27,10 @@ class DynamicViewer(Viewer):
+     ):
+         self.num_frames = num_frames
+         self.work_dir = Path(work_dir)
+-        super().__init__(server, render_fn, mode)
++        super().__init__(server, render_fn, output_dir=self.work_dir, mode=mode)
++        self._define_guis()
+ 
+     def _define_guis(self):
+-        super()._define_guis()
+         server = self.server
+         self._time_folder = server.gui.add_folder("Time")
+         with self._time_folder:
+@@ -64,6 +64,6 @@ class DynamicViewer(Viewer):
+ 
+         tabs = server.gui.add_tab_group()
+         with tabs.add_tab("Render", Icon.CAMERA):
+-            self.render_tab_state = populate_render_tab(
++            self.som_render_tab_state = populate_render_tab(
+                 server, Path(self.work_dir) / "camera_paths", self._playback_guis[0]
+             )
+diff --git a/run_training.py b/run_training.py
+index 7058ffe..053665f 100644
+--- a/run_training.py
++++ b/run_training.py
+@@ -119,9 +119,12 @@ def main(cfg: TrainConfig):
+         train_dataset,
+         batch_size=cfg.batch_size,
+         num_workers=cfg.num_dl_workers,
+-        persistent_workers=True,
++        persistent_workers=cfg.num_dl_workers > 0,
+         collate_fn=BaseDataset.train_collate_fn,
+     )
++    if trainer.global_step >= cfg.num_epochs * len(train_loader):
++        guru.info(f"Training complete at {trainer.global_step=}")
++        return
+ 
+     validator = None
+     if (
+@@ -169,6 +172,8 @@ def main(cfg: TrainConfig):
+             ):
+                 validator.save_train_videos(epoch)
+ 
++    trainer.save_checkpoint(f"{cfg.work_dir}/checkpoints/last.ckpt")
++
+ 
+ def initialize_and_checkpoint_model(
+     cfg: TrainConfig,
