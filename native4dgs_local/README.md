@@ -1,10 +1,10 @@
 # Yang Native 4DGS 复现
 
-复现 Yang 等人的 ICLR 2024 论文 *Real-time Photorealistic Dynamic Scene Representation and Rendering with 4D Gaussian Splatting*。输入是带相机参数和时间戳的图像，输出是可以调时间、换视角的动态三维场景。模型用一组四维高斯同时表示空间与时间，在指定时刻切成三维高斯，再由 CUDA 光栅器生成图像；四维旋转、随时间变化的颜色和高斯增密均启用。
+本目录复现 Yang 等人的 ICLR 2024 论文 *Real-time Photorealistic Dynamic Scene Representation and Rendering with 4D Gaussian Splatting*。输入为带相机参数和时间戳的图像，重建结果支持时间控制与自由视角渲染。模型采用一组四维高斯联合表示空间与时间，通过时间条件化获得三维高斯分布，再由 CUDA 光栅器生成图像；四维旋转、时变外观表示和高斯增密均启用。
 
-它与仓库已有 `4dgs_local/` 的 Wu 等人 4DGaussians 是两个不同方法。这里采用作者发布配置的完整训练预算，覆盖 D-NeRF 两个场景和 Neural 3D Video 一个场景。结果来自本地实测，不是论文表格抄录值；不包含消融和完整数据集平均分。
+本方法与仓库已有 `4dgs_local/` 的 Wu 等人 4DGaussians 分属不同论文。本次采用作者发布配置的完整训练预算，覆盖 D-NeRF 两个场景和 Neural 3D Video 一个场景。所有报告指标均来自本次实测；评测范围不包含消融实验和完整数据集平均指标。
 
-快速阅读：[看图片与视频](#结果和查看方式) · [播放并拖动视角](#自由视角实时查看器) · [从头复现](#目录和环境隔离) · [看懂关键技术](#关键技术的通俗理解) · [完整实测报告](REPORT.md)。
+内容导航：[结果展示](#结果和查看方式) · [交互查看器](#自由视角实时查看器) · [复现流程](#目录和环境隔离) · [关键技术讲解](#关键技术讲解) · [完整实测报告](REPORT.md)。
 
 ## 结果和查看方式
 
@@ -14,15 +14,15 @@
 | Bouncing Balls | D-NeRF | 20,000 | 18,000 | 33.794 | 33.712 | 400×400 |
 | Coffee Martini | Neural 3D Video | 30,000 | 28,000 | 28.317 | 28.243 | 1352×1014 |
 
-PSNR 衡量重建图与真实图的像素接近程度，越高越好，宜在相同场景和评测设置下比较；细节、闪烁和漂浮点还需结合视频观察。这里的“最佳”是按同一测试集 PSNR 选出的检查点，不是独立验证集选模后的盲测。Jumping Jacks 的 4,000 步是最佳保存点，实际仍完成了 30,000 步，后期质量下降同时展示。
+在相同像素值范围下，PSNR 越高表示重建图像与参考图像之间的均方误差越低，宜在相同场景和评测设置下比较；细节恢复、时间闪烁和漂浮伪影需结合视频进行定性评估。“最佳”检查点依据同一测试集的 PSNR 选择，不构成独立验证集选模后的盲测。Jumping Jacks 的最佳检查点位于 4,000 步，实际训练仍完成 30,000 步，后期质量下降一并报告。
 
 直接点击下表即可查看文件，无需先安装训练环境。视频链接若被浏览器下载，可本地播放，或使用下面的媒体页面命令。
 
 | 场景 | 预录视频（最佳模型） | 真实图 / 重建 / 误差对比 |
 |---|---|---|
-| Jumping Jacks | [固定视角看动作](results/jumpingjacks_auditfix_full/fixed_view_time.mp4) · [固定时间转视角](results/jumpingjacks_auditfix_full/fixed_time_view.mp4) | [最佳](results/jumpingjacks_auditfix_full/best/test_comparison.png) · [训练终点](results/jumpingjacks_auditfix_full/final/test_comparison.png) |
-| Bouncing Balls | [固定视角看动作](results/bouncingballs_auditfix_full/fixed_view_time.mp4) · [固定时间转视角](results/bouncingballs_auditfix_full/fixed_time_view.mp4) | [最佳](results/bouncingballs_auditfix_full/best/test_comparison.png) · [训练终点](results/bouncingballs_auditfix_full/final/test_comparison.png) |
-| Coffee Martini | [固定视角看动作](results/coffee_martini_auditfix_full/fixed_view_time.mp4) · [固定时间转视角](results/coffee_martini_auditfix_full/fixed_time_view.mp4) | [最佳](results/coffee_martini_auditfix_full/best/test_comparison.png) · [训练终点](results/coffee_martini_auditfix_full/final/test_comparison.png) |
+| Jumping Jacks | [固定视角动态渲染](results/jumpingjacks_auditfix_full/fixed_view_time.mp4) · [固定时刻视角漫游](results/jumpingjacks_auditfix_full/fixed_time_view.mp4) | [最佳](results/jumpingjacks_auditfix_full/best/test_comparison.png) · [训练终点](results/jumpingjacks_auditfix_full/final/test_comparison.png) |
+| Bouncing Balls | [固定视角动态渲染](results/bouncingballs_auditfix_full/fixed_view_time.mp4) · [固定时刻视角漫游](results/bouncingballs_auditfix_full/fixed_time_view.mp4) | [最佳](results/bouncingballs_auditfix_full/best/test_comparison.png) · [训练终点](results/bouncingballs_auditfix_full/final/test_comparison.png) |
+| Coffee Martini | [固定视角动态渲染](results/coffee_martini_auditfix_full/fixed_view_time.mp4) · [固定时刻视角漫游](results/coffee_martini_auditfix_full/fixed_time_view.mp4) | [最佳](results/coffee_martini_auditfix_full/best/test_comparison.png) · [训练终点](results/coffee_martini_auditfix_full/final/test_comparison.png) |
 
 每个 `results/<场景>/` 包含：
 
@@ -138,21 +138,21 @@ bash reconstruction_viewer/start.sh --registry reconstruction_viewer/scenes.nati
 }
 ```
 
-## 关键技术的通俗理解
+## 关键技术讲解
 
-**一句话理解：用许多在一段时间内匀速移动、逐渐显隐的小高斯，共同拟合整段动态场景。** 单颗高斯切出的三维椭球形状不随时间变化，中心沿直线匀速移动，也可以保持静止；不同高斯在不同时间共同起作用，整体就能表现转弯、加速和形变，类似用许多短直线段逼近曲线。这里描述的是局部表示能力，不是要求整个物体保持刚性或匀速运动。这一理解来自 [论文第 3.2 节的条件高斯公式](https://arxiv.org/html/2310.10642v3#S3.SS2)。
+本方法采用一组原生四维高斯联合建模空间结构与时间变化。给定时间后，由条件高斯分布得到三维均值与协方差，并结合时间边缘权重进行渲染。对单个高斯，条件均值随时间线性变化，条件协方差保持不变；多个具有不同时间权重和运动参数的高斯共同表示场景中的非线性运动与非刚性形变。相关推导见 [论文第 3.2 节](https://arxiv.org/html/2310.10642v3#S3.SS2)。
 
-| 关键技术 | 解决什么问题 | 通俗理解 |
+| 关键技术 | 作用 | 实现机制 |
 |---|---|---|
-| **四维旋转与时空关联** | 让同一个高斯表示一段运动，并在相邻时间共享信息 | 想象高斯在“位置—时间”图里倾斜延伸；沿时间切片，它的空间中心就会移动。模型直接学习这种关联，无需另设形变网络。 |
-| **时间权重** | 决定一颗高斯主要在哪段时间起作用 | 像可学习的渐入渐出透明度：动态细节可只覆盖较短时段；静态背景可以学到很宽的时间范围，持续参与整段视频。 |
-| **4D 外观基（4DSH）** | 拟合随视角、时间变化的颜色和高光 | 把描述视角颜色的球谐基与描述时间变化的余弦基组合起来；例如杯子转动时，反光位置和亮度也能变化。它拟合观察到的外观，不等于恢复可任意重打光的材质。 |
-| **时空增密与剪枝** | 原有高斯难以覆盖细节或快速变化的区域 | 训练时依据空间、时间方向的梯度增加或拆分高斯，给难拟合的部分更多“小笔触”，同时移除贡献很小的高斯。 |
-| **跨时间批量采样** | 缓解训练时只追着某一帧调整带来的闪烁、抖动 | 一个优化步骤同时参考多个时间的训练图，让同一组参数兼顾前后画面。 |
-| **可微高斯泼溅渲染** | 快速生成图像，并让图像误差反过来指导模型学习 | 先取当前时间的三维高斯，再投到屏幕上按遮挡关系混合；将结果与真实图比较，反向调整位置、形状、颜色和透明度。 |
+| **四维旋转与时空耦合** | 联合建模空间结构与时间变化，支持跨时间参数共享 | 通过四维旋转与尺度参数构造时空协方差，利用时间条件化计算三维均值与协方差，无需额外的形变网络。 |
+| **时间边缘权重** | 控制高斯的有效时间范围 | 将时间边缘高斯权重乘入不透明度；局部动态可由较窄的时间分布表示，静态区域可由较宽的时间分布持续表示。 |
+| **四维外观基函数（4DSH）** | 刻画视角相关且随时间变化的外观 | 组合空间球谐基与时间余弦基，拟合颜色和反射外观随视角、时间的变化；该表示不显式分解材质与光照。 |
+| **时空增密与剪枝** | 提高空间细节与快速时间变化的表示能力 | 依据空间位置与时间中心的梯度进行增密和分裂，同时剪除贡献较低的高斯，实现自适应密度控制。 |
+| **跨时间批量采样** | 缓解时间闪烁与抖动 | 在训练批次中采样不同时刻的图像，联合优化共享高斯参数，降低单帧采样引起的更新波动。 |
+| **可微高斯泼溅渲染** | 兼顾渲染效率与端到端优化 | 将条件三维高斯投影至二维，按深度执行透明度合成，并通过渲染误差反向传播优化几何、颜色与不透明度参数。 |
 
 上表归纳自 [论文第 3.2–3.3 节](https://arxiv.org/html/2310.10642v3#S3.SS2) 及 [附录 E 的时间特性分析](https://arxiv.org/html/2310.10642v3#A5)。四维表示、配套渲染与 4DSH 是论文主要贡献；可微渲染和密度控制沿用并扩展了 3DGS 的基础，批量采样属于训练设计。
 
-这里的画质提升来自场景表示和训练拟合；本次流程没有额外的图像修复或渲染后增强模块。训练完成后，保存的高斯总数固定，播放时变化的是各高斯的位置、颜色和贡献权重，以及通过筛选后参与当前帧渲染的数量。它面向已观测时间范围内的动态重建，不是未来运动预测器。
+本实现通过优化场景几何、外观及时间分布提高重建质量，未引入额外的图像修复或后处理增强模块。训练结束后，高斯总数固定；各时刻的空间均值、颜色、贡献权重及筛选后参与渲染的高斯数量随时间变化。本次评测针对观测时间范围内的动态重建与新视角合成，未评估未来运动外推能力。
 
-我们的复现工作还包括梯度、透明度加载修正，以及完整预算训练的显存管理。这些属于复现中的数值与工程改进，具体修改和验证证据见 [REPORT.md](REPORT.md#相对官方发布代码的修改)。
+本次复现还包含梯度与透明度加载修正，以及完整训练预算下的显存管理。这些属于复现中的数值与工程改进，具体修改及验证证据见 [REPORT.md](REPORT.md#相对官方发布代码的修改)。
