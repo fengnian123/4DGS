@@ -1,0 +1,90 @@
+{
+  "syntax_and_json_valid": true,
+  "personal_paths_and_credentials_found": false,
+  "all_metric_values_preserved": true,
+  "all_per_frame_averages_verified": true,
+  "media": [
+    {
+      "path": "native4dgs_local/results/jumpingjacks_auditfix_full/best/test_comparison.png",
+      "bytes": 354430,
+      "sha256": "81d1844669dc0045675e15c18061523178a2bd0bd2b0cd23f1104b809d017297",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/jumpingjacks_auditfix_full/final/test_comparison.png",
+      "bytes": 372312,
+      "sha256": "78aeb11404c4204a1dad6fe45b32ed6972cd99149f10fba5b84d036611137ee4",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/jumpingjacks_auditfix_full/fixed_view_time.mp4",
+      "bytes": 491448,
+      "sha256": "e694cf868d6d94ca153c4b6d182e6bd6b5a3f554a9b2d004cb29747e399c5dfc",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/jumpingjacks_auditfix_full/fixed_time_view.mp4",
+      "bytes": 261779,
+      "sha256": "7b0d2502a15d1dd0ab8957f5b52c43bae341ea9945fdb50ad07a17ee7e2c1251",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/bouncingballs_auditfix_full/best/test_comparison.png",
+      "bytes": 344344,
+      "sha256": "6f205be0293c44ed2674965c6844d58f94ddd7a73e5e2a1423b5793a9232c8eb",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/bouncingballs_auditfix_full/final/test_comparison.png",
+      "bytes": 346311,
+      "sha256": "47037b3725a504e2689c4be3f5f2ab83cccd360b1d0a10272fac3ed5e3d0296a",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/bouncingballs_auditfix_full/fixed_view_time.mp4",
+      "bytes": 260823,
+      "sha256": "70c2c1c0532fe779934fa913ebca51a22c1e5baf275ed4f7604fc5b4662025eb",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/bouncingballs_auditfix_full/fixed_time_view.mp4",
+      "bytes": 327133,
+      "sha256": "03d830ac57202b660a9a3768d7e53581301d76daef7ea7c69741c656a5b17cc9",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/coffee_martini_auditfix_full/best/test_comparison.png",
+      "bytes": 15648257,
+      "sha256": "db1cf84a2e76be4c82bd30e525ab31c4d6f0604f145ef1f6e2790d5d0111b5a4",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/coffee_martini_auditfix_full/final/test_comparison.png",
+      "bytes": 15679144,
+      "sha256": "5ef1d6be2200a7a2c1926785d5743d98c78bf77ae30dd2d0d33f5c21625b12bb",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/coffee_martini_auditfix_full/fixed_view_time.mp4",
+      "bytes": 4952799,
+      "sha256": "b4d41136613a5f775e0e6ad595bbfd9bda1c282a3f310342038e89080a928dac",
+      "same_as_server_export": true
+    },
+    {
+      "path": "native4dgs_local/results/coffee_martini_auditfix_full/fixed_time_view.mp4",
+      "bytes": 11277183,
+      "sha256": "664b1fc29339904ca9035ca16e01450df531154e0b3918c972468d50fae83053",
+      "same_as_server_export": true
+    }
+  ],
+  "renderer_checks": "packaged_renderer.json",
+  "source_rebuild": "patch_rebuild.json",
+  "config_checks": "portable_configs.json",
+  "offline_gallery": {
+    "videos": 6,
+    "decoded_successfully_in_browser": 6,
+    "duration_seconds": 5,
+    "raw_comparison_images": 6
+  },
+  "new_environment_install_and_full_retraining_repeated": false
+}

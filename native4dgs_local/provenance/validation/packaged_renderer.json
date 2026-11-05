@@ -1,0 +1,103 @@
+{
+  "checked_at": "2026-11-05 11:56:42",
+  "checks": [
+    {
+      "scene": "jumpingjacks_auditfix_full",
+      "checkpoint": "best",
+      "iteration": 4000,
+      "gaussians": 217100,
+      "adapter_output_shape": [
+        320,
+        320,
+        3
+      ],
+      "time_difference_mean": 13.547897135416667,
+      "view_difference_mean": 9.252880859375,
+      "portable_native_api_iteration": 4000,
+      "native_api_ok": true,
+      "shared_adapter_ok": true
+    },
+    {
+      "scene": "jumpingjacks_auditfix_full",
+      "checkpoint": "final",
+      "iteration": 30000,
+      "gaussians": 774802,
+      "adapter_output_shape": [
+        320,
+        320,
+        3
+      ],
+      "time_difference_mean": 13.433388671875,
+      "view_difference_mean": 9.251422526041667,
+      "portable_native_api_iteration": 30000,
+      "native_api_ok": true,
+      "shared_adapter_ok": true
+    },
+    {
+      "scene": "bouncingballs_auditfix_full",
+      "checkpoint": "best",
+      "iteration": 18000,
+      "gaussians": 125422,
+      "adapter_output_shape": [
+        320,
+        320,
+        3
+      ],
+      "time_difference_mean": 10.592958984375,
+      "view_difference_mean": 7.133154296875,
+      "portable_native_api_iteration": 18000,
+      "native_api_ok": true,
+      "shared_adapter_ok": true
+    },
+    {
+      "scene": "bouncingballs_auditfix_full",
+      "checkpoint": "final",
+      "iteration": 20000,
+      "gaussians": 125422,
+      "adapter_output_shape": [
+        320,
+        320,
+        3
+      ],
+      "time_difference_mean": 10.569274088541667,
+      "view_difference_mean": 7.108675130208334,
+      "portable_native_api_iteration": 20000,
+      "native_api_ok": true,
+      "shared_adapter_ok": true
+    },
+    {
+      "scene": "coffee_martini_auditfix_full",
+      "checkpoint": "best",
+      "iteration": 28000,
+      "gaussians": 11759861,
+      "adapter_output_shape": [
+        240,
+        320,
+        3
+      ],
+      "time_difference_mean": 6.2404991319444445,
+      "view_difference_mean": 14.827183159722223,
+      "portable_native_api_iteration": 28000,
+      "native_api_ok": true,
+      "shared_adapter_ok": true
+    },
+    {
+      "scene": "coffee_martini_auditfix_full",
+      "checkpoint": "final",
+      "iteration": 30000,
+      "gaussians": 11759861,
+      "adapter_output_shape": [
+        240,
+        320,
+        3
+      ],
+      "time_difference_mean": 5.640047743055556,
+      "view_difference_mean": 14.817799479166666,
+      "portable_native_api_iteration": 30000,
+      "native_api_ok": true,
+      "shared_adapter_ok": true
+    }
+  ],
+  "all_passed": true,
+  "scope": "Existing trained models; shared adapter contract and portable native HTTP endpoints. No training or stored result rewrite."
+}

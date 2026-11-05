@@ -1,0 +1,52 @@
+[
+  {
+    "path": "diff-gaussian-rasterization/cuda_rasterizer/backward.cu",
+    "upstream_sha256": "079b76bdd4421ad8d63238814529187dc2f3b43551e922600a26dc1863641bc5",
+    "trained_sha256": "268f5b3a5885a562a6ce4ebe9d808eb7443b62e89847441ffbf0418ac2901b9d"
+  },
+  {
+    "path": "diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.h",
+    "upstream_sha256": "58b97a9728e24d41602a2ac3e8eace025cfd3228de6e75033dc458d0303a46f4",
+    "trained_sha256": "7d3e16d11d8e7e1cfa595034b06ac26b0341a2575f68c85f169e1f765f757ff1"
+  },
+  {
+    "path": "memory_offload.py",
+    "upstream_sha256": null,
+    "trained_sha256": "a52390319ff641bd5ad5b2c2d83c012a4bc0d0a19aba7154d575293c6ab03c8f"
+  },
+  {
+    "path": "scene/cameras.py",
+    "upstream_sha256": "7624c2a32c408a6752a747bf6ffbd009d67e3c4d9f77013ab10b883ee6db7d86",
+    "trained_sha256": "b94dd97c5cd8f8d1ec34bff059d727e9c66894cc0114e0ec738490abcf5ef9a6"
+  },
+  {
+    "path": "scene/dataset_readers.py",
+    "upstream_sha256": "f03a9fbc15da031f7fd9fdab1dc01f934146585fca3a39017b6cebd105393f43",
+    "trained_sha256": "d8df57c53f52f1c7aa665d888bc19e3b060c15de71a8cf64395166a25cf4a752"
+  },
+  {
+    "path": "scene/gaussian_model.py",
+    "upstream_sha256": "9c5f7dd91ef275e5c19d940263e54e4cebcc59a46314530aaf37d83538a05182",
+    "trained_sha256": "13113c88bc29abff4b2ba59e03dc17f0fbb31365f2e07b4fe26964d3e0f08ddf"
+  },
+  {
+    "path": "simple-knn/simple_knn.cu",
+    "upstream_sha256": "1b24c6befe58c159d3d44da3c17edfffb37b5ee2bc39e7fd8970e3ab5573cef3",
+    "trained_sha256": "fa2a6c089479fa46c700a34cfc3d45c16ab4576751381f0466afa336ed234857"
+  },
+  {
+    "path": "train.py",
+    "upstream_sha256": "4381ad2ec69cd1c1bef7fc282a0bc4a7abad131913020644cb10eca1d11f50fa",
+    "trained_sha256": "db8a107a3144d68ae8e7956cfa79074e700a33a8bf6bf42ac22fe8479fdabf6c"
+  },
+  {
+    "path": "utils/camera_utils.py",
+    "upstream_sha256": "ca20280bb4302e884ee2a75252c5c442a59f2645b985930744f6623980e13851",
+    "trained_sha256": "918398114440e240086764637890708d91038c9237f5a0519004ff726817f175"
+  },
+  {
+    "path": "utils/data_utils.py",
+    "upstream_sha256": "91fb770443e2aa358570e73187414239ccb87901bc1d655e3355ddaa5eda990d",
+    "trained_sha256": "b0386d318e0f56b221836e203d80a9f59af639918f1d63f084676dca8690ae70"
+  }
+]

@@ -1,0 +1,568 @@
+{
+  "time": "2026-11-03 17:58:30",
+  "checks": [
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 0,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 1,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 2,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 3,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 4,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 5,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 6,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 7,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 8,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 9,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 10,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 11,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 12,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 13,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 14,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 15,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 16,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 17,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 18,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": false,
+      "frame": 19,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 0,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 1,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 2,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 3,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 4,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 5,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 6,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 7,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 8,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 9,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 10,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 11,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 12,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 13,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 14,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 15,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 16,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 17,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 18,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "jumpingjacks",
+      "white_background": true,
+      "frame": 19,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 0,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 1,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 2,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 3,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 4,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 5,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 6,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 7,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 8,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 9,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 10,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 11,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 12,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 13,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 14,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 15,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 16,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 17,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 18,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": false,
+      "frame": 19,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 0,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 1,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 2,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 3,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 4,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 5,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 6,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 7,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 8,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 9,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 10,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 11,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 12,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 13,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 14,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 15,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 16,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 17,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 18,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    },
+    {
+      "scene": "bouncingballs",
+      "white_background": true,
+      "frame": 19,
+      "max_pixel_error": 0.0,
+      "alpha_mask_preserved": true
+    }
+  ],
+  "all_passed": true,
+  "scope": "DNeRF non-streaming RGBA loader; streaming RGB Coffee inputs unaffected",
+  "training_action": "Restart only the two newly started corrected synthetic scenes from their original initialization"
+}

@@ -1,0 +1,411 @@
+diff --git a/diff-gaussian-rasterization/cuda_rasterizer/backward.cu b/diff-gaussian-rasterization/cuda_rasterizer/backward.cu
+--- a/diff-gaussian-rasterization/cuda_rasterizer/backward.cu
++++ b/diff-gaussian-rasterization/cuda_rasterizer/backward.cu
+@@ -187,7 +187,7 @@
+ 		float dl1m0_dz = SH_C1;
+ 		float dl1p1_dx = -1 * SH_C1;
+ 
+-		dL_dsh[1] = l0m0 * dL_dRGB;
++		dL_dsh[1] = l1m1 * dL_dRGB;
+ 		dL_dsh[2] = l1m0 * dL_dRGB;
+ 		dL_dsh[3] = l1p1 * dL_dRGB;
+ 
+@@ -300,7 +300,7 @@
+ 
+ 				if (deg_t > 0){
+ 					float t1 = cos(2 * MY_PI * dir_t / time_duration);
+-					float dt1_dt = sin(2 * MY_PI * dir_t / time_duration) * 2 * MY_PI / time_duration;
++					float dt1_dt = -sin(2 * MY_PI * dir_t / time_duration) * 2 * MY_PI / time_duration;
+ 
+ 					dL_dsh[16] = t1 * l0m0 * dL_dRGB;
+ 					dL_dsh[17] = t1 * l1m1 * dL_dRGB;
+@@ -381,7 +381,7 @@
+ 
+ 					if (deg_t > 1){
+ 						float t2 = cos(2 * MY_PI * dir_t * 2 / time_duration);
+-						float dt2_dt = sin(2 * MY_PI * dir_t * 2 / time_duration) * 2 * MY_PI * 2 / time_duration;
++						float dt2_dt = -sin(2 * MY_PI * dir_t * 2 / time_duration) * 2 * MY_PI * 2 / time_duration;
+ 
+ 						dL_dsh[32] = t2 * l0m0 * dL_dRGB;
+ 						dL_dsh[33] = t2 * l1m1 * dL_dRGB;
+@@ -400,7 +400,7 @@
+ 						dL_dsh[46] = t2 * l3p2 * dL_dRGB;
+ 						dL_dsh[47] = t2 * l3p3 * dL_dRGB;
+ 
+-						dRGBdt = dt2_dt * (
++						dRGBdt += dt2_dt * (
+ 							l0m0 * sh[32] +
+ 							l1m1 * sh[33] +
+ 							l1m0 * sh[34] +
+diff --git a/diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.h b/diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.h
+--- a/diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.h
++++ b/diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.h
+@@ -12,6 +12,7 @@
+ #pragma once
+ 
+ #include <iostream>
++#include <cstdint>
+ #include <vector>
+ #include "rasterizer.h"
+ #include <cuda_runtime_api.h>
+diff --git a/memory_offload.py b/memory_offload.py
+new file mode 100644
+--- /dev/null
++++ b/memory_offload.py
+@@ -0,0 +1,45 @@
++"""Stage Adam moments in reusable pinned memory; keep the original GPU update."""
++import torch
++
++_buffers = {}
++
++
++@torch.no_grad()
++def move_adam_moments(optimizer, to_cpu):
++    moved = 0
++    devices = set()
++    for group_index, group in enumerate(optimizer.param_groups):
++        for parameter_index, parameter in enumerate(group['params']):
++            state = optimizer.state.get(parameter, {})
++            destination = torch.device('cpu') if to_cpu else parameter.device
++            for name in ('exp_avg', 'exp_avg_sq', 'max_exp_avg_sq'):
++                value = state.get(name)
++                if not torch.is_tensor(value) or value.device == destination:
++                    continue
++                if to_cpu:
++                    key = (id(optimizer), group_index, parameter_index, name)
++                    capacity = 1 << max(0, (value.numel()-1).bit_length())
++                    buffer = _buffers.get(key)
++                    if buffer is None or buffer.numel() < value.numel() or buffer.dtype != value.dtype:
++                        # Geometric capacities bound allocation churn as the model grows.
++                        buffer = torch.empty(capacity, dtype=value.dtype, device='cpu', pin_memory=True)
++                        _buffers[key] = buffer
++                    target = buffer[:value.numel()].view(value.shape)
++                    target.copy_(value, non_blocking=True)
++                else:
++                    target = value.to(destination, non_blocking=value.is_pinned())
++                state[name] = target
++                devices.add(parameter.device)
++                moved += value.numel() * value.element_size()
++    for device in devices:
++        torch.cuda.synchronize(device)
++    return moved
++
++
++def checkpoint_optimizer_state(optimizer):
++    """Serialize only used values, never spare pinned capacity or uninitialized bytes."""
++    original = optimizer.state_dict()
++    return dict(original, state={index: {
++        name: value.detach().clone() if torch.is_tensor(value) and value.device.type == 'cpu'
++        and value.untyped_storage().nbytes() > value.numel()*value.element_size() else value
++        for name, value in state.items()} for index, state in original['state'].items()})
+diff --git a/scene/cameras.py b/scene/cameras.py
+--- a/scene/cameras.py
++++ b/scene/cameras.py
+@@ -20,15 +20,15 @@
+     def __init__(self, colmap_id, R, T, FoVx, FoVy, image, gt_alpha_mask,
+                  image_name, uid,
+                  trans=np.array([0.0, 0.0, 0.0]), scale=1.0, data_device = "cuda", timestamp = 0.0,
+-                 cx=-1, cy=-1, fl_x=-1, fl_y=-1, depth=None, resolution=None, image_path=None, meta_only=False,
++                 cx=-1, cy=-1, fl_x=-1, fl_y=-1, depth=None, resolution=None, image_path=None, meta_only=False, premultiplied=False,
+                  ):
+ 
+         self.uid = uid
+         self.colmap_id = colmap_id
+         self.R = R
+         self.T = T
+-        self.FoVx = FoVx
+-        self.FoVy = FoVy
++        self.FoVx = 2 * np.arctan(resolution[0] / (2 * fl_x)) if FoVx <= 0 and fl_x > 0 else FoVx
++        self.FoVy = 2 * np.arctan(resolution[1] / (2 * fl_y)) if FoVy <= 0 and fl_y > 0 else FoVy
+         self.image_name = image_name
+         self.cx = cx
+         self.cy = cy
+@@ -50,7 +50,7 @@
+         self.image_width = resolution[0]
+         self.image_height = resolution[1]
+         
+-        if not self.meta_only:
++        if not self.meta_only and not premultiplied:
+             if gt_alpha_mask is not None:
+                 self.image *= gt_alpha_mask.to(self.image.device)
+             else:
+diff --git a/scene/dataset_readers.py b/scene/dataset_readers.py
+--- a/scene/dataset_readers.py
++++ b/scene/dataset_readers.py
+@@ -253,10 +253,13 @@
+             norm_data = im_data / 255.0
+             arr = norm_data[:,:,:3] * norm_data[:, :, 3:4] + bg * (1 - norm_data[:, :, 3:4])
+             if norm_data[:, :, 3:4].min() < 1:
+-                arr = np.concatenate([arr, norm_data[:, :, 3:4]], axis=2)
+-                image = Image.fromarray(np.array(arr*255.0, dtype=np.byte), "RGBA")
++                # RGB is already composited with the requested background.
++                # Resize it as RGB; keep the uncomposited alpha separately.
++                image = Image.fromarray(np.array(arr*255.0, dtype=np.uint8), "RGB")
++                image.info["native4dgs_alpha_mask"] = Image.fromarray(im_data[:, :, 3], "L")
++                image.info["native4dgs_composited"] = True
+             else:
+-                image = Image.fromarray(np.array(arr*255.0, dtype=np.byte), "RGB")
++                image = Image.fromarray(np.array(arr*255.0, dtype=np.uint8), "RGB")
+ 
+             width, height = image.size[0], image.size[1]
+         else:
+@@ -298,7 +301,7 @@
+             return CameraInfo(uid=idx, R=R, T=T, FovY=FovY, FovX=FovX, image=image, depth=depth,
+                             image_path=image_path, image_name=image_name, width=width, height=height, timestamp=timestamp)
+     
+-    with ThreadPool() as pool:
++    with ThreadPool(processes=4) as pool:
+         cam_infos = pool.map(frame_read_fn, zip(list(range(len(frames))), frames))
+         pool.close()
+         pool.join()
+diff --git a/scene/gaussian_model.py b/scene/gaussian_model.py
+--- a/scene/gaussian_model.py
++++ b/scene/gaussian_model.py
+@@ -97,6 +97,7 @@
+         self.setup_functions()
+ 
+     def capture(self):
++        from memory_offload import checkpoint_optimizer_state
+         if self.gaussian_dim == 3:
+             return (
+                 self.active_sh_degree,
+@@ -109,7 +110,7 @@
+                 self.max_radii2D,
+                 self.xyz_gradient_accum,
+                 self.denom,
+-                self.optimizer.state_dict(),
++                checkpoint_optimizer_state(self.optimizer),
+                 self.spatial_lr_scale,
+             )
+         elif self.gaussian_dim == 4:
+@@ -125,7 +126,7 @@
+                 self.xyz_gradient_accum,
+                 self.t_gradient_accum,
+                 self.denom,
+-                self.optimizer.state_dict(),
++                checkpoint_optimizer_state(self.optimizer),
+                 self.spatial_lr_scale,
+                 self._t,
+                 self._scaling_t,
+@@ -378,8 +379,8 @@
+         for group in self.optimizer.param_groups:
+             if group["name"] == name:
+                 stored_state = self.optimizer.state.get(group['params'][0], None)
+-                stored_state["exp_avg"] = torch.zeros_like(tensor)
+-                stored_state["exp_avg_sq"] = torch.zeros_like(tensor)
++                stored_state["exp_avg"] = torch.zeros_like(tensor, device=stored_state["exp_avg"].device)
++                stored_state["exp_avg_sq"] = torch.zeros_like(tensor, device=stored_state["exp_avg_sq"].device)
+ 
+                 del self.optimizer.state[group['params'][0]]
+                 group["params"][0] = nn.Parameter(tensor.requires_grad_(True))
+@@ -393,8 +394,8 @@
+         for group in self.optimizer.param_groups:
+             stored_state = self.optimizer.state.get(group['params'][0], None)
+             if stored_state is not None:
+-                stored_state["exp_avg"] = stored_state["exp_avg"][mask]
+-                stored_state["exp_avg_sq"] = stored_state["exp_avg_sq"][mask]
++                stored_state["exp_avg"] = stored_state["exp_avg"][mask.to(stored_state["exp_avg"].device)]
++                stored_state["exp_avg_sq"] = stored_state["exp_avg_sq"][mask.to(stored_state["exp_avg_sq"].device)]
+ 
+                 del self.optimizer.state[group['params'][0]]
+                 group["params"][0] = nn.Parameter((group["params"][0][mask].requires_grad_(True)))
+@@ -437,8 +438,8 @@
+             stored_state = self.optimizer.state.get(group['params'][0], None)
+             if stored_state is not None:
+ 
+-                stored_state["exp_avg"] = torch.cat((stored_state["exp_avg"], torch.zeros_like(extension_tensor)), dim=0)
+-                stored_state["exp_avg_sq"] = torch.cat((stored_state["exp_avg_sq"], torch.zeros_like(extension_tensor)), dim=0)
++                stored_state["exp_avg"] = torch.cat((stored_state["exp_avg"], torch.zeros_like(extension_tensor, device=stored_state["exp_avg"].device)), dim=0)
++                stored_state["exp_avg_sq"] = torch.cat((stored_state["exp_avg_sq"], torch.zeros_like(extension_tensor, device=stored_state["exp_avg_sq"].device)), dim=0)
+ 
+                 del self.optimizer.state[group['params'][0]]
+                 group["params"][0] = nn.Parameter(torch.cat((group["params"][0], extension_tensor), dim=0).requires_grad_(True))
+diff --git a/simple-knn/simple_knn.cu b/simple-knn/simple_knn.cu
+--- a/simple-knn/simple_knn.cu
++++ b/simple-knn/simple_knn.cu
+@@ -12,6 +12,7 @@
+ #define BOX_SIZE 1024
+ 
+ #include "cuda_runtime.h"
++#include <cfloat>
+ #include "device_launch_parameters.h"
+ #include "simple_knn.h"
+ #include <cub/cub.cuh>
+diff --git a/train.py b/train.py
+--- a/train.py
++++ b/train.py
+@@ -41,15 +41,28 @@
+         time_duration = [time_duration[0] / dataset.frame_ratio,  time_duration[1] / dataset.frame_ratio]
+     
+     first_iter = 0
++    memory_offload = os.environ.get("NATIVE4DGS_OFFLOAD_ADAM") == "1"
++    if memory_offload:
++        from memory_offload import move_adam_moments
+     tb_writer = prepare_output_and_logger(dataset)
+     gaussians = GaussianModel(dataset.sh_degree, gaussian_dim=gaussian_dim, time_duration=time_duration, rot_4d=rot_4d, force_sh_3d=force_sh_3d, sh_degree_t=2 if pipe.eval_shfs_4d else 0,
+                               prefilter_var=dataset.prefilter_var)
+     scene = Scene(dataset, gaussians, num_pts=num_pts, num_pts_ratio=num_pts_ratio, time_duration=time_duration)
+     gaussians.training_setup(opt)
+     
++    # NATIVE4DGS_SAFE_RESUME_V1: release checkpoints precede densification/Adam.
++    resume_iteration = 0
+     if checkpoint:
+-        (model_params, first_iter) = torch.load(checkpoint)
++        (model_params, first_iter) = torch.load(checkpoint, map_location="cuda", weights_only=False)
++        if pipe.env_map_res and first_iter < pipe.env_optimize_until and os.environ.get("NATIVE4DGS_ALLOW_BACKGROUND_ADAM_RESET") != "1":
++            raise RuntimeError("Background Adam state is absent from release checkpoints; resume only after its freeze iteration")
+         gaussians.restore(model_params, opt)
++        resume_iteration = first_iter
++        assert gaussians.optimizer.state, "Missing Gaussian optimizer state"
++        del model_params
++        # Its test result is already recorded; the gradient update is replayed.
++        testing_iterations = [i for i in testing_iterations if i > resume_iteration]
++        saving_iterations = [i for i in saving_iterations if i > resume_iteration]
+ 
+     bg_color = [1, 1, 1] if dataset.white_background else [0, 0, 0]
+     background = torch.tensor(bg_color, dtype=torch.float32, device="cuda")
+@@ -57,7 +70,7 @@
+     iter_start = torch.cuda.Event(enable_timing = True)
+     iter_end = torch.cuda.Event(enable_timing = True)
+     
+-    best_psnr = 0.0
++    best_psnr = float(os.environ.get("NATIVE4DGS_RESUME_BEST_PSNR", "0.0")) if checkpoint else 0.0
+     ema_loss_for_log = 0.0
+     ema_l1loss_for_log = 0.0
+     ema_ssimloss_for_log = 0.0
+@@ -65,21 +78,38 @@
+     for lambda_name in lambda_all:
+         vars()[f"ema_{lambda_name.replace('lambda_','')}_for_log"] = 0.0
+     
+-    progress_bar = tqdm(range(first_iter, opt.iterations), desc="Training progress")
++    progress_bar = tqdm(total=opt.iterations, initial=max(0,first_iter-1) if checkpoint else 0, desc="Training progress")
+     first_iter += 1
+         
+     if pipe.env_map_res:
+-        env_map = nn.Parameter(torch.zeros((3,pipe.env_map_res, pipe.env_map_res),dtype=torch.float, device="cuda").requires_grad_(True))
++        if checkpoint:
++            env_map = gaussians.env_map
++            assert env_map is not None and torch.isfinite(env_map).all()
++            assert tuple(env_map.shape) == (3, pipe.env_map_res, pipe.env_map_res)
++        else:
++            env_map = nn.Parameter(torch.zeros((3,pipe.env_map_res, pipe.env_map_res),dtype=torch.float, device="cuda").requires_grad_(True))
+         env_map_optimizer = torch.optim.Adam([env_map], lr=opt.feature_lr, eps=1e-15)
+     else:
+         env_map = None
+         
+     gaussians.env_map = env_map
+-        
++    if checkpoint:
++        import hashlib, json
++        record = {"iteration": resume_iteration, "points": int(gaussians.get_xyz.shape[0]),
++            "space_degree": gaussians.active_sh_degree, "time_degree": gaussians.active_sh_degree_t,
++            "optimizer_states": len(gaussians.optimizer.state), "best_psnr": best_psnr,
++            "env_sha256": hashlib.sha256(env_map.detach().cpu().contiguous().numpy().tobytes()).hexdigest() if env_map is not None else None}
++        print("RESUME_STATE_RESTORED " + json.dumps(record), flush=True)
++        
++    if memory_offload:
++        moved = move_adam_moments(gaussians.optimizer, True)
++        torch.cuda.empty_cache()
++        print("ADAM_CPU_STAGING_ENABLED", moved, "bytes; batch and update equations unchanged", flush=True)
++
+     training_dataset = scene.getTrainCameras()
+     training_dataloader = DataLoader(training_dataset, batch_size=batch_size, shuffle=True, num_workers=12 if dataset.dataloader else 0, collate_fn=lambda x: x, drop_last=True)
+      
+-    iteration = first_iter
++    iteration = first_iter - 2 if checkpoint else first_iter
+     while iteration < opt.iterations + 1:
+         for batch_data in training_dataloader:
+             iteration += 1
+@@ -90,7 +120,7 @@
+             gaussians.update_learning_rate(iteration)
+             
+             # Every 1000 its we increase the levels of SH up to a maximum degree
+-            if iteration % opt.sh_increase_interval == 0:
++            if iteration % opt.sh_increase_interval == 0 and iteration != resume_iteration:
+                 gaussians.oneupSHdegree()
+                 
+             # Render
+@@ -211,7 +241,7 @@
+                             postfix[lambda_name.replace("lambda_", "L")] = f"{ema_loss:.{4}f}"
+                             
+                     progress_bar.set_postfix(postfix)
+-                    progress_bar.update(10)
++                    progress_bar.update(iteration - progress_bar.n)
+                 if iteration == opt.iterations:
+                     progress_bar.close()
+ 
+@@ -226,6 +256,11 @@
+                 if (iteration in saving_iterations):
+                     print("\n[ITER {}] Saving Gaussians".format(iteration))
+                     scene.save(iteration)
++
++                if memory_offload:
++                    # Backward and reporting have finished. Release references to
++                    # the old parameter graph before densification replaces it.
++                    del loss, Ll1, Lssim, loss_dict, render_pkg, image, depth, alpha
+ 
+                 # Densification
+                 if iteration < opt.densify_until_iter and (opt.densify_until_num_points < 0 or gaussians.get_xyz.shape[0] < opt.densify_until_num_points):
+@@ -243,6 +278,9 @@
+                     if iteration % opt.opacity_reset_interval == 0 or (dataset.white_background and iteration == opt.densify_from_iter):
+                         gaussians.reset_opacity()
+                         
++                if memory_offload:
++                    move_adam_moments(gaussians.optimizer, False)
++
+                 # Optimizer step
+                 if iteration < opt.iterations:
+                     gaussians.optimizer.step()
+@@ -250,6 +288,11 @@
+                     if pipe.env_map_res and iteration < pipe.env_optimize_until:
+                         env_map_optimizer.step()
+                         env_map_optimizer.zero_grad(set_to_none = True)
++                if memory_offload:
++                    move_adam_moments(gaussians.optimizer, True)
++                    if iteration % 100 == 0:
++                        print("ADAM_CPU_STAGING_MEMORY", iteration, "allocated_GiB", round(torch.cuda.memory_allocated()/2**30,3), "peak_GiB", round(torch.cuda.max_memory_allocated()/2**30,3), flush=True)
++                        torch.cuda.reset_peak_memory_stats()
+ 
+ def prepare_output_and_logger(args):    
+     if not args.model_path:
+@@ -276,7 +319,7 @@
+ def training_report(tb_writer, iteration, Ll1, loss, l1_loss, elapsed, testing_iterations, scene : Scene, renderFunc, renderArgs, loss_dict=None):
+     if tb_writer:
+         tb_writer.add_scalar('train_loss_patches/l1_loss', Ll1.item(), iteration)
+-        tb_writer.add_scalar('train_loss_patches/ssim_loss', Ll1.item(), iteration)
++        tb_writer.add_scalar('train_loss_patches/ssim_loss', loss_dict['Lssim'].item(), iteration)
+         tb_writer.add_scalar('train_loss_patches/total_loss', loss.item(), iteration)
+         tb_writer.add_scalar('iter_time', elapsed, iteration)
+         tb_writer.add_scalar('total_points', scene.gaussians.get_xyz.shape[0], iteration)
+diff --git a/utils/camera_utils.py b/utils/camera_utils.py
+--- a/utils/camera_utils.py
++++ b/utils/camera_utils.py
+@@ -51,6 +51,8 @@
+ 
+         if resized_image_rgb.shape[0] == 4:
+             loaded_mask = resized_image_rgb[3:4, ...]
++        if "native4dgs_alpha_mask" in cam_info.image.info:
++            loaded_mask = PILtoTorch(cam_info.image.info["native4dgs_alpha_mask"], resolution)
+     else:
+         gt_image = cam_info.image
+     
+@@ -65,6 +67,7 @@
+                   image_name=cam_info.image_name, uid=id, data_device=args.data_device, 
+                   timestamp=cam_info.timestamp,
+                   cx=cx, cy=cy, fl_x=fl_x, fl_y=fl_y, depth=depth, resolution=resolution, image_path=cam_info.image_path,
++                  premultiplied=bool(getattr(cam_info.image, "info", {}).get("native4dgs_composited", False)),
+                   meta_only=args.dataloader
+                   )
+ 
+diff --git a/utils/data_utils.py b/utils/data_utils.py
+--- a/utils/data_utils.py
++++ b/utils/data_utils.py
+@@ -20,7 +20,7 @@
+                 im_data = np.array(image_load.convert("RGBA"))
+             norm_data = im_data / 255.0
+             arr = norm_data[:,:,:3] * norm_data[:, :, 3:4] + self.bg * (1 - norm_data[:, :, 3:4])
+-            image_load = Image.fromarray(np.array(arr*255.0, dtype=np.byte), "RGB")
++            image_load = Image.fromarray(np.array(arr*255.0, dtype=np.uint8), "RGB")
+             resized_image_rgb = PILtoTorch(image_load, viewpoint_cam.resolution)
+             viewpoint_image = resized_image_rgb[:3, ...].clamp(0.0, 1.0)
+             if resized_image_rgb.shape[1] == 4:

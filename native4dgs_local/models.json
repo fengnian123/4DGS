@@ -1,0 +1,74 @@
+{
+  "recorded_on": "2026-11-05",
+  "distribution": "not included in Git; existing server files retained",
+  "checksum_note": "Weight content hashes were not calculated for this packaging pass; media and source hashes are recorded separately.",
+  "total_bytes": 32655472977,
+  "models": [
+    {
+      "scene": "jumpingjacks_auditfix_full",
+      "version": "best",
+      "path": "runs/jumpingjacks_auditfix_full/viewer_model.pth",
+      "bytes": 143290587,
+      "iteration": 4000,
+      "gaussians": 217100,
+      "optimizer_state": false,
+      "download_url": null,
+      "sha256": null
+    },
+    {
+      "scene": "jumpingjacks_auditfix_full",
+      "version": "final",
+      "path": "runs/jumpingjacks_auditfix_full/chkpnt30000.pth",
+      "bytes": 1509327651,
+      "iteration": 30000,
+      "gaussians": 774802,
+      "optimizer_state": true,
+      "download_url": null,
+      "sha256": null
+    },
+    {
+      "scene": "bouncingballs_auditfix_full",
+      "version": "best",
+      "path": "runs/bouncingballs_auditfix_full/viewer_model.pth",
+      "bytes": 82782939,
+      "iteration": 18000,
+      "gaussians": 125422,
+      "optimizer_state": false,
+      "download_url": null,
+      "sha256": null
+    },
+    {
+      "scene": "bouncingballs_auditfix_full",
+      "version": "final",
+      "path": "runs/bouncingballs_auditfix_full/chkpnt20000.pth",
+      "bytes": 244334691,
+      "iteration": 20000,
+      "gaussians": 125422,
+      "optimizer_state": true,
+      "download_url": null,
+      "sha256": null
+    },
+    {
+      "scene": "coffee_martini_auditfix_full",
+      "version": "best",
+      "path": "runs/coffee_martini_auditfix_full/viewer_model.pth",
+      "bytes": 7764513557,
+      "iteration": 28000,
+      "gaussians": 11759861,
+      "optimizer_state": false,
+      "download_url": null,
+      "sha256": null
+    },
+    {
+      "scene": "coffee_martini_auditfix_full",
+      "version": "final",
+      "path": "runs/coffee_martini_auditfix_full/chkpnt30000.pth",
+      "bytes": 22911223552,
+      "iteration": 30000,
+      "gaussians": 11759861,
+      "optimizer_state": true,
+      "download_url": null,
+      "sha256": null
+    }
+  ]
+}

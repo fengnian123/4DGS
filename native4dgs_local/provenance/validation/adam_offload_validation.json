@@ -1,0 +1,144 @@
+{
+  "time": "2026-11-03 19:52:21",
+  "all_passed": true,
+  "checks": [
+    {
+      "update": 1,
+      "group": "xyz",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "f_dc",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "f_rest",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "opacity",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "scaling",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "rotation",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "t",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "scaling_t",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 1,
+      "group": "rotation_r",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "xyz",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "f_dc",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "f_rest",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "opacity",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "scaling",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "rotation",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "t",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "scaling_t",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 2,
+      "group": "rotation_r",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "xyz",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "f_dc",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "f_rest",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "opacity",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "scaling",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "rotation",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "t",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "scaling_t",
+      "parameter_and_adam_state_bit_equal": true
+    },
+    {
+      "update": 3,
+      "group": "rotation_r",
+      "parameter_and_adam_state_bit_equal": true
+    }
+  ],
+  "scope": "Three actual GPU Adam updates of sampled parameters and saved moments from the 5000-step Coffee checkpoint; each group and moment exactly equals ordinary GPU Adam. Full-scale memory behavior checked separately.",
+  "pinned_buffers": true,
+  "checkpoint_contains_only_used_storage": true
+}

@@ -1,0 +1,550 @@
+{
+  "time": "2026-11-04 10:14:37",
+  "all_passed": true,
+  "source_checkpoint_iteration": 11500,
+  "source_points": 11465150,
+  "checks": [
+    {
+      "operation": "concatenate_0",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_0",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_0",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_0",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_0",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_1",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_1",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_1",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_1",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "concatenate_2",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "prune_2",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "reset_2",
+      "group": "rotation_r",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "xyz",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "f_dc",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "f_rest",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "opacity",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "scaling",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "rotation",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "t",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "scaling_t",
+      "bit_equal": true
+    },
+    {
+      "operation": "adam_2",
+      "group": "rotation_r",
+      "bit_equal": true
+    }
+  ],
+  "scope": "9 parameter groups, 3 cycles of concatenate/prune/reset/ordinary CUDA Adam: all parameters and moments bitwise equal. Full-size training memory verified separately.",
+  "training_semantics": "No changes to batch, resolution, densification decisions, learning rate or Adam equations."
+}

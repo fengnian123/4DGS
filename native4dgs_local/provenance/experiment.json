@@ -1,0 +1,68 @@
+{
+  "method": "Yang et al. ICLR 2024 Native 4D Gaussian Splatting",
+  "upstream_commit": "121e360ce23d6e9ca7734072393414c844dfaea2",
+  "implementation": "released code plus verified gradient/alpha/compatibility/resume/CPU Adam-staging corrections",
+  "hardware": {
+    "gpu_model": "NVIDIA RTX A6000",
+    "gpu_memory_GiB": 48,
+    "compute_capability": "8.6"
+  },
+  "training_runtime": {
+    "python": "3.10.14",
+    "torch": "2.7.1+cu128",
+    "cuda_toolkit": "12.8"
+  },
+  "preprocessing_runtime": {
+    "pycolmap_cuda12": "4.2.1",
+    "cuda_toolkit": "12.9.2.0"
+  },
+  "selection": "Highest held-out test PSNR after full budget; same held-out set used for model selection and final reporting.",
+  "seed": 0,
+  "coverage": {
+    "D-NeRF": [
+      "jumpingjacks",
+      "bouncingballs"
+    ],
+    "Neural 3D Video": [
+      "coffee_martini"
+    ]
+  },
+  "coffee_preprocessing": {
+    "raw_resolution": [
+      2704,
+      2028
+    ],
+    "train_resolution": [
+      1352,
+      1014
+    ],
+    "train_cameras": 17,
+    "test_camera": "cam00",
+    "frames_per_camera": 300,
+    "train_frames": 5100,
+    "test_frames": 300,
+    "dense_initialization_points": 589372,
+    "training_initial_points_max": 300000,
+    "initialization_uses_test_camera": false
+  },
+  "coffee_resume": {
+    "saved_iterations": [
+      5000,
+      11500
+    ],
+    "cause": "GPU out of memory; CPU Adam staging expanded to backward and densification",
+    "gaussian_adam_preserved": true,
+    "frozen_environment_map_preserved": true,
+    "rng_and_dataloader_state_available": false
+  },
+  "configuration_adjustments": [
+    "experiment paths",
+    "numeric YAML temporal threshold 0.0002/40 = 0.000005",
+    "explicit seed 0",
+    "explicit save/evaluation at scene endpoint",
+    "prefilter disabled"
+  ],
+  "report": "../REPORT.md",
+  "validation_directory": "validation",
+  "source_changed_files": "source_changes.json"
+}

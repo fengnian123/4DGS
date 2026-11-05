@@ -1,0 +1,7 @@
+{
+  "upstream_commit": "121e360ce23d6e9ca7734072393414c844dfaea2",
+  "patch_applies_cleanly": true,
+  "source_files_compared": 766,
+  "all_sha256_match": true,
+  "line_endings": "LF; git core.autocrlf=false"
+}

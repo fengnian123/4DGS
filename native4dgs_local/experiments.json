@@ -1,0 +1,29 @@
+{
+  "jumpingjacks_auditfix_full": {
+    "label": "Jumpingjacks · 修正版 · 完整训练",
+    "config": "jumpingjacks_auditfix_full.yaml",
+    "dataset": "D-NeRF",
+    "role": "auditfix_full",
+    "steps": 30000,
+    "selected_iteration": 4000,
+    "selected_psnr": 33.514141941070555
+  },
+  "bouncingballs_auditfix_full": {
+    "label": "Bouncingballs · 修正版 · 完整训练",
+    "config": "bouncingballs_auditfix_full.yaml",
+    "dataset": "D-NeRF",
+    "role": "auditfix_full",
+    "steps": 20000,
+    "selected_iteration": 18000,
+    "selected_psnr": 33.794378662109374
+  },
+  "coffee_martini_auditfix_full": {
+    "label": "Coffee Martini · 修正版 · 完整训练",
+    "config": "coffee_martini_auditfix_full.yaml",
+    "dataset": "Neural 3D Video",
+    "role": "auditfix_full",
+    "steps": 30000,
+    "selected_iteration": 28000,
+    "selected_psnr": 28.3168030611674
+  }
+}

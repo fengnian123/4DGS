@@ -1,0 +1,31 @@
+{
+  "checked": "2026-11-05 10:18:29",
+  "training_complete": true,
+  "model": "coffee_martini_auditfix_full",
+  "renders": [
+    {
+      "active_time_points": 656934,
+      "checkpoint_view": "best",
+      "height": 480,
+      "iteration": 28000,
+      "points": 11759861,
+      "reference_time": 0.0,
+      "render_ms": 90.59,
+      "time": 5.0,
+      "width": 640,
+      "transport": "ssh-direct"
+    },
+    {
+      "active_time_points": 663918,
+      "checkpoint_view": "final",
+      "height": 480,
+      "iteration": 30000,
+      "points": 11759861,
+      "reference_time": 0.0,
+      "render_ms": 40.62,
+      "time": 5.0,
+      "width": 640,
+      "transport": "ssh-direct"
+    }
+  ]
+}

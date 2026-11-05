@@ -33,3 +33,46 @@ agentos_seated_v3/shape-of-motion/
 agentos_dynamic/inventory.json
 third_party/
 output.png
+
+# Isolated Native 4DGS runtime state
+native4dgs_local/code/
+native4dgs_local/envs/
+native4dgs_local/cache/
+native4dgs_local/tmp/
+native4dgs_local/manifests/
+reconstruction_viewer/scenes.*.local.json
+
+# Local credentials and connection records
+**/.ssh/
+**/*_ed25519
+**/*_ed25519.pub
+**/id_rsa*
+**/id_ecdsa*
+**/known_hosts
+**/authorized_keys
+*.pem
+*.key
+*.p12
+*.pfx
+*.ppk
+*.env
+.netrc
+.npmrc
+.pypirc
+.git-credentials
+credentials.json
+secrets.json
+auth.json
+/work/
+
+# Local review copies, editor backups and interrupted transfers
+/review_only/
+*.pid
+*.tmp
+*.part
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini

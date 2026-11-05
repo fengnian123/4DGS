@@ -1,0 +1,29 @@
+[
+  {
+    "scene": "jumpingjacks_auditfix_full",
+    "dataset": "D-NeRF",
+    "steps": 30000,
+    "selected_iteration": 4000,
+    "final_psnr": 30.66633806228638,
+    "best_psnr": 33.514141941070555,
+    "lpips_backbone": "vgg"
+  },
+  {
+    "scene": "bouncingballs_auditfix_full",
+    "dataset": "D-NeRF",
+    "steps": 20000,
+    "selected_iteration": 18000,
+    "final_psnr": 33.71232461929321,
+    "best_psnr": 33.794378662109374,
+    "lpips_backbone": "vgg"
+  },
+  {
+    "scene": "coffee_martini_auditfix_full",
+    "dataset": "Neural 3D Video",
+    "steps": 30000,
+    "selected_iteration": 28000,
+    "final_psnr": 28.243289006551105,
+    "best_psnr": 28.3168030611674,
+    "lpips_backbone": "alex"
+  }
+]

@@ -19,3 +19,11 @@ Training implementations are downloaded by `scripts/bootstrap.py`; each patch is
 - **AgentOS**: private sensor recordings are not distributed. Scripts and numerical summaries are included; MCAPs, calibration/identity attachments, camera frames, derived videos, tracks and model weights remain local.
 
 Software licenses do not override dataset, model-weight, privacy or submodule terms. This repository does not grant a new blanket license over third-party material.
+
+## Yang Native 4DGS addition
+
+- **Method**: Zeyu Yang, Hongye Yang, Zijie Pan, Li Zhang, *Real-time Photorealistic Dynamic Scene Representation and Rendering with 4D Gaussian Splatting*, ICLR 2024. Source: https://github.com/LogosIntelligenceLab/4d-gaussian-splatting ; commit `121e360ce23d6e9ca7734072393414c844dfaea2`.
+- **Software**: upstream MIT copyright (2024 Fudan Zhang Vision Group) is preserved in `licenses/Native4DGS-MIT.txt`. Inherited Gaussian Splatting components retain `licenses/Native4DGS-Gaussian-Splatting.md`; do not apply a blanket MIT label to all dependencies. `patches/native4dgs_yang2024.patch` is a complete diff against the pinned version, including the numerical and compatibility corrections described in `native4dgs_local/REPORT.md`.
+- **D-NeRF examples**: Albert Pumarola, Enric Corona, Gerard Pons-Moll, Francesc Moreno-Noguer, *D-NeRF: Neural Radiance Fields for Dynamic Scenes*, CVPR 2021. Data and provider links: https://github.com/albertpumarola/D-NeRF . `native4dgs_local/results/jumpingjacks_auditfix_full/` and `bouncingballs_auditfix_full/` contain local model renders, limited reference comparisons and numerical evaluations. The upstream code MIT notice is preserved as `licenses/D-NeRF-code-MIT.txt`; it is not asserted to be a blanket dataset/media license. Raw data are not redistributed here.
+- **Coffee Martini examples**: the Neural 3D Video source and CC BY-NC 4.0 attribution above also apply to `native4dgs_local/results/coffee_martini_auditfix_full/`. These are local reconstructions, comparisons, virtual-camera renders and metrics, with no raw multi-camera video archive or trained weights in Git.
+- **Weights**: model index only, no public model hosting URL has been set. Future model sharing must retain source/data attribution; a software license does not override data terms.

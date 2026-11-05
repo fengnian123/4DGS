@@ -19,3 +19,15 @@ Balloon1 uses author-preprocessed camera, depth and tracking inputs, 192 trainin
 AgentOS V3 was freshly initialized, not warm-started from V2. Withheld per-return LiDAR IDs are excluded consistently across views from completion and training losses. Foreground depth median discrepancy to those held-out returns changes from 0.16148 m (V2) to 0.00698 m (V3); file-bag discrepancy changes from 0.11626 m to 0.00631 m. This measures consistency with the same recording, not independent calibration accuracy. Bag mean discrepancy remains 0.09956 m. The training-view bag PSNR improves from 25.1344 to 26.3823 dB, while full-RGB PSNR declines. The common-mask background foreground-leak proxy rises from 0.00309 to 0.00919, and some novel-view streaking worsens. V3 is therefore not an overall artifact-removal improvement or a validated navigation environment. Physical exposure offset, human scan motion and upstream deskew are not independently established.
 
 Per-frame numerical results are preserved in the adjacent JSONs and each public method's `results/` directory. Model checkpoints and original sensor/dataset files are acquired or trained locally through the documented commands. Saved videos show rendered model outputs and labeled reference images; the interactive viewer separately renders models at the requested camera and time.
+
+## Yang Native 4DGS
+
+| Scene | Full schedule | Selected checkpoint | Test images | Selected PSNR | Final PSNR | Resolution |
+|---|---:|---:|---:|---:|---:|---|
+| Jumping Jacks | 30,000 | 4,000 | 20 | 33.5141 | 30.6663 | 400×400 |
+| Bouncing Balls | 20,000 | 18,000 | 20 | 33.7944 | 33.7123 | 400×400 |
+| Coffee Martini | 30,000 | 28,000 | 300 | 28.3168 | 28.2433 | 1352×1014 |
+
+These runs use the fixed release plus verified gradient, alpha-loading, compatibility and memory-management corrections. Selection uses the same held-out test PSNR later reported; this is not a separate validation/blind-test protocol. Jumping Jacks degrades after its selected checkpoint, which uses temporal color degree 1; its 30,000-step endpoint uses degree 2. Coffee resumes twice with Gaussian optimizer state preserved but the sampler sequence restarted. Do not directly rank against the existing Wu 4DGaussians Coffee result: resolution and training protocols differ.
+
+See [the complete report](../native4dgs_local/REPORT.md) for SSIM, MS-SSIM, LPIPS backbones, data splits, implementation changes and limitations. Per-frame metrics and both best/final comparison images are in `native4dgs_local/results/`.

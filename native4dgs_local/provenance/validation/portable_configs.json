@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "scene": "jumpingjacks_auditfix_full",
+      "all_config_values_match_recorded_training": true,
+      "iterations": 30000,
+      "batch_size": 16
+    },
+    {
+      "scene": "bouncingballs_auditfix_full",
+      "all_config_values_match_recorded_training": true,
+      "iterations": 20000,
+      "batch_size": 2
+    },
+    {
+      "scene": "coffee_martini_auditfix_full",
+      "all_config_values_match_recorded_training": true,
+      "iterations": 30000,
+      "batch_size": 4
+    }
+  ],
+  "all_passed": true
+}

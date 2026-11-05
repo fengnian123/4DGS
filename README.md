@@ -1,5 +1,7 @@
 # 4DGS 动态重建与统一查看器
 
+本仓库收录多种动态重建方法。Yang 原生 4DGS 的三场景复现可从 [结果与运行说明](native4dgs_local/README.md) 开始，或直接阅读 [关键技术的通俗理解](native4dgs_local/README.md#关键技术的通俗理解)。
+
 ## 查看已有结果
 
 ```bash
@@ -106,3 +108,29 @@ som_local/.venv/bin/python -m pip install playwright
 som_local/.venv/bin/python -m playwright install chromium
 som_local/.venv/bin/python reconstruction_viewer/check_ui.py --registry reconstruction_viewer/scenes.local.json
 ```
+
+## Yang Native 4DGS 复现
+
+`native4dgs_local/` 对应 Yang 等人的 ICLR 2024 原生四维高斯方法，与 `4dgs_local/` 的 Wu 4DGaussians 分开。输入带相机参数和时间戳的图像，训练后得到可以调时间、换视角的动态三维场景。
+
+本次完成两个数据集的三个场景，保留作者发布配置的完整训练步数。下表均为本次实测；相同场景和评测设置下，PSNR 越高越好。“最佳”按同一测试集选择，需与终点一起看。
+
+| 场景 | 数据集 | 完成步数 | PSNR：最佳 / 终点 | 直接看效果 |
+|---|---|---:|---:|---|
+| Jumping Jacks | D-NeRF | 30,000 | 33.514 / 30.666 | [动态视频](native4dgs_local/results/jumpingjacks_auditfix_full/fixed_view_time.mp4) · [最佳对比图](native4dgs_local/results/jumpingjacks_auditfix_full/best/test_comparison.png) · [终点对比图](native4dgs_local/results/jumpingjacks_auditfix_full/final/test_comparison.png) |
+| Bouncing Balls | D-NeRF | 20,000 | 33.794 / 33.712 | [动态视频](native4dgs_local/results/bouncingballs_auditfix_full/fixed_view_time.mp4) · [最佳对比图](native4dgs_local/results/bouncingballs_auditfix_full/best/test_comparison.png) · [终点对比图](native4dgs_local/results/bouncingballs_auditfix_full/final/test_comparison.png) |
+| Coffee Martini | Neural 3D Video | 30,000 | 28.317 / 28.243 | [动态视频](native4dgs_local/results/coffee_martini_auditfix_full/fixed_view_time.mp4) · [最佳对比图](native4dgs_local/results/coffee_martini_auditfix_full/best/test_comparison.png) · [终点对比图](native4dgs_local/results/coffee_martini_auditfix_full/final/test_comparison.png) |
+
+对比图每行依次为真实图、重建图、误差放大 5 倍。视频使用最佳检查点；Jumping Jacks 最佳为 4,000 步，但已继续训练到 30,000 步，后期质量下降如实保留。更多视角视频、分辨率和指标说明见 [方法 README](native4dgs_local/README.md#结果和查看方式)。
+
+仅观看结果无需 GPU 或模型权重，从仓库根目录运行：
+
+```bash
+python3 reconstruction_viewer/gallery.py --registry reconstruction_viewer/scenes.native4dgs.json
+```
+
+打开 <http://127.0.0.1:8900/> 播放预录视频。希望一边播放一边拖动视角，见 [实时查看器说明](native4dgs_local/README.md#自由视角实时查看器)；需要本机模型、相机数据和 CUDA 环境。权重未放入 Git，公共下载地址尚未设置，详情见 [权重索引](native4dgs_local/models.json)。
+
+**方法怎么理解？** 可以把它想成许多在局部时间段内匀速移动、逐渐显隐的小高斯，共同拼出运动和形变。四维旋转关联空间与时间，时间权重控制显隐，4D 颜色基描述随视角和时间变化的外观，时空增密补足难以拟合的细节。单颗高斯的线性运动不限制整个物体只能匀速运动；这些技术改善的是场景表示与拟合，不属于图像修复。详见 [关键技术的通俗理解](native4dgs_local/README.md#关键技术的通俗理解) 和 [原论文第 3 节](https://arxiv.org/html/2310.10642v3#S3)。
+
+复现代码由固定上游版本加完整补丁恢复。我们的梯度、透明度加载及显存管理修正另见 [实测报告](native4dgs_local/REPORT.md)，与论文提出的方法区分记录；本次未做完整数据集平均分或消融实验。
